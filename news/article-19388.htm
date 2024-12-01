@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-19388.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>springMVC中的@RequestMapping注解</title>
+        <meta name="description" content="目录 1、@RequestMapping注解的功能 2、@RequestMapping注解的位置 3、@RequestMapping注解的value属性 4、@RequestMapping注解的met" />
+        <link rel="icon" href="__ADDON__/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                        <li class="menu-item"><a href="#">关于</a></li>
+                                    <li class="menu-item"><a href="#">联系</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>springMVC中的@RequestMapping注解</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="htmledit_views"> <p id="main-toc"><strong>目录</strong></p> <p id="1%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8A%9F%E8%83%BD-toc" style="margin-left:80px;"><a href="#1%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8A%9F%E8%83%BD" rel="nofollow">1、@RequestMapping注解的功能</a></p> <p id="2%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84%E4%BD%8D%E7%BD%AE-toc" style="margin-left:80px;"><a href="#2%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84%E4%BD%8D%E7%BD%AE" rel="nofollow">2、@RequestMapping注解的位置</a></p> <p id="3%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84value%E5%B1%9E%E6%80%A7-toc" style="margin-left:80px;"><a href="#3%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84value%E5%B1%9E%E6%80%A7" rel="nofollow">3、@RequestMapping注解的value属性</a></p> <p id="4%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84method%E5%B1%9E%E6%80%A7-toc" style="margin-left:80px;"><a href="#4%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84method%E5%B1%9E%E6%80%A7" rel="nofollow">4、@RequestMapping注解的method属性</a></p> <p id="5%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84params%E5%B1%9E%E6%80%A7%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89-toc" style="margin-left:80px;"><a href="#5%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84params%E5%B1%9E%E6%80%A7%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89" rel="nofollow">5、@RequestMapping注解的params属性（了解）</a></p> <p id="6%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84headers%E5%B1%9E%E6%80%A7%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89-toc" style="margin-left:80px;"><a href="#6%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84headers%E5%B1%9E%E6%80%A7%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89" rel="nofollow">6、@RequestMapping注解的headers属性（了解）</a></p> <p id="7%E3%80%81SpringMVC%E6%94%AF%E6%8C%81ant%E9%A3%8E%E6%A0%BC%E7%9A%84%E8%B7%AF%E5%BE%84-toc" style="margin-left:80px;"><a href="#7%E3%80%81SpringMVC%E6%94%AF%E6%8C%81ant%E9%A3%8E%E6%A0%BC%E7%9A%84%E8%B7%AF%E5%BE%84" rel="nofollow">7、SpringMVC支持ant风格的路径</a></p> <p id="8%E3%80%81SpringMVC%E6%94%AF%E6%8C%81%E8%B7%AF%E5%BE%84%E4%B8%AD%E7%9A%84%E5%8D%A0%E4%BD%8D%E7%AC%A6%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89-toc" style="margin-left:80px;"><a href="#8%E3%80%81SpringMVC%E6%94%AF%E6%8C%81%E8%B7%AF%E5%BE%84%E4%B8%AD%E7%9A%84%E5%8D%A0%E4%BD%8D%E7%AC%A6%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89" rel="nofollow">8、SpringMVC支持路径中的占位符（重点）</a></p> <hr id="hr-toc"/> <p><span style="color:#fe2c24;">&nbsp;杨博超老师的笔记</span></p> <h3 id="1%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8A%9F%E8%83%BD">1、@RequestMapping注解的功能</h3> <p>从注解名称上我们可以看到，@RequestMapping注解的作用就是将请求和处理请求的控制器方法关联起来，建立映射关系。</p> <p>SpringMVC 接收到指定的请求，就会来找到在映射关系中对应的控制器方法来处理这个请求。</p> <h3 id="2%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84%E4%BD%8D%E7%BD%AE">2、@RequestMapping注解的位置</h3> <p>@RequestMapping标识一个类：设置映射请求的请求路径的初始信息</p> <p>@RequestMapping标识一个方法：设置映射请求请求路径的具体信息</p> <pre><code class="language-java">@Controller @RequestMapping("/test") public class RequestMappingController {      //此时请求映射所映射的请求的请求路径为：/test/testRequestMapping  &nbsp; &nbsp;@RequestMapping("/testRequestMapping")  &nbsp; &nbsp;public String testRequestMapping(){  &nbsp; &nbsp; &nbsp; &nbsp;return "success";  &nbsp;  }  }</code></pre> <h3 id="3%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84value%E5%B1%9E%E6%80%A7">3、@RequestMapping注解的value属性</h3> <p>@RequestMapping注解的value属性通过请求的请求地址匹配请求映射</p> <p>@RequestMapping注解的value属性是一个字符串类型的数组，表示该请求映射能够匹配多个请求地址所对应的请求</p> <p>@RequestMapping注解的value属性必须设置，至少通过请求地址匹配请求映射</p> <pre><code class="language-html">&lt;a th:href="@{/testRequestMapping}"&gt;测试@RequestMapping的value属性--&gt;/testRequestMapping&lt;/a&gt;&lt;br&gt; &lt;a th:href="@{/test}"&gt;测试@RequestMapping的value属性--&gt;/test&lt;/a&gt;&lt;br&gt;</code></pre> <pre><code class="language-java">@RequestMapping(  &nbsp; &nbsp; &nbsp; &nbsp;value = {"/testRequestMapping", "/test"} ) public String testRequestMapping(){  &nbsp; &nbsp;return "success"; }</code></pre> <h3 id="4%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84method%E5%B1%9E%E6%80%A7">4、@RequestMapping注解的method属性</h3> <p>@RequestMapping注解的method属性通过请求的请求方式（get或post）匹配请求映射</p> <p>@RequestMapping注解的method属性是一个RequestMethod类型的数组，表示该请求映射能够匹配多种请求方式的请求</p> <p>若当前请求的请求地址满足请求映射的value属性，但是请求方式不满足method属性，则浏览器报错405：Request method 'POST' not supported</p> <pre><code class="language-html">&lt;a th:href="@{/test}"&gt;测试@RequestMapping的value属性--&gt;/test&lt;/a&gt;&lt;br&gt; &lt;form th:action="@{/test}" method="post"&gt;  &nbsp; &nbsp;&lt;input type="submit"&gt; &lt;/form&gt;</code></pre> <pre><code class="language-java">@RequestMapping(  &nbsp; &nbsp; &nbsp; &nbsp;value = {"/testRequestMapping", "/test"},  &nbsp; &nbsp; &nbsp; &nbsp;method = {RequestMethod.GET, RequestMethod.POST} ) public String testRequestMapping(){  &nbsp; &nbsp;return "success"; }</code></pre> <blockquote> <p>注：</p> <p>1、对于处理指定请求方式的控制器方法，SpringMVC中提供了@RequestMapping的派生注解</p> <p>处理get请求的映射--&gt;@GetMapping</p> <p>处理post请求的映射--&gt;@PostMapping</p> <p>处理put请求的映射--&gt;@PutMapping</p> <p>处理delete请求的映射--&gt;@DeleteMapping</p> <p>2、常用的请求方式有get，post，put，delete</p> <p>但是目前浏览器只支持get和post，若在form表单提交时，为method设置了其他请求方式的字符串（put或delete），则按照默认的请求方式get处理</p> <p>若要发送put和delete请求，则需要通过spring提供的过滤器HiddenHttpMethodFilter，在RESTful部分会讲到</p> </blockquote> <h3 id="5%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84params%E5%B1%9E%E6%80%A7%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89">5、@RequestMapping注解的params属性（了解）</h3> <p>@RequestMapping注解的params属性通过请求的请求参数匹配请求映射</p> <p>@RequestMapping注解的params属性是一个字符串类型的数组，可以通过四种表达式设置请求参数和请求映射的匹配关系</p> <p>"param"：要求请求映射所匹配的请求必须携带param请求参数</p> <p>"!param"：要求请求映射所匹配的请求必须不能携带param请求参数</p> <p>"param=value"：要求请求映射所匹配的请求必须携带param请求参数且param=value</p> <p>"param!=value"：要求请求映射所匹配的请求必须携带param请求参数但是param!=value</p> <pre><code class="language-html">&lt;a th:href="@{/test(username='admin',password=123456)"&gt;测试@RequestMapping的params属性--&gt;/test&lt;/a&gt;&lt;br&gt;</code></pre> <pre><code class="language-java">@RequestMapping(  &nbsp; &nbsp; &nbsp; &nbsp;value = {"/testRequestMapping", "/test"}  &nbsp; &nbsp; &nbsp;  ,method = {RequestMethod.GET, RequestMethod.POST}  &nbsp; &nbsp; &nbsp;  ,params = {"username","password!=123456"} ) public String testRequestMapping(){  &nbsp; &nbsp;return "success"; }</code></pre> <blockquote> <p>注：</p> <p>若当前请求满足@RequestMapping注解的value和method属性，但是不满足params属性，此时页面回报错400：Parameter conditions "username, password!=123456" not met for actual request parameters: username={admin}, password={123456}</p> </blockquote> <h3 id="6%E3%80%81%40RequestMapping%E6%B3%A8%E8%A7%A3%E7%9A%84headers%E5%B1%9E%E6%80%A7%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89">6、@RequestMapping注解的headers属性（了解）</h3> <p>@RequestMapping注解的headers属性通过请求的请求头信息匹配请求映射</p> <p>@RequestMapping注解的headers属性是一个字符串类型的数组，可以通过四种表达式设置请求头信息和请求映射的匹配关系</p> <p>"header"：要求请求映射所匹配的请求必须携带header请求头信息</p> <p>"!header"：要求请求映射所匹配的请求必须不能携带header请求头信息</p> <p>"header=value"：要求请求映射所匹配的请求必须携带header请求头信息且header=value</p> <p>"header!=value"：要求请求映射所匹配的请求必须携带header请求头信息且header!=value</p> <p>若当前请求满足@RequestMapping注解的value和method属性，但是不满足headers属性，此时页面显示404错误，即资源未找到</p> <h3 id="7%E3%80%81SpringMVC%E6%94%AF%E6%8C%81ant%E9%A3%8E%E6%A0%BC%E7%9A%84%E8%B7%AF%E5%BE%84">7、SpringMVC支持ant风格的路径</h3> <p>？：表示任意的单个字符</p> <p>*：表示任意的0个或多个字符</p> <p>**：表示任意的一层或多层目录</p> <p>注意：在使用**时，只能使用/**/xxx的方式</p> <h3 id="8%E3%80%81SpringMVC%E6%94%AF%E6%8C%81%E8%B7%AF%E5%BE%84%E4%B8%AD%E7%9A%84%E5%8D%A0%E4%BD%8D%E7%AC%A6%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89">8、SpringMVC支持路径中的占位符（重点）</h3> <p>原始方式：/deleteUser?id=1</p> <p>rest方式：/deleteUser/1</p> <p>SpringMVC路径中的占位符常用于RESTful风格中，当请求路径中将某些数据通过路径的方式传输到服务器中，就可以在相应的@RequestMapping注解的value属性中通过占位符{xxx}表示传输的数据，再通过@PathVariable注解，将占位符所表示的数据赋值给控制器方法的形参</p> <pre><code class="language-html">&lt;a th:href="@{/testRest/1/admin}"&gt;测试路径中的占位符--&gt;/testRest&lt;/a&gt;&lt;br&gt;</code></pre> <pre><code class="language-java">@RequestMapping("/testRest/{id}/{username}") public String testRest(@PathVariable("id") String id, @PathVariable("username") String username){  &nbsp; &nbsp;System.out.println("id:"+id+",username:"+username);  &nbsp; &nbsp;return "success"; } //最终输出的内容为--&gt;id:1,username:admin</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-18929.htm">养宠物违约金怎么赔偿 养宠物违约金怎么赔偿的</a></p>
+                                        <p>下一个：<a href="/news/article-19389.htm">动物医学实验报告（动物医学实验报告范文）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-free-subscribe-node.htm" title="11月15日→18.4M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月15日→18.4M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-node-share-links.htm" title="11月13日→22.5M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月13日→22.5M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-node-subscribe.htm" title="11月27日→20.6M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月27日→20.6M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-node-subscribe-links.htm" title="11月17日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月17日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-node-share.htm" title="11月26日→21.4M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月26日→21.4M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-subscribe-node.htm" title="11月30日→20.4M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月30日→20.4M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-free-node-subscribe-links.htm" title="11月2日→20.5M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月2日→20.5M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-4-free-node-subscribe.htm" title="11月4日→22.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月4日→22.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-node-share-links.htm" title="11月23日→19.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月23日→19.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-subscribe-node.htm" title="11月5日→19.4M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月5日→19.4M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
