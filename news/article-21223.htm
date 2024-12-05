@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-21223.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>运行时服务(二)、warnings模块</title>
+        <meta name="description" content="参考 &nbsp; python的warnings模块 - 云+社区 - 腾讯云 目录 警告类别 警告过滤器 默认警告过滤器 可用函数 可用的上下文管理器  Python 通过调用 warnings " />
+        <link rel="icon" href="__ADDON__/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                        <li class="menu-item"><a href="#">关于</a></li>
+                                    <li class="menu-item"><a href="#">联系</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>运行时服务(二)、warnings模块</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="htmledit_views"> <p>参考 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://cloud.tencent.com/developer/article/1496628"  title="&nbsp; python的warnings模块 - 云+社区 - 腾讯云" rel="nofollow">&nbsp; python的warnings模块 - 云+社区 - 腾讯云</a></p> <p id="main-toc"><strong>目录</strong></p> <p id="part-2e760fbe1ef46bcb-toc" style="margin-left:40px;"><a href="#part-2e760fbe1ef46bcb" rel="nofollow">警告类别</a></p> <p id="part-2b57f1ba28c1b039-toc" style="margin-left:40px;"><a href="#part-2b57f1ba28c1b039" rel="nofollow">警告过滤器</a></p> <p id="part-e726700c3c678d8f-toc" style="margin-left:40px;"><a href="#part-e726700c3c678d8f" rel="nofollow">默认警告过滤器</a></p> <p id="part-2bb9a220bb0c77bf-toc" style="margin-left:40px;"><a href="#part-2bb9a220bb0c77bf" rel="nofollow">可用函数</a></p> <p id="part-b1b774fa5c9221b9-toc" style="margin-left:40px;"><a href="#part-b1b774fa5c9221b9" rel="nofollow">可用的上下文管理器</a></p> <hr id="hr-toc"/> <p><span style="color:#e579b6;"><strong>Python 通过调用 warnings 模块中定义的 warn() 函数来发出警告。警告消息通常用于提示用户一些错误或者过时的用法，当这些情况发生时我们不希望抛出异常或者直接退出程序。</strong></span>警告消息通常写入 sys.stderr，对警告的处理方式可以灵活的更改，例如忽略或者转变为为异常。警告的处理可以根据警告类别，警告消息的文本和发出警告消息的源位置而变化。对相同源位置的特定警告的重复通常被抑制。</p> <p>警告控制分为两个阶段：首先，警告被触发时，确定是否应该发出消息；接下来，如果要发出消息，则使用用户可设置的钩子来格式化和打印消息。</p> <p>警告过滤器可以用来控制是否发出警告消息，警告过滤器是一些匹配规则和动作的序列。可以通过调用 <code>filterwarnings()</code> 将规则添加到过滤器，并通过调用 <code>resetwarnings()</code> 将其重置为默认状态。</p> <p>警告消息的输出是通过调用 showwarning() 函数来完成的，其可以被覆盖；该函数的默认实现通过调用 formatwarning() 格式化消息，这也可以由自定义实现使用。</p> <h2 id="part-2e760fbe1ef46bcb">警告类别</h2> <p>內建警告类型：</p> <table> <thead> <tr> <th>类</th> <th>描述</th> </tr> </thead> <tbody> <tr> <td>Warning</td> <td>所有警告类别类的基类，它是 Exception 的子类</td> </tr> <tr> <td>UserWarning</td> <td>函数 warn() 的默认类别</td> </tr> <tr> <td>DeprecationWarning</td> <td>用于已弃用功能的警告（默认被忽略）</td> </tr> <tr> <td>SyntaxWarning</td> <td>用于可疑语法的警告</td> </tr> <tr> <td>RuntimeWarning</td> <td>用于有关可疑运行时功能的警告</td> </tr> <tr> <td>FutureWarning</td> <td>对于未来特性更改的警告</td> </tr> <tr> <td>PendingDeprecationWarning</td> <td>对于未来会被弃用的功能的警告（默认将被忽略）</td> </tr> <tr> <td>ImportWarning</td> <td>导入模块过程中触发的警告（默认被忽略）</td> </tr> <tr> <td>UnicodeWarning</td> <td>与 Unicode 相关的警告</td> </tr> <tr> <td>BytesWarning</td> <td>与 bytes 和 bytearray 相关的警告 (Python3)</td> </tr> <tr> <td>ResourceWarning</td> <td>与资源使用相关的警告(Python3)</td> </tr> </tbody> </table> <p>可以通过继承內建警告类型来实现自定义的警告类型，警告类型必须始终是 <code>Warning</code> 类的子类。</p> <h2 id="part-2b57f1ba28c1b039">警告过滤器</h2> <p>警告过滤器用于控制警告的行为，如<code>忽略，显示或转换为错误（引发异常）</code>。警告过滤器维护着一个有序的过滤规则列表，匹配规则用于确定如何处理警告，任何特定警告都将依次与列表中的每个过滤规则匹配，直到找到匹配为止。过滤规则类型为一个元组 (action，message，category，module，lineno)，其中：</p> <ul> <li> <strong>action</strong> 为以下值：</li> </ul> <table> <thead> <tr> <th>值</th> <th>处理方式</th> </tr> </thead> <tbody> <tr> <td>"error"</td> <td>将匹配警告转换为异常</td> </tr> <tr> <td>"ignore"</td> <td>忽略匹配的警告</td> </tr> <tr> <td>"always"</td> <td>始终输出匹配的警告</td> </tr> <tr> <td>"default"</td> <td>对于同样的警告只输出第一次出现的警告</td> </tr> <tr> <td>"module"</td> <td>在一个模块中只输出第一次出现的警告</td> </tr> <tr> <td>"once"</td> <td>输出第一次出现的警告,而不考虑它们的位置</td> </tr> </tbody> </table> <ul> <li> <strong>message</strong> 是包含正则表达式的字符串，警告消息的开始必须匹配，不区分大小写</li> <li> <strong>category</strong> 是一个警告类型（必须是 Warning 的子类）</li> <li> <strong>module</strong> 是包含模块名称的正则表达式字符串，区分大小写</li> <li> <strong>lineno</strong> 是一个整数，警告发生的行号，为 0 则匹配所有行号</li> </ul> <h2 id="part-e726700c3c678d8f">默认警告过滤器</h2> <p>默认情况下，Python 设置了几个警告过滤器，可以通过 -W 命令行选项和调用 filterwarnings() 函数来覆盖它们。</p> <ul> <li> <code>DeprecationWarning</code> 和 <code>PendingDeprecationWarning</code> 和 <code>ImportWarning</code> 被默认忽略。</li> <li>除非 -b 选项给出一次或两次，否则忽略 <code>BytesWarning</code>；在这种情况下，此警告或者被输出（-b）或者变成异常（-bb）。</li> <li>除非 Python 是在调试模式下构建的，否则将忽略 ResourceWarning。</li> </ul> <p>在 3.2 版中的调整: 除 PendingDeprecationWarning 之外，默认情况下将忽略 DeprecationWarning。</p> <h2 id="part-2bb9a220bb0c77bf">可用函数</h2> <p><strong>warn</strong></p> <pre class="has"><code class="language-python">warnings.warn(message, category=None, stacklevel=1, source=None) </code></pre> <p>触发异常。<code>category</code> 参数默认为 UserWarning。<code>message</code> 参数为警告消息，可以是 Warning 实例，在这种情况下，将忽略 category 并使用 <code>message.__class__</code>，消息文本则为 str(message)。</p> <p><strong>warn_explicit</strong></p> <pre class="has"><code class="language-python">warnings.warn_explicit(message, category, filename, lineno, module=None, registry=None, module_globals=None, source=None) </code></pre> <p>这是 warn() 函数的低级接口，明确传递消息，类别，文件名和行号，以及可选的模块名称和注册表（应该是模块的 <code>__warningregistry__</code> 字典）</p> <p><strong>showwarning</strong></p> <pre class="has"><code class="language-python">warnings.showwarning(message, category, filename, lineno, file=None, line=None) </code></pre> <p>写入警告到文件。默认调用 formatwarning(message, category, filename, lineno, line) 并将结果字符串写入 <code>file</code>，默认为 sys.stderr。 <code>line</code> 是包含在警告消息中的一行源代码；如果未提供则尝试读取由 filename 和 lineno 指定的行。</p> <p><strong>formatwarning</strong></p> <pre class="has"><code class="language-python">warnings.formatwarning(message, category, filename, lineno, line=None) </code></pre> <p>格式化警告，返回一个字符串。可能包含嵌入的换行符，并以换行符结束。 <code>line</code> 是包含在警告消息中的一行源代码；如果不提供则尝试读取由 filename 和 lineno 指定的行。</p> <p><strong>filterwarnings</strong></p> <pre class="has"><code>warnings.filterwarnings(action, message='', category=Warning, module='', lineno=0, append=False) </code></pre> <p>过滤警告，在 <code>警告过滤器规则</code> 列表中插入一个条目。默认情况下，条目插入在前面；如果 append 为真，则在末尾插入。它检查参数的类型，编译 message 和 module 的正则表达式，并将它们作为警告过滤器列表中的元组插入。如果多个地方都匹配特定的警告，那么更靠近列表前面的条目会覆盖列表中后面的条目，省略的参数默认为匹配一切的值。</p> <p><strong>simplefilter</strong></p> <pre class="has"><code class="language-python">warnings.simplefilter(action, category=Warning, lineno=0, append=False) </code></pre> <p>简单易用的过滤器，类似 <code>filterwarnings()</code> 函数，但是不需要正则表达式。</p> <p><strong>resetwarnings</strong></p> <pre class="has"><code class="language-python">warnings.resetwarnings() </code></pre> <p>重置警告过滤器。这会丢弃所有以前对 filterwarnings() 调用的影响，包括 -W 命令行选项和对 simplefilter() 的调用的影响。</p> <h2 id="part-b1b774fa5c9221b9">可用的上下文管理器</h2> <pre class="has"><code class="language-python">class warnings.catch_warnings(*, record=False, module=None) </code></pre> <p>捕获警告，在退出上下文时恢复警告过滤器和 showwarning() 函数功能。如果 record 参数是 False （缺省值），则上下文管理器在入口处返回 None。如果 record 是 True，则返回一个列表，该列表元素为 showwarning() 函数所见的对象，列表中的每个元素都具有与 showwarning() 的参数具有相同名称的属性。</p> <pre class="has"><code class="language-python">import warnings  warnings.simplefilter("always")  def fxn():     warnings.warn("this is a warning", Warning)  with warnings.catch_warnings():     warnings.simplefilter("ignore")     fxn()  with warnings.catch_warnings(Warning):     warnings.warn("this is a warning2", Warning)  warnings.warn("this is a warning3", Warning)  def fxn2():     warnings.warn("deprecated", DeprecationWarning)  with warnings.catch_warnings(record=True) as w:     # Cause all warnings to always be triggered.     warnings.simplefilter("always")     # Trigger a warning.     fxn2()     # Verify some things     assert len(w) == 1     assert issubclass(w[-1].category, DeprecationWarning)     assert "deprecated" in str(w[-1].message) </code></pre> <p>可以从命令行通过传递 -Wd 参数到解释器（即为 <code>-W default</code> 的速记）。这将为所有警告启用默认处理，包括默认情况下忽略的警告。要更改遇到的警告所采取的操作，只需更改传递给 -W 的参数即可，如 <code>-W error</code>。可以用 <code>python --help</code> 来查看 -W 参数的详细使用。</p> <p>在代码中实现 <code>-Wd</code> 的功能为:</p> <pre class="has"><code class="language-python">warnings.simplefilter('default') </code></pre> <p>这样的代码应该在程序开始被执行，否则有些警告可能仍然会被触发。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-20769.htm">宠物粮品牌排行前十名有哪些呢（国内十大宠物粮食品牌）</a></p>
+                                        <p>下一个：<a href="/news/article-21226.htm">猫3针疫苗一共多少元钱（猫疫苗三针一共多少钱）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-node-subscribe-links.htm" title="11月17日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月17日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-free-node-subscribe-links.htm" title="12月5日→19.2M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月5日→19.2M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-4-free-node-subscribe.htm" title="11月4日→22.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月4日→22.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-19851.htm" title="兽用疫苗查询 兽用疫苗查询网站">兽用疫苗查询 兽用疫苗查询网站</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-free-node-subscribe-links.htm" title="11月3日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月3日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-20311.htm" title="动物防疫站给猫打针免费吗现在（动物防疫站给猫打针免费吗现在还能打吗）">动物防疫站给猫打针免费吗现在（动物防疫站给猫打针免费吗现在还能打吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-free-subscribe-node.htm" title="11月25日→23M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月25日→23M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-free-node-subscribe-links.htm" title="11月2日→20.5M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月2日→20.5M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-18929.htm" title="养宠物违约金怎么赔偿 养宠物违约金怎么赔偿的">养宠物违约金怎么赔偿 养宠物违约金怎么赔偿的</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-node-share.htm" title="12月4日→18.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月4日→18.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
