@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-22596.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>springboot项目中访问druid内置监控页面</title>
+        <meta name="description" content="1、首先加入druid依赖 &lt;dependency&gt; &lt;groupId&gt;com.alibaba&lt;/groupId&gt; &lt;artifactId&gt;druid-" />
+        <link rel="icon" href="__ADDON__/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                        <li class="menu-item"><a href="#">关于</a></li>
+                                    <li class="menu-item"><a href="#">联系</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>springboot项目中访问druid内置监控页面</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="htmledit_views"> <p><strong>1、首先加入druid依赖</strong></p> <p><code>&lt;dependency&gt;</code></p> <p><code>&lt;groupId&gt;com.alibaba&lt;/groupId&gt;</code></p> <p><code>&lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt;</code></p> <p><code>&lt;version&gt;1.1.9&lt;/version&gt;</code></p> <p><code>&nbsp; &lt;/dependency&gt;</code></p> <p><strong>2、设置配置文件：</strong></p> <p><code># 数据库访问配置</code></p> <p><code># 主数据源，默认的</code></p> <p><code>spring.datasource.type=com.alibaba.druid.pool.DruidDataSource</code></p> <p><code>spring.datasource.driver-class-name=com.mysql.jdbc.Driver</code></p> <p><code>spring.datasource.url=jdbc:mysql://localhost:3306/test</code></p> <p><code>spring.datasource.username=root</code></p> <p><code>spring.datasource.password=123456</code></p> <p>&nbsp;</p> <p><code># 下面为连接池的补充设置，应用到上面所有数据源中</code></p> <p><code># 初始化大小，最小，最大</code></p> <p><code>spring.datasource.initialSize=5</code></p> <p><code>spring.datasource.minIdle=5</code></p> <p><code>spring.datasource.maxActive=20</code></p> <p><code># 配置获取连接等待超时的时间</code></p> <p><code>spring.datasource.maxWait=60000</code></p> <p><code># 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒</code></p> <p><code>spring.datasource.timeBetweenEvictionRunsMillis=60000</code></p> <p><code># 配置一个连接在池中最小生存的时间，单位是毫秒</code></p> <p><code>spring.datasource.minEvictableIdleTimeMillis=300000</code></p> <p><code>spring.datasource.validationQuery=SELECT 1 FROM DUAL</code></p> <p><code>spring.datasource.testWhileIdle=true</code></p> <p><code>spring.datasource.testOnBorrow=false</code></p> <p><code>spring.datasource.testOnReturn=false</code></p> <p><code># 打开PSCache，并且指定每个连接上PSCache的大小</code></p> <p><code>spring.datasource.poolPreparedStatements=true</code></p> <p><code>spring.datasource.maxPoolPreparedStatementPerConnectionSize=20</code></p> <p><code># 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙</code></p> <p><code>spring.datasource.filters=stat,wall,log4j</code></p> <p><code># 通过connectProperties属性来打开mergeSql功能；慢SQL记录</code></p> <p><code>spring.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000</code></p> <p><code># 合并多个DruidDataSource的监控数据</code></p> <p><code>#spring.datasource.useGlobalDataSourceStat=true </code></p> <p><code>注意点：</code></p> <p><code>配置oracle数据库时 spring.datasource.validationQuery=SELECT 1 FROM DUAL否则会报语法错误</code></p> <p><code>如果springboot中使用的默认的logback日志框架，不要设置filters=</code>log4j，否则会报错：</p> <p>Caused by: java.lang.ClassNotFoundException: org.apache.log4j.Priority</p> <p><code>stat查看sql的，wall是防火墙</code><br /><strong>3、设置druid访问页面的用户名和密码，只需要在springboot启动类中加入@bean配置即可：</strong></p> <p><code>@Bean</code></p> <p><code>public ServletRegistrationBean&lt;StatViewServlet&gt; druidStatViewServlet() {<!-- --></code></p> <p><code>ServletRegistrationBean&lt;StatViewServlet&gt; registrationBean = new ServletRegistrationBean&lt;&gt;(new StatViewServlet(), "/druid/*");</code></p> <p><code>registrationBean.addInitParameter("allow", "127.0.0.1");// IP白名单 (没有配置或者为空，则允许所有访问)</code></p> <p><code>registrationBean.addInitParameter("deny", "");// IP黑名单 (存在共同时，deny优先于allow)</code></p> <p><code>registrationBean.addInitParameter("loginUsername", "root");</code></p> <p><code>registrationBean.addInitParameter("loginPassword", "1234");</code></p> <p><code>registrationBean.addInitParameter("resetEnable", "false");</code></p> <p><code>return registrationBean;</code></p> <p><code>}</code></p> <p><strong>4、启动项目后，访问页面<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://127.0.0.1:8001/druid/sql.html"  rel="nofollow">http://127.0.0.1:8001/druid/index.html</a>，就可以访问监控页面了，其中ip和端口号为项目的ip和端口号。页面效果如下：</strong></p> <p><img fetchpriority="high" decoding="async" alt="" height="260" src="http://img.555519.xyz/uploads/20221230/bffa7faee7808727ae73cd0cd075ae7a.jpg"></p> <p><img decoding="async" alt="" height="240" src="http://img.555519.xyz/uploads/20221230/ad213785468bb38a9b1b7f0e8ed7a91d.jpg"></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-22136.htm">广州宠物领养微信群微信号是多少号（广州宠物狗领养网站）</a></p>
+                                        <p>下一个：<a href="/news/article-22597.htm">宠物店猫粮狗粮一个月需要多少钱呢视频（宠物店粮食一个月要多少）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-22134.htm" title="动物疫苗的使用方法有哪些种类及作用图片（动物疫苗的使用方法有哪些种类及作用图片视频）">动物疫苗的使用方法有哪些种类及作用图片（动物疫苗的使用方法有哪些种类及作用图片视频）</a></li>
+                        <li class="py-2"><a href="/news/article-21749.htm" title="动物疫苗的使用注意事项有哪些呢（动物疫苗注射注意事项）">动物疫苗的使用注意事项有哪些呢（动物疫苗注射注意事项）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-high-speed-nodes.htm" title="12月3日→21.4M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月3日→21.4M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-node-subscribe.htm" title="11月20日→18.5M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月20日→18.5M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-node-share-links.htm" title="11月13日→22.5M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月13日→22.5M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-node-subscribe.htm" title="11月27日→20.6M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月27日→20.6M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-free-node-subscribe-links.htm" title="11月3日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月3日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-node-subscribe-links.htm" title="11月17日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月17日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-node-share-links.htm" title="11月10日→23M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月10日→23M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-node-share.htm" title="11月11日→22.5M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月11日→22.5M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
