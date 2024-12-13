@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-24910.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Arthas之实例操作</title>
+        <meta name="description" content="Arthas之实例操作 1. 静态类属性操作 获取public静态属性 ognl -c 7cd84586 '@com.system.framework.ArtahsDemoClassLoader@pu" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                        <li class="menu-item"><a href="#">关于</a></li>
+                                    <li class="menu-item"><a href="#">联系</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>Arthas之实例操作</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<h2 id="arthas之实例操作">Arthas之实例操作</h2> <h3 id="1-静态类属性操作">1. 静态类属性操作</h3> <p>获取public静态属性</p> <pre><code class="language-bash">ognl -c 7cd84586 '@com.system.framework.ArtahsDemoClassLoader@pubTestPrex' ognl -c 7cd84586 "@com.system.framework.ArtahsDemoClassLoader@pubfinalTestPrex"</code></pre> <p>输出各式 @Type[属性值]，内容如下</p> <pre><code class="language-java">@String[static public] ... @String[final static public]</code></pre> <p>获取private静态属性</p> <pre><code class="language-bash">ognl -c 7cd84586 '@com.system.framework.ArtahsDemoClassLoader@privTestPrex' ognl -c 7cd84586 '@com.system.framework.ArtahsDemoClassLoader@privFnalTestPrex'</code></pre> <pre><code class="language-java">@String[static private] ... @String[final static private]</code></pre> <p>修改public静态属性,被final修饰，不能被修改</p> <pre><code class="language-java">// author:herbert qq:464884492 date:20220331 测试代码想修改FINAL修饰符，结果没有成功 @Test public void testModifyFinal() throws Exception {   Field finalField = this.getClass().getDeclaredField("privFnalTestPrex");   finalField.setAccessible(true);   System.out.println("==========初始值==========");   System.out.println(finalField.get(null));   Field modiField = Field.class.getDeclaredField("modifiers");   modiField.setAccessible(true);   modiField.setInt(finalField, finalField.getModifiers() &amp; ~Modifier.FINAL);   finalField.set(null, "修改后FInal");   System.out.println("==========修改值==========");   System.out.println(privFnalTestPrex); }</code></pre> <p>静态变量赋值，不能通过=直接赋值，需要采用反射的方式设置值</p> <pre><code class="language-bash">ognl '#c=@com.system.framework.ArtahsDemoClassLoader@class,#f=#c.getDeclaredField("pubTestPrex"),#f.set(#c,"modify static public ")'</code></pre> <p>修改private静态属性,需要在反射时调用方法<code>setAccessible</code>,使<strong>private</strong>特殊转化为<strong>public</strong></p> <pre><code class="language-bash">ognl '#c=@com.system.framework.ArtahsDemoClassLoader@class,#f=#c.getDeclaredField("privTestPrex"),#f.setAccessible(true),#f.set(#c,"modify static private ")'</code></pre> <h3 id="2-静态类方法调用">2. 静态类方法调用</h3> <p>静态方法调用和静态属性一样，格式为<code>@class@method(args)</code></p> <p>无参数调用</p> <pre><code class="language-bash">ognl -c 7cd84586 '@com.system.framework.ArtahsDemoClassLoader@setPublicStaticMethod()' ognl -c 7cd84586 '@com.system.framework.ArtahsDemoClassLoader@modfiyPrivateStaticFiled()'</code></pre> <pre><code class="language-java">... ======第5次输出====== 源文件初始输出==&gt;static public/static private/testRefect--1/final static public/final static private 源文件初始输出==&gt;static public/static private/testRefect--2/final static public/final static private ======第6次输出====== 源文件初始输出==&gt;modify by method static public/static private/testRefect--1/final static public/final static private 源文件初始输出==&gt;modify by method static public/static private/testRefect--2/final static public/final static private ... ======第11次输出====== 源文件初始输出==&gt;modify by method static public/static private/testRefect--1/final static public/final static private 源文件初始输出==&gt;modify by method static public/static private/testRefect--2/final static public/final static private ======第12次输出====== 源文件初始输出==&gt;modify by method static public/modify by method static private/testRefect--1/final static public/final static private 源文件初始输出==&gt;modify by method static public/modify by method static private/testRefect--2/final static public/final static private ... // author:herbert qq:464884492 date:20220331</code></pre> <p>有参数调用</p> <pre><code class="language-bash">ognl -c 7cd84586 '@com.system.framework.ArtahsDemoClassLoader@getPublicStaticMethod("input params")' ... ognl -c 7cd84586 '@com.system.framework.ArtahsDemoClassLoader@getStaticPrivateMethod("input params")'</code></pre> <pre><code class="language-java">@String[input params &lt;==&gt; public static method return string] ... @String[input params &lt;==&gt; private static method return string]</code></pre> <p>从以上的测试结果来说，静态方法不管是<strong>public</strong>还是<strong>private</strong>都可以直接调用。</p> <h3 id="3-获取非静态类实例">3. 获取非静态类实例</h3> <p>查看某个类实例，无 --limit 参数默认10个</p> <pre><code class="language-bash">vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express 'instances.length' vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express 'instances[0]'</code></pre> <pre><code class="language-java">@EncryptClass[][     @EncryptClass[com.system.framework.EncryptClass@3c573d32],     @EncryptClass[com.system.framework.EncryptClass@68390fae], ] ... @Integer[2] ... @EncryptClass[     note=@String[testRefect--1], ]</code></pre> <p>经过上边测试发现，一个类存在多个classloader加载时，需要<strong>指定classloader</strong>。但从返回结果看，返回了<strong>所有classloader加载的实例</strong></p> <h3 id="4-实例方法调用">4. 实例方法调用</h3> <p>调用实例<code>getNote</code> 和<code>setNote</code> 方法</p> <pre><code class="language-bash">vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances[0],#val.getNote()' vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances[0],#val.setNote("modify by instance"+#val.getNote())'</code></pre> <pre><code class="language-java">@String[testRefect--1]  ======第7次输出====== 源文件初始输出==&gt;static public/static private/testRefect--1/final static public/final static private 源文件初始输出==&gt;static public/static private/testRefect--2/final static public/final static private ======第8次输出====== 源文件初始输出==&gt;static public/static private/modify by instancetestRefect--1/final static public/final static private 源文件初始输出==&gt;static public/static private/testRefect--2/final static public/final static private</code></pre> <p>从控制台输出结果，对比第7次和8次输出，我们可以发现第一个loader加载的class实例已经成功修改了</p> <h3 id="5-实例属性操作">5. 实例属性操作</h3> <p>获取或者修改第一个实例 note 属性</p> <pre><code class="language-bash">vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances[1].note' vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances[1],#val.note="modify by instance"+#val.note'</code></pre> <pre><code class="language-java">@String[testRefect--2] ... ======第121次输出====== 源文件初始输出==&gt;static public/static private/modify by instancetestRefect--1/final static public/final static private 源文件初始输出==&gt;static public/static private/testRefect--2/final static public/final static private ======第122次输出====== 源文件初始输出==&gt;static public/static private/modify by instancetestRefect--1/final static public/final static private 源文件初始输出==&gt;static public/static private/modify by instancetestRefect--2/final static public/final static private</code></pre> <p>从控制台输出结果，对比第121次和122次输出，我们可以发现第二个loader加载的class实例已经成功修改了</p> <h3 id="6-条件操作">6. 条件操作</h3> <p>返回的对象集合，可以做二次筛选<strong>投影</strong>操作，也可以带条件查询符合的数据</p> <pre><code class="language-bash">vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances' vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances.{note}' vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances.{#this.note}' vmtool -c 3e2e18f2 -a getInstances --className *EncryptClass --express '#val=instances.{? #this.note.indexOf("1")&gt;0}.{note}'</code></pre> <pre><code class="language-java">@EncryptClass[][     @EncryptClass[com.system.framework.EncryptClass@52790e67],     @EncryptClass[com.system.framework.EncryptClass@822cf83], ] ... @ArrayList[     @String[modify by instancetestRefect--1],     @String[modify by instancetestRefect--2], ] ... @ArrayList[     @String[modify by instancetestRefect--1],     @String[modify by instancetestRefect--2], ] ... @ArrayList[     @String[modify by instancetestRefect--1], ]</code></pre> <h4 id="7-总结"></h4> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-24395.htm">动物疫苗有什么用处吗 动物疫苗有什么用处吗知乎</a></p>
+                                        <p>下一个：<a href="/news/article-24911.htm">动物疫苗在哪里买便宜又好（动物注射疫苗注射哪里）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-node-subscribe-links.htm" title="11月9日→18.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月9日→18.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-22134.htm" title="动物疫苗的使用方法有哪些种类及作用图片（动物疫苗的使用方法有哪些种类及作用图片视频）">动物疫苗的使用方法有哪些种类及作用图片（动物疫苗的使用方法有哪些种类及作用图片视频）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-subscribe-node.htm" title="11月8日→19.3M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月8日→19.3M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-10-free-node-subscribe.htm" title="12月10日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月10日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-22596.htm" title="springboot项目中访问druid内置监控页面">springboot项目中访问druid内置监控页面</a></li>
+                        <li class="py-2"><a href="/news/article-21223.htm" title="运行时服务(二)、warnings模块">运行时服务(二)、warnings模块</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-9-node-share-links.htm" title="12月9日→21.4M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月9日→21.4M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-node-subscribe.htm" title="11月27日→20.6M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月27日→20.6M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-22136.htm" title="广州宠物领养微信群微信号是多少号（广州宠物狗领养网站）">广州宠物领养微信群微信号是多少号（广州宠物狗领养网站）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-subscribe-node.htm" title="12月1日→18M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月1日→18M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
