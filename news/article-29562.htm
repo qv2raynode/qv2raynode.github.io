@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-29562.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spring ResolvableType满足你对Java泛型的任何操作和幻想</title>
+        <meta name="description" content="文章目录     背景 ResolvableType 的使用   获取父类的泛型 获取接口上的泛型 获取属性上的泛型   获取属性对象的泛型 获取属性List上的泛型 获取属性List嵌套List的泛" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                        <li class="menu-item"><a href="#">关于</a></li>
+                                    <li class="menu-item"><a href="#">联系</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>Spring ResolvableType满足你对Java泛型的任何操作和幻想</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atelier-sulphurpool-light"> <div class="toc"> <h3>文章目录</h3> <ul> <li> <ul> <li><a href="#_4" rel="nofollow"></a></li> <li><a href="#_6" rel="nofollow">背景</a></li> <li><a href="#ResolvableType__30" rel="nofollow">ResolvableType 的使用</a></li> <li> <ul> <li><a href="#_32" rel="nofollow">获取父类的泛型</a></li> <li><a href="#_51" rel="nofollow">获取接口上的泛型</a></li> <li><a href="#_75" rel="nofollow">获取属性上的泛型</a></li> <li> <ul> <li><a href="#_99" rel="nofollow">获取属性对象的泛型</a></li> <li><a href="#List_113" rel="nofollow">获取属性List上的泛型</a></li> <li><a href="#ListList_128" rel="nofollow">获取属性List嵌套List的泛型</a></li> <li><a href="#Map_148" rel="nofollow">获取属性Map上的泛型</a></li> </ul> </li> <li><a href="#_163" rel="nofollow">获取方法返回值的泛型</a></li> <li><a href="#_182" rel="nofollow">获取构造方法参数的泛型</a></li> </ul> </li> <li><a href="#_199" rel="nofollow">参考</a></li> </ul> </li> </ul> </div> <blockquote> <p>这里是weihubeats,觉得文章不错可以关注公众号<strong>小奏技术</strong>，文章首发。拒绝营销号，拒绝标题党</p> </blockquote> <h2><a id="_4" rel="nofollow"></a></h2> <h2> <a id="_6" rel="nofollow"></a>背景</h2> <p>我们是否经常在写一些工具类或者SDK的时候需要获取类上面的泛型<br /> 比如父类的泛型,这样的</p> <pre><code class="prism language-java">	<span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">,</span> <span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{<!-- --></span>      <span class="token punctuation">}</span>      <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Student</span> <span class="token keyword">extends</span> <span class="token class-name">Person</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{<!-- --></span>      <span class="token punctuation">}</span> </code></pre> <p>比如接口上的泛型</p> <pre><code class="prism language-java">	<span class="token keyword">interface</span> <span class="token class-name">StudentServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">,</span> <span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{<!-- --></span>     <span class="token punctuation">}</span>      <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">StudentService</span> <span class="token keyword">implements</span> <span class="token class-name">StudentServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Student</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{<!-- --></span>     <span class="token punctuation">}</span> </code></pre> <p>等等一系列需要获取泛型的操作，但是Java的原生SDK还是比较难用和冗余的，所以Spring在<br /> 此背景下又扩展了Java 反射对泛型的操作，及<code>ResolvableType</code>类。下面我们一起来学习下吧</p> <h2> <a id="ResolvableType__30" rel="nofollow"></a>ResolvableType 的使用</h2> <h3> <a id="_32" rel="nofollow"></a>获取父类的泛型</h3> <pre><code class="prism language-java">	<span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">,</span> <span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span>     <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Student</span> <span class="token keyword">extends</span> <span class="token class-name">Person</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span> </code></pre> <ul> <li>获取方式</li> </ul> <pre><code class="prism language-java">	<span class="token annotation punctuation">@Test</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getPersonGenericBySpring</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">ResolvableType</span> resolvableType <span class="token operator">=</span> <span class="token class-name">ResolvableType</span><span class="token punctuation">.</span><span class="token function">forClass</span><span class="token punctuation">(</span><span class="token class-name">Student</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ResolvableType</span> generic <span class="token operator">:</span> resolvableType<span class="token punctuation">.</span><span class="token function">getSuperType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getGenerics</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>generic<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> </code></pre> <ul> <li>运行结果</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230203/613d020790b4bcd6307ac01a1e2d44cf.jpg" alt="Spring ResolvableType满足你对Java泛型的任何操作和幻想"></p> <h3> <a id="_51" rel="nofollow"></a>获取接口上的泛型</h3> <pre><code class="prism language-java">	<span class="token keyword">interface</span> <span class="token class-name">StudentServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">,</span> <span class="token class-name">V</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{<!-- --></span> <span class="token punctuation">}</span>     <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">StudentService</span> <span class="token keyword">implements</span> <span class="token class-name">StudentServiceImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Student</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{<!-- --></span> <span class="token punctuation">}</span> </code></pre> <ul> <li>获取方式</li> </ul> <pre><code class="prism language-java">    <span class="token annotation punctuation">@Test</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getInterfaceBySpring</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">ResolvableType</span> resolvableType <span class="token operator">=</span> <span class="token class-name">ResolvableType</span><span class="token punctuation">.</span><span class="token function">forClass</span><span class="token punctuation">(</span><span class="token class-name">StudentService</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ResolvableType</span> anInterface <span class="token operator">:</span> resolvableType<span class="token punctuation">.</span><span class="token function">getInterfaces</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ResolvableType</span> generic <span class="token operator">:</span> anInterface<span class="token punctuation">.</span><span class="token function">getGenerics</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>                 <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>generic<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token punctuation">}</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> </code></pre> <ul> <li>运行结果</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230203/2c5945eff9ba6bc335265f5caa59967d.jpg" alt="Spring ResolvableType满足你对Java泛型的任何操作和幻想"></p> <h3> <a id="_75" rel="nofollow"></a>获取属性上的泛型</h3> <p>测试类</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Data</span>     <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">GenericClass</span> <span class="token punctuation">{<!-- --></span>         <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> listString<span class="token punctuation">;</span>          <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> listLists<span class="token punctuation">;</span>          <span class="token keyword">private</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Long</span><span class="token punctuation">&gt;</span></span> maps<span class="token punctuation">;</span>          <span class="token keyword">private</span> <span class="token class-name">Person</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> person<span class="token punctuation">;</span>          <span class="token keyword">private</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> <span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>          <span class="token keyword">public</span> <span class="token class-name">GenericClass</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> list<span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> map<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> </code></pre> <h4> <a id="_99" rel="nofollow"></a>获取属性对象的泛型</h4> <ul> <li>获取方式</li> </ul> <pre><code class="prism language-java">    <span class="token annotation punctuation">@Test</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getPropertyGeneric</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">ResolvableType</span> resolvableType <span class="token operator">=</span> <span class="token class-name">ResolvableType</span><span class="token punctuation">.</span><span class="token function">forField</span><span class="token punctuation">(</span><span class="token class-name">ReflectionUtils</span><span class="token punctuation">.</span><span class="token function">findField</span><span class="token punctuation">(</span><span class="token class-name">GenericClass</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token string">"person"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ResolvableType</span> generic <span class="token operator">:</span> resolvableType<span class="token punctuation">.</span><span class="token function">getGenerics</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>generic<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> </code></pre> <ul> <li>运行结果<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230203/12563bbe5573711c894f3b32774fe3b0.jpg" alt="Spring ResolvableType满足你对Java泛型的任何操作和幻想"> </li> </ul> <h4> <a id="List_113" rel="nofollow"></a>获取属性List上的泛型</h4> <ul> <li>获取方式</li> </ul> <pre><code class="prism language-java">    <span class="token annotation punctuation">@Test</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getPropertyListsGeneric</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">ResolvableType</span> resolvableType <span class="token operator">=</span> <span class="token class-name">ResolvableType</span><span class="token punctuation">.</span><span class="token function">forField</span><span class="token punctuation">(</span><span class="token class-name">ReflectionUtils</span><span class="token punctuation">.</span><span class="token function">findField</span><span class="token punctuation">(</span><span class="token class-name">GenericClass</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token string">"listString"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ResolvableType</span> generic <span class="token operator">:</span> resolvableType<span class="token punctuation">.</span><span class="token function">getGenerics</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>generic<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> </code></pre> <ul> <li>获取结果<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230203/26d34fdd9f185d06c955f669547fc971.jpg" alt="Spring ResolvableType满足你对Java泛型的任何操作和幻想"> </li> </ul> <h4> <a id="ListList_128" rel="nofollow"></a>获取属性List嵌套List的泛型</h4> <ul> <li>获取方式</li> </ul> <pre><code class="prism language-java">    <span class="token annotation punctuation">@Test</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getPropertyListAndListGeneric</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">ResolvableType</span> resolvableType <span class="token operator">=</span> <span class="token class-name">ResolvableType</span><span class="token punctuation">.</span><span class="token function">forField</span><span class="token punctuation">(</span><span class="token class-name">ReflectionUtils</span><span class="token punctuation">.</span><span class="token function">findField</span><span class="token punctuation">(</span><span class="token class-name">GenericClass</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token string">"listLists"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token class-name">ResolvableType</span> generic1 <span class="token operator">=</span> resolvableType<span class="token punctuation">.</span><span class="token function">getGeneric</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 第一层</span>         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"第一层泛型: "</span> <span class="token operator">+</span> generic1<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 第二层</span>         <span class="token class-name">ResolvableType</span> generic <span class="token operator">=</span> generic1<span class="token punctuation">.</span><span class="token function">getGeneric</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"第二层泛型: "</span> <span class="token operator">+</span> generic<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> resolve <span class="token operator">=</span> resolvableType<span class="token punctuation">.</span><span class="token function">getGeneric</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 也可以使用如下方式获取</span>         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"第二层泛型: "</span> <span class="token operator">+</span> resolve<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> </code></pre> <ul> <li>结果<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230203/9fea92063bb3a842e2332d02cc81cf3d.jpg" alt="Spring ResolvableType满足你对Java泛型的任何操作和幻想"> </li> </ul> <h4> <a id="Map_148" rel="nofollow"></a>获取属性Map上的泛型</h4> <ul> <li>获取方式</li> </ul> <pre><code class="prism language-java">    <span class="token annotation punctuation">@Test</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getPropertyMapGeneric</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">ResolvableType</span> resolvableType <span class="token operator">=</span> <span class="token class-name">ResolvableType</span>                 <span class="token punctuation">.</span><span class="token function">forField</span><span class="token punctuation">(</span><span class="token class-name">ReflectionUtils</span><span class="token punctuation">.</span><span class="token function">findField</span><span class="token punctuation">(</span><span class="token class-name">GenericClass</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token string">"maps"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ResolvableType</span> generic <span class="token operator">:</span> resolvableType<span class="token punctuation">.</span><span class="token function">getGenerics</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>generic<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> </code></pre> <ul> <li>获取结果<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230203/280069a6217c896a453a15b32450d3cb.jpg" alt="Spring ResolvableType满足你对Java泛型的任何操作和幻想"> </li> </ul> <h3> <a id="_163" rel="nofollow"></a>获取方法返回值的泛型</h3> <ul> <li>获取方式</li> </ul> <pre><code class="prism language-java">    <span class="token annotation punctuation">@Test</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getMethodGeneric</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">ResolvableType</span> resolvableType <span class="token operator">=</span>                 <span class="token class-name">ResolvableType</span><span class="token punctuation">.</span><span class="token function">forMethodReturnType</span><span class="token punctuation">(</span><span class="token class-name">ReflectionUtils</span><span class="token punctuation">.</span><span class="token function">findMethod</span><span class="token punctuation">(</span><span class="token class-name">GenericClass</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token string">"method"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 第一层</span>         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ResolvableType</span> generic <span class="token operator">:</span> resolvableType<span class="token punctuation">.</span><span class="token function">getGenerics</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Map中的泛型: "</span> <span class="token operator">+</span> generic<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token comment">// 获取第二层的</span>         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Map中List的泛型: "</span> <span class="token operator">+</span> resolvableType<span class="token punctuation">.</span><span class="token function">getGeneric</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token punctuation">}</span> </code></pre> <ul> <li>获取结果<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230203/dd962e71f18c7983cf70af56ebd283b3.jpg" alt="Spring ResolvableType满足你对Java泛型的任何操作和幻想"> </li> </ul> <h3> <a id="_182" rel="nofollow"></a>获取构造方法参数的泛型</h3> <ul> <li>获取方式</li> </ul> <pre><code class="prism language-java">    <span class="token annotation punctuation">@Test</span>     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getConstructorGeneric</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token class-name">ResolvableType</span> resolvableType <span class="token operator">=</span>                 <span class="token class-name">ResolvableType</span><span class="token punctuation">.</span><span class="token function">forConstructorParameter</span><span class="token punctuation">(</span><span class="token class-name">ClassUtils</span><span class="token punctuation">.</span><span class="token function">getConstructorIfAvailable</span><span class="token punctuation">(</span><span class="token class-name">GenericClass</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token class-name">List</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ResolvableType</span> generic <span class="token operator">:</span> resolvableType<span class="token punctuation">.</span><span class="token function">getGenerics</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>             <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"构造方法参数泛型: "</span> <span class="token operator">+</span> generic<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token punctuation">}</span>         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Map中的泛型: "</span> <span class="token operator">+</span> resolvableType<span class="token punctuation">.</span><span class="token function">getGeneric</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token punctuation">}</span> </code></pre> <ul> <li>获取结果<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230203/65038fc64e9b9fe64dfcae4551cbe6d5.jpg" alt="Spring ResolvableType满足你对Java泛型的任何操作和幻想"> </li> </ul> <h2> <a id="_199" rel="nofollow"></a>参考</h2> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.iteye.com/blog/jinnianshilongnian-1993608"  rel="nofollow">博客</a></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-29088.htm">springboot：异步注解@Async的前世今生_在线工具</a></p>
+                                        <p>下一个：<a href="/news/article-29563.htm">野生动物园兽医一个月工资大概多少（动物园的兽医招聘）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-25374.htm" title="芜湖领养宠物中心官网地址（芜湖宠物猫免费领养）">芜湖领养宠物中心官网地址（芜湖宠物猫免费领养）</a></li>
+                        <li class="py-2"><a href="/news/article-26320.htm" title="厦门哪里可以领养宠物猫（厦门哪里有领养猫的）">厦门哪里可以领养宠物猫（厦门哪里有领养猫的）</a></li>
+                        <li class="py-2"><a href="/news/article-26766.htm" title="天照爱宠动物医院简介（天照宠物医院大兴店）">天照爱宠动物医院简介（天照宠物医院大兴店）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-node-share-links.htm" title="11月23日→19.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月23日→19.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21226.htm" title="猫3针疫苗一共多少元钱（猫疫苗三针一共多少钱）">猫3针疫苗一共多少元钱（猫疫苗三针一共多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-free-node-subscribe.htm" title="11月22日→20.6M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月22日→20.6M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-node-share.htm" title="11月19日→20.6M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月19日→20.6M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-node-subscribe-links.htm" title="11月17日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月17日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-free-node-subscribe-links.htm" title="11月29日→18M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月29日→18M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-free-node-subscribe.htm" title="12月17日→20.4M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月17日→20.4M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">66</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

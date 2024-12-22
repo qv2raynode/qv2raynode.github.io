@@ -126,6 +126,7 @@
                   				  				  				<p>使用Windows API函数来创建线程池，可以极大的方便了自己编写线程池的繁琐步骤。</p> <p>使用CreateThreadPool来创建一个线程池，需要在创建完成后，初始化线程池的状态，并且在不需要的时候清理线程池所占用的资源。</p> <p>相关代码：</p> <div class="cnblogs_code"> <pre>    auto m_ptp_pool = CreateThreadpool(NULL);<span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 创建线程池</span>     SetThreadpoolThreadMaximum(m_ptp_pool,<span style="color: rgba(128, 0, 128, 1)">12</span><span style="color: rgba(0, 0, 0, 1)">);     SetThreadpoolThreadMinimum(m_ptp_pool,</span><span style="color: rgba(128, 0, 128, 1)">1</span><span style="color: rgba(0, 0, 0, 1)">);     InitializeThreadpoolEnvironment(</span>&amp;m_tp_callback_environ);</pre> </div> <p>以上代码第一行表示，1.我们创建一个线程池，2.设置线程池的最大个数，3.设置线程池的最小个数，4.设置线程池的环境资源对象</p> <p>在满足以上条件后我们就可以将我们的任务添加到线程池中进行运行。线程池的函数要求必须是一个全局变量。</p> <p>线程池任务函数要求规格：</p> <div class="cnblogs_code"> <pre>typedef VOID (NTAPI *<span style="color: rgba(0, 0, 0, 1)">PTP_SIMPLE_CALLBACK)(     _Inout_     PTP_CALLBACK_INSTANCE Instance,     _Inout_opt_ PVOID                 Context     );</span></pre> </div> <p>将任务添加到线程池：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">if</span>(TrySubmitThreadpoolCallback(func,<span style="color: rgba(0, 0, 255, 1)">this</span>, &amp;m_tp_callback_environ)==<span style="color: rgba(128, 0, 128, 1)">0</span><span style="color: rgba(0, 0, 0, 1)">)         m_box.InsertString(</span><span style="color: rgba(128, 0, 128, 1)">0</span>, TEXT(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">线程失败！</span><span style="color: rgba(128, 0, 0, 1)">"</span>));</pre> </div> <p>func函数示例：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">void</span><span style="color: rgba(0, 0, 0, 1)"> func(PTP_CALLBACK_INSTANCE a, LPVOID args) {     CMyMfcSdiView</span>* obj = (CMyMfcSdiView*<span style="color: rgba(0, 0, 0, 1)">)args;        // 由于我的测试是在MFC下使用的，故采用MFC对象进行显示，但是不影响线程池的使用     obj</span>-&gt;m_box.InsertString(<span style="color: rgba(128, 0, 128, 1)">0</span>, TEXT(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">线程写入</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">)); }</span></pre> </div> <p>使用TrySubmitThreadpoolCallback函数将任务添加到创建好的线程池，并且线程立即执行。可以多次调用该函数将需要的任务添加到线程池中执行。</p> <p>如果我们不再需要线程池，需要将线程池的环境资源对象释放，并且关闭线程池句柄，来优化系统资源。</p> <div class="cnblogs_code"> <pre>    DestroyThreadpoolEnvironment(&amp;<span style="color: rgba(0, 0, 0, 1)">m_tp_callback_environ);     CloseThreadpool(m_ptp_pool);</span></pre> </div> <p>至此，一个线程池的创建，使用，销毁就结束了，至于API函数的参数类型，可以参考在键入api函数时参考参数提示</p> <p>或者参考以下两个变量，在上述代码中用到：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">　　 PTP_POOL m_ptp_pool;     TP_CALLBACK_ENVIRON m_tp_callback_environ;</span></pre> </div> <p>以上测试用例在VS2022中运行，如果您有什么问题，欢迎提问</p> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-28623.htm">Linux  C++  实现一个简易版的ping （也就是ICMP协议）</a></p>
+                                        <p>下一个：<a href="/news/article-29087.htm">你的编程能力从什么时候开始突飞猛进? 我的回答：2013年，我开始喜欢编程了。</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -135,16 +136,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-12-7-free-node-subscribe.htm" title="12月7日→22.6M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月7日→22.6M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-24911.htm" title="动物疫苗在哪里买便宜又好（动物注射疫苗注射哪里）">动物疫苗在哪里买便宜又好（动物注射疫苗注射哪里）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-node-share-links.htm" title="11月10日→23M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月10日→23M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-23505.htm" title="深圳百姓网免费领养宠物（深圳市宠物免费领养）">深圳百姓网免费领养宠物（深圳市宠物免费领养）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-node-subscribe.htm" title="11月27日→20.6M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月27日→20.6M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-23973.htm" title="动物疫苗贵吗多少钱（动物疫苗多少钱一支）">动物疫苗贵吗多少钱（动物疫苗多少钱一支）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-high-speed-nodes.htm" title="11月28日→22.8M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月28日→22.8M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-node-share-links.htm" title="11月6日→18.5M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月6日→18.5M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-subscribe-node.htm" title="11月5日→19.4M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月5日→19.4M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-27231.htm" title="长沙宠物领养 长沙宠物领养中心">长沙宠物领养 长沙宠物领养中心</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-4-free-node-subscribe.htm" title="11月4日→22.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月4日→22.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-12-4-node-share.htm" title="12月4日→18.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月4日→18.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-19389.htm" title="动物医学实验报告（动物医学实验报告范文）">动物医学实验报告（动物医学实验报告范文）</a></li>
-                        <li class="py-2"><a href="/news/article-26319.htm" title="react实战系列起步（mockjs、第一个模块、docusaurus）">react实战系列起步（mockjs、第一个模块、docusaurus）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-11-node-share.htm" title="11月11日→22.5M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月11日→22.5M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-24395.htm" title="动物疫苗有什么用处吗 动物疫苗有什么用处吗知乎">动物疫苗有什么用处吗 动物疫苗有什么用处吗知乎</a></li>
-                        <li class="py-2"><a href="/news/article-23056.htm" title="动物打疫苗注意事项及禁忌有哪些（动物打疫苗前后要注意什么）">动物打疫苗注意事项及禁忌有哪些（动物打疫苗前后要注意什么）</a></li>
-                        <li class="py-2"><a href="/news/article-23502.htm" title="宠物猫疫苗都有哪些（宠物猫疫苗是什么疫苗）">宠物猫疫苗都有哪些（宠物猫疫苗是什么疫苗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-20-free-node-subscribe.htm" title="12月20日→21.1M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月20日→21.1M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
@@ -156,7 +157,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">66</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
