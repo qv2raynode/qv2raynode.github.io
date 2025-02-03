@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://qv2raynode.github.io/news/article-28623.htm" />
@@ -10,6 +10,33 @@
     <title>Linux  C++  实现一个简易版的ping （也就是ICMP协议）</title>
         <meta name="description" content="想实现一个在没外网的时候就自动重启路由器的功能。 又不想用ping命令，因为在代码里调用system("ping"); 可能会比较耗时，得单开线程。于是找了个实现ICMP协议的代码。 参考：https" />
         <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="QV2ray Node免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://qv2raynode.github.io/news/article-28623.htm" />
+    <meta property="og:site_name" content="QV2ray Node免费机场订阅节点官网" />
+    <meta property="og:title" content="Linux  C++  实现一个简易版的ping （也就是ICMP协议）" />
+    <meta property="og:image" content="https://qv2raynode.github.io/uploads/20241102/6e73ddb0c6341f3242d48f7c9e52d022.webp" />
+        <meta property="og:release_date" content="2024-12-20T09:37:33" />
+    <meta property="og:updated_time" content="2024-12-20T09:37:33" />
+        <meta property="og:description" content="想实现一个在没外网的时候就自动重启路由器的功能。 又不想用ping命令，因为在代码里调用system("ping"); 可能会比较耗时，得单开线程。于是找了个实现ICMP协议的代码。 参考：https" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Linux  C++  实现一个简易版的ping （也就是ICMP协议）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
     <!--====== Bootstrap css ======-->
     <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
     <!--====== Fontawesome css ======-->
@@ -136,16 +163,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-21226.htm" title="猫3针疫苗一共多少元钱（猫疫苗三针一共多少钱）">猫3针疫苗一共多少元钱（猫疫苗三针一共多少钱）</a></li>
-                        <li class="py-2"><a href="/news/article-20768.htm" title="宠物粮食批发市场兰州在哪里啊电话多少（兰州宠物用品批发）">宠物粮食批发市场兰州在哪里啊电话多少（兰州宠物用品批发）</a></li>
-                        <li class="py-2"><a href="/news/article-24394.htm" title="1至2月幼猫喂养要多少量（1到2个月的小猫吃多少）">1至2月幼猫喂养要多少量（1到2个月的小猫吃多少）</a></li>
-                        <li class="py-2"><a href="/news/article-32410.htm" title="宠物粮食在哪里进货便宜呢（宠物粮食在哪里进货便宜呢知乎）">宠物粮食在哪里进货便宜呢（宠物粮食在哪里进货便宜呢知乎）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-10-free-node-subscribe.htm" title="12月10日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月10日→19.7M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-free-node-subscribe.htm" title="1月23日→19.7M/S|2025年最新免费节点QV2ray Node订阅链接地址">1月23日→19.7M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-node-share.htm" title="12月4日→18.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月4日→18.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-node-share.htm" title="11月14日→20.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月14日→20.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-33846.htm" title="JAVA常用API整理">JAVA常用API整理</a></li>
                         <li class="py-2"><a href="/news/article-32899.htm" title="宠物领养协议书范本最新图片下载 宠物领养协议书范本最新图片下载大全">宠物领养协议书范本最新图片下载 宠物领养协议书范本最新图片下载大全</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-8-free-node-subscribe.htm" title="12月8日→21.3M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月8日→21.3M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-7-free-node-subscribe.htm" title="12月7日→22.6M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月7日→22.6M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-30515.htm" title="【定义+用法+区别+使用场景】escape(),encodeURI(),encodeURIComponent()">【定义+用法+区别+使用场景】escape(),encodeURI(),encodeURIComponent()</a></li>
-                        <li class="py-2"><a href="/news/article-27229.htm" title="使用Python在D天内运送包裹的能力">使用Python在D天内运送包裹的能力</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-high-speed-nodes.htm" title="11月28日→22.8M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月28日→22.8M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-20-free-node-subscribe.htm" title="12月20日→21.1M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月20日→21.1M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-free-node-subscribe-links.htm" title="12月15日→18.7M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月15日→18.7M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-27691.htm" title="动物医院价格标准是多少（动物医院价格标准是多少钱一个月）">动物医院价格标准是多少（动物医院价格标准是多少钱一个月）</a></li>
+                        <li class="py-2"><a href="/news/article-29563.htm" title="野生动物园兽医一个月工资大概多少（动物园的兽医招聘）">野生动物园兽医一个月工资大概多少（动物园的兽医招聘）</a></li>
                     </ul>
     </div>
 </div>
@@ -157,13 +184,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
