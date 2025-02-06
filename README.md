@@ -1,4 +1,4 @@
-# 2月3日→18.8M/S|2025年最新免费节点QV2ray Node订阅链接地址  更新时间 2025-02-03 09:32:23
+# 2月6日→21.6M/S|2025年最新免费节点QV2ray Node订阅链接地址  更新时间 2025-02-06 05:36:09
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://qv2raynode.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://qv2raynode.github.io/uploads/2025/02/0-20250203.yaml
-- https://qv2raynode.github.io/uploads/2025/02/1-20250203.yaml
-- https://qv2raynode.github.io/uploads/2025/02/2-20250203.yaml
-- https://qv2raynode.github.io/uploads/2025/02/3-20250203.yaml
-- https://qv2raynode.github.io/uploads/2025/02/4-20250203.yaml
+- https://qv2raynode.github.io/uploads/2025/02/0-20250206.yaml
+- https://qv2raynode.github.io/uploads/2025/02/1-20250206.yaml
+- https://qv2raynode.github.io/uploads/2025/02/2-20250206.yaml
+- https://qv2raynode.github.io/uploads/2025/02/3-20250206.yaml
+- https://qv2raynode.github.io/uploads/2025/02/4-20250206.yaml
 
 ### V2ray订阅链接
 
-- https://qv2raynode.github.io/uploads/2025/02/0-20250203.txt
-- https://qv2raynode.github.io/uploads/2025/02/1-20250203.txt
-- https://qv2raynode.github.io/uploads/2025/02/2-20250203.txt
-- https://qv2raynode.github.io/uploads/2025/02/3-20250203.txt
-- https://qv2raynode.github.io/uploads/2025/02/4-20250203.txt
+- https://qv2raynode.github.io/uploads/2025/02/0-20250206.txt
+- https://qv2raynode.github.io/uploads/2025/02/1-20250206.txt
+- https://qv2raynode.github.io/uploads/2025/02/2-20250206.txt
+- https://qv2raynode.github.io/uploads/2025/02/3-20250206.txt
+- https://qv2raynode.github.io/uploads/2025/02/4-20250206.txt
 
 ### Sing-box订阅链接
 
-- https://qv2raynode.github.io/uploads/2025/02/20250203.json
+- https://qv2raynode.github.io/uploads/2025/02/20250206.json
 
 ## 更多clash节点订阅 ：
 
