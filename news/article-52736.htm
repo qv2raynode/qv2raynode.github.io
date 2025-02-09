@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-52736.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>从一个基础的socket服务说起</title>
+        <meta name="description" content="首发地址：day01-从一个基础的socket服务说起 教程说明：C++高性能网络服务保姆级教程 本节目的 实现一个基于socket的echo服务端和客户端 服务端监听流程 第一步：使用socket函" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="QV2ray Node免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://qv2raynode.github.io/news/article-52736.htm" />
+    <meta property="og:site_name" content="QV2ray Node免费机场订阅节点官网" />
+    <meta property="og:title" content="从一个基础的socket服务说起" />
+    <meta property="og:image" content="https://qv2raynode.github.io/uploads/20241102/8504015773c5f52870d02f210f8a12d1.webp" />
+        <meta property="og:release_date" content="2025-02-07T07:20:05" />
+    <meta property="og:updated_time" content="2025-02-07T07:20:05" />
+        <meta property="og:description" content="首发地址：day01-从一个基础的socket服务说起 教程说明：C++高性能网络服务保姆级教程 本节目的 实现一个基于socket的echo服务端和客户端 服务端监听流程 第一步：使用socket函" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="从一个基础的socket服务说起">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/client.htm">客户端</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>从一个基础的socket服务说起</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<h2 id="首发地址day01-从一个基础的socket服务说起">首发地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s?__biz=MzI4MTc0NDg2OQ==&amp;mid=2247484613&amp;idx=1&amp;sn=52e727e5ba69d76ea1ed1782d9f4c5be&amp;chksm=eba5c04fdcd249590d45a41bf0842c4eb4b65b19ff41b62b94ff58df3522bf0b9b118f351f51&amp;token=1127527116&amp;lang=zh_CN#rd"  target="_blank" rel="nofollow">day01-从一个基础的socket服务说起</a></h2> <h2 id="教程说明c高性能网络服务保姆级教程">教程说明：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://zhuanlan.zhihu.com/p/500269188"  target="_blank" rel="nofollow">C++高性能网络服务保姆级教程</a></h2> <h2 id="本节目的">本节目的</h2> <p>实现一个基于socket的echo服务端和客户端</p> <h2 id="服务端监听流程">服务端监听流程</h2> <h3 id="第一步使用socket函数创建套接字">第一步：使用socket函数创建套接字</h3> <p>在linux中，一切都是文件，所有文件都有一个int类型的编号，称为文件描述符。服务端和客户端通信本质是在各自机器上创建一个文件，称为socket(套接字)，然后对该socket文件进行读写。</p> <p>在 Linux 下使用<code>&lt;sys/socket.h&gt;</code> 头文件中 socket() 函数来创建套接字</p> <pre><code>int socket(int af, int type, int protocol);</code></pre> <ul> <li>af: IP地址类型; IPv4填<code>AF_INET</code>, IPv6填<code>AF_INET6</code></li> <li>type: 数据传输方式,<code>SOCK_STREAM</code>表示流格式、面向连接，多用于TCP。<code>SOCK_DGRAM</code>表示数据报格式、无连接，多用于UDP</li> <li>protocol: 传输协议, IPPROTO_TCP表示TCP。<code>IPPTOTO_UDP</code>表示UDP。可直接填<code>0</code>,会自动根据前面的两个参数自动推导协议类型</li> </ul> <pre><code>#include &lt;sys/socket.h&gt; int sockfd = socket(AF_INET, SOCK_STREAM, 0);</code></pre> <h3 id="第二步使用bind函数绑定套接字和监听地址">第二步：使用bind函数绑定套接字和监听地址</h3> <p>socket()函数创建出套接字后，套接字中并没有任何地址信息。需要用bind()函数将套接字和监听的IP和端口绑定起来，这样当有数据到该IP和端口时，系统才知道需要交给绑定的套接字处理。</p> <p>bind函数也在<code>&lt;sys/socket.h&gt;</code>头文件中，原型为：</p> <pre><code>int bind(int sock, struct sockaddr *addr, socklen_t addrlen);</code></pre> <ul> <li>sock： socket函数返回的socket描述符</li> <li>addr：一个sockaddr结构体变量的指针，后续会展开说。</li> <li>addrlen：addr的大小，直接通过sizeof得到</li> </ul> <p>我们先看看socket和bind的绑定代码，下面代码中，我们将创建的socket与ip='127.0.0.1'，port=8888进行绑定：</p> <pre><code class="language-C">#include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt;  int sockfd = socket(AF_INET, SOCK_STREAM, 0);  struct sockaddr_in server_addr; memset(&amp;server_addr, 0, sizeof(server_addr));  //用0填充 server_addr.sin_family = AF_INET;  //使用IPv4地址 server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");  //具体的IP地址；填入INADDR_ANY表示"0.0.0.0" server_addr.sin_port = htons(8888);  //端口 //将套接字和IP、端口绑定 bind(server_addr, (struct sockaddr*)&amp;server_addr, sizeof(server_addr));</code></pre> <p>可以看到，我们使用sockaddr_in结构体设置要绑定的地址信息，然后再强制转换为sockaddr类型。这是为了让bind函数能适应多种协议。</p> <pre><code class="language-C">struct sockaddr_in{     sa_family_t     sin_family;   //地址族（Address Family），也就是地址类型     uint16_t        sin_port;     //16位的端口号     struct in_addr  sin_addr;     //32位IP地址     char            sin_zero[8];  //不使用，一般用0填充 };  struct sockaddr_in6 {      sa_family_t sin6_family;  //(2)地址类型，取值为AF_INET6     in_port_t sin6_port;  //(2)16位端口号     uint32_t sin6_flowinfo;  //(4)IPv6流信息     struct in6_addr sin6_addr;  //(4)具体的IPv6地址     uint32_t sin6_scope_id;  //(4)接口范围ID };  struct sockaddr{     sa_family_t  sin_family;   //地址族（Address Family），也就是地址类型     char         sa_data[14];  //IP地址和端口号 };</code></pre> <p>其中，sockaddr_in是保存IPv4的结构体；sockadd_in6是保存IPv6的结构体；sockaddr是通用的结构体，通过将特定协议的结构体转换成sockaddr，以达到bind可绑定多种协议的目的。</p> <p>注意在设置server_addr的端口号时，需要使用htons函数将传进来的端口号转换成大端字节序</p> <blockquote> <p>计算机硬件有两种储存数值的方式：大端字节序和小端字节序<br /> 大端字节序指数值的高位字节存在前面（低内存地址），低位字节存在后面（高内存地址）。<br /> 小端字节序则反过来，低位字节存在前面，高位字节存在后面。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/72374b66dc07daba6e30d511242c2383.jpg" alt="从一个基础的socket服务说起"></p> </blockquote> <blockquote> <p>计算机电路先处理低位字节，效率比较高，因为计算都是从低位开始的。而计算机读内存数据都是从低地址往高地址读。所以，计算机的内部是小端字节序。但是，人类还是习惯读写大端字节序。除了计算机的内部处理，其他的场合比如网络传输和文件储存，几乎都是用的大端字节序。</p> </blockquote> <p>linux在头文件<code>&lt;arpa/inet.h&gt;</code>提供了htonl/htons用于将数值转化为网络传输使用的大端字节序储存；对应的有ntohl/ntohs用于将数值从网络传输使用的大端字节序转化为计算机使用的字节序</p> <h3 id="第三步使用listen函数让套接字进入监听状态">第三步：使用listen函数让套接字进入监听状态</h3> <pre><code>int listen(int sock, int backlog);  //Linux</code></pre> <ul> <li>backlog：表示全连接队列的大小</li> </ul> <blockquote> <p><em><strong>半连接队列&amp;全连接队列</strong></em>：我们都知道tcp的三次握手，在第一次握手时，服务端收到客户端的SYN后，会把这个连接放入半连接队列中。然后发送ACK+SYN。在收到客户端的ACK回包后，握手完成，会把连接从半连接队列移到全连接队列中，等待处理。</p> </blockquote> <h3 id="第四步调用accept函数获取客户端请求">第四步：调用accept函数获取客户端请求</h3> <p>调用listen后，此时客户端就可以和服务端三次握手建立连接了，但建立的连接会被放到全连接队列中。accept就是从这个队列中获取客户端请求。每调用一次accept，会从队列中获取一个客户端请求。</p> <pre><code>int accept(int sock, struct sockaddr *addr, socklen_t *addrlen);</code></pre> <ul> <li>sock：服务端监听的socket</li> <li>addr：获取到的客户端地址信息</li> </ul> <p>accpet返回一个新的套接字，之后服务端用这个套接字与连接对应的客户端进行通信。</p> <blockquote> <p>在没请求进来时调用accept会阻塞程序，直到新的请求进来。</p> </blockquote> <p>至此，我们就讲完了服务端的监听流程，接下来我们可以先调用read等待读入客户端发过来的数据，然后再调用write向客户端发送数据。再用close把accept_fd关闭，断开连接。完整代码如下</p> <pre><code class="language-Cpp">// server.cpp #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;unistd.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;string.h&gt; #include &lt;cstdio&gt; #include &lt;errno.h&gt;  int main() {   int listen_fd = socket(AF_INET, SOCK_STREAM, 0);   struct sockaddr_in server_addr;   bzero(&amp;server_addr, sizeof(server_addr));   server_addr.sin_family = AF_INET;   server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");   server_addr.sin_port = htons(8888);   if (bind(listen_fd, (struct sockaddr *)&amp;server_addr, sizeof(server_addr)) &lt; 0) {     printf("bind err: %s\n", strerror(errno));     close(listen_fd);     return -1;   }    if (listen(listen_fd, 2048) &lt; 0) {     printf("listen err: %s\n", strerror(errno));     close(listen_fd);     return -1;   }      struct sockaddr_in client_addr;   bzero(&amp;client_addr, sizeof(struct sockaddr_in));   socklen_t client_addr_len = sizeof(client_addr);   int accept_fd = 0;   while((accept_fd = accept(listen_fd, (struct sockaddr *)&amp;client_addr, &amp;client_addr_len)) &gt; 0) {     printf("get accept_fd: %d from: %s:%d\n", accept_fd, inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));          char read_msg[100];     int read_num = read(accept_fd, read_msg, 100);     printf("get msg from client: %s\n", read_msg);     int write_num = write(accept_fd, read_msg, read_num);     close(accept_fd);   } }</code></pre> <blockquote> <p><em>[C++小知识]</em> 在使用printf打印调试信息时，由于系统缓冲区问题，如果不加"\n"，有时会打印不出来字符串。</p> <p>C提供的很多函数调用产生错误时，会将错误码赋值到一个全局int变量errno上，可以通过strerror(errno)输入具体的报错信息</p> </blockquote> <h2 id="客户端建立连接">客户端建立连接</h2> <p>客户端就比较简单了，创建一个<code>sockaddr_in</code>变量，填充服务端的ip和端口，通过connect调用就可以获取到一个与服务端通信的套接字。</p> <pre><code>int connect(int sock, struct sockaddr *serv_addr, socklen_t addrlen);</code></pre> <blockquote> <p>各个参数的说明和bind()相同，不再重复。</p> </blockquote> <p>创建连接后，我们先调write向服务端发送数据，再调用read等待读入服务端发过来的数据，然后调用close断开连接。完整代码如下：</p> <pre><code class="language-Cpp">// client.cpp #include &lt;sys/socket.h&gt; #include &lt;netinet/in.h&gt; #include &lt;unistd.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;string.h&gt; #include &lt;cstdio&gt; #include &lt;iostream&gt;  int main() {   int sock_fd = socket(AF_INET, SOCK_STREAM, 0);   struct sockaddr_in server_addr;   bzero(&amp;server_addr, sizeof(server_addr));   server_addr.sin_family = AF_INET;   server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");   server_addr.sin_port = htons(8888);   if (connect(sock_fd, (sockaddr*)&amp;server_addr, sizeof(server_addr)) &lt; 0) {     printf("connect err: %s\n", strerror(errno));     return -1;   };      printf("success connect to server\n");   char input_msg[100];   // 等待输入数据   std::cin &gt;&gt; input_msg;   printf("input_msg: %s\n", input_msg);   int write_num = write(sock_fd, input_msg, 100);   char read_msg[100];   int read_num = read(sock_fd, read_msg, 100);   printf("get from server: %s\n", read_msg);   close(sock_fd); }</code></pre> <p>分别编译后，我们就得到了一个echo服务的服务端和客户端</p> <pre><code class="language-shell">~# ./server  get accept_fd: 4 from: 127.0.0.1:56716 get msg from client: abc</code></pre> <pre><code class="language-shell">~# ./client  abc input_msg: abc get from server: abc</code></pre> <p>完整源码已上传到<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/lzs123/CProxy-tutorial"  target="_blank" rel="nofollow">CProxy-tutorial</a>,欢迎fork and star！</p> <h2 id="思考题">思考题</h2> <p>先启动server，然后启动一个client，不输入数据，这个时候在另外一个终端上再启动一个client，并在第二个client终端中输入数据，会发生什么呢？</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-52197.htm">国内动物疫苗生产企业有多少家（国内动物疫苗龙头企业）</a></p>
+                                        <p>下一个：<a href="/news/article-52737.htm">厦门宠物收容中心地址 厦门宠物收容中心地址在哪里</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-12-node-share.htm" title="1月12日→21.4M/S|2025年最新免费节点QV2ray Node订阅链接地址">1月12日→21.4M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-31000.htm" title="被猫爪子勾了一下出了一点血需要打几针（被猫爪子勾了一下出了一点血用不用***）">被猫爪子勾了一下出了一点血需要打几针（被猫爪子勾了一下出了一点血用不用***）</a></li>
+                        <li class="py-2"><a href="/news/article-44605.htm" title="动物疫苗多少钱打一次针啊（小动物打疫苗多少钱一只）">动物疫苗多少钱打一次针啊（小动物打疫苗多少钱一只）</a></li>
+                        <li class="py-2"><a href="/news/article-21226.htm" title="猫3针疫苗一共多少元钱（猫疫苗三针一共多少钱）">猫3针疫苗一共多少元钱（猫疫苗三针一共多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-43138.htm" title="动物医院法定条件有哪些呢（动物医院归哪里管）">动物医院法定条件有哪些呢（动物医院归哪里管）</a></li>
+                        <li class="py-2"><a href="/news/article-30514.htm" title="SpringBoot 基本原理">SpringBoot 基本原理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-free-node-subscribe-links.htm" title="12月15日→18.7M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月15日→18.7M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-19388.htm" title="springMVC中的@RequestMapping注解">springMVC中的@RequestMapping注解</a></li>
+                        <li class="py-2"><a href="/news/article-42139.htm" title="宠颐生宠物医院投诉电话（宠颐生动物医院地址）">宠颐生宠物医院投诉电话（宠颐生动物医院地址）</a></li>
+                        <li class="py-2"><a href="/news/article-24395.htm" title="动物疫苗有什么用处吗 动物疫苗有什么用处吗知乎">动物疫苗有什么用处吗 动物疫苗有什么用处吗知乎</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
