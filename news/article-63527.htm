@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-63527.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>spring-cloud之Feign服务调用降级</title>
+        <meta name="description" content="服务雪崩  如图-1，如果所有服务A/B/C网络/应用等都正常，同时能够快速的处理请求并返回，服务之间就可以正常的调度。  &nbsp;&nbsp;&nbsp; 如图-2，如果A服务出现异常情况（网络" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="QV2ray Node免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://qv2raynode.github.io/news/article-63527.htm" />
+    <meta property="og:site_name" content="QV2ray Node免费机场订阅节点官网" />
+    <meta property="og:title" content="spring-cloud之Feign服务调用降级" />
+    <meta property="og:image" content="https://qv2raynode.github.io/uploads/20241102/4653d0ca8841fbd2154dab9625f9c4c1.webp" />
+        <meta property="og:release_date" content="2025-02-26T08:35:53" />
+    <meta property="og:updated_time" content="2025-02-26T08:35:53" />
+        <meta property="og:description" content="服务雪崩  如图-1，如果所有服务A/B/C网络/应用等都正常，同时能够快速的处理请求并返回，服务之间就可以正常的调度。  &nbsp;&nbsp;&nbsp; 如图-2，如果A服务出现异常情况（网络" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="spring-cloud之Feign服务调用降级">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/client.htm">客户端</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>spring-cloud之Feign服务调用降级</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h2 style="margin-left:0cm;">服务雪崩</h2> <p style="margin-left:0cm;"><img fetchpriority="high" decoding="async" alt="" class="has" height="99" src="http://img.555519.xyz/uploads/20221120/013ac302d42d941d3d2ac051b4bb66a8.jpg"></p> <p style="margin-left:0cm;">如图-1，如果所有服务A/B/C网络/应用等都正常，同时能够快速的处理请求并返回，服务之间就可以正常的调度。</p> <p style="margin-left:0cm;"><img decoding="async" alt="" class="has" height="137" src="http://img.555519.xyz/uploads/20221120/79a7ff934ff123280b7c3a0ce18d9f95.jpg"></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; 如图-2，如果A服务出现异常情况（网络异常/内部数据库异常等）无法在指定的时间内返回B服务结果，那么由于C服务会持续的请求B服务，最终导致B服务积压了大量的请求而服务器奔溃不可用。</p> <p style="margin-left:0cm;"><img decoding="async" alt="" class="has" height="161" src="http://img.555519.xyz/uploads/20221120/913fb80caf95552a82a7bb5694523ba7.jpg"></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; 如图-3，B服务由于A服务的不可用导致自身请求积压而崩溃，所以所有的请求蔓延到下游的C服务，最终也导致C服务不可用崩溃，如图-4所示。</p> <p style="margin-left:0cm;"><img loading="lazy" decoding="async" alt="" class="has" height="94" src="http://img.555519.xyz/uploads/20221120/6c639aaa318712535130701d6583aaf5.jpg"></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; 综上所述：服务雪崩就是由于上游（例如A）的服务异常不可用，最终蔓延到下游的所有服务，导致所有相关下游的微服务应用不可用而系统崩溃。</p> <h2 style="margin-left:0cm;">Feign使用Hystrix实现降级</h2> <h3 style="margin-left:0cm;">Hystrix简介</h3> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; Hystrix是由Netfix开源的一个延迟和容错工具库，用于解决远程调用/服务或者第三方库防止级联失败提示系统的可用性和容错性。</p> <h3 style="margin-left:0cm;">Feign整合Hystrix</h3> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; 之前的博文介绍过了spring cloud服务调用的两种方式，但是由于ribbon方式没有feign便捷。所以这里就只介绍feign方式使用htstrix实现服务降级，避免雪崩。</p> <p><strong>Maven依赖</strong></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; 由于spring cloud版本有差异，所以需要说明一下我这里使用的spring boot是2.1.5.RELEASE版本，所以依赖的hystrix如下。如spring boot是1.X版本artifactId应该是spring-cloud-starter-hystrix。Version属性可以不填，会根据spring boot自动配置找到对应的版本。</p> <pre class="has"><code class="language-html">&lt;dependency&gt;     &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;     &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt; &lt;/dependency&gt;</code></pre> <p><strong>Application配置文件</strong></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; Feign开启支持hystrix的方式是在配置文件中添加feign.hystrix.enabled=true。这个值默认是false，所以需要开启。</p> <p><strong>添加降级类</strong></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; Feign服务熔断降级其实是通过调度超时就调用本地的方法，而不是一直等待服务返回。Feign调度服务是通过接口+注解方式的，我们需要实现该接口用于实现服务降级调用本地方法。</p> <pre class="has"><code class="language-java">@Component public class UserFeignClientFallback implements UserFeignClientInterface {       @Override     public String get(String name) {         return "error " + name;     } }</code></pre> <p><strong>Feign接口类</strong></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; 主要是通过@FeignClient的fallback属性定义降级后调用那个类的方法，这里方法名称等都是一致才可以。</p> <pre class="has"><code class="language-java">@FeignClient(name = "PROVIDER-USER",         fallback = UserFeignClientFallback.class) public interface UserFeignClientInterface {      @GetMapping(value = "/get")     String get(@RequestParam(value = "name") String name);  }</code></pre> <p><strong>验证步骤</strong></p> <ol> <li>启动注册中心</li> <li>启动服务提供者</li> <li>启动服务消费者</li> <li>访问服务消费者，看是否正常调度服务提供者的方法</li> <li>关闭服务提供者</li> <li>访问服务消费者，看是否正常调度本地方法返回</li> <li> </h1> </li> </ol> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-63526.htm">深入理解Spring的@Order注解和Ordered接口</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-26-free-node-subscribe.htm" title="12月26日→21.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月26日→21.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-14-node-share-links.htm" title="1月14日→18.4M/S|2025年最新免费节点QV2ray Node订阅链接地址">1月14日→18.4M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-12-free-subscribe-node.htm" title="2月12日→18.3M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月12日→18.3M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-41637.htm" title="宠物食品代加工流程（宠物零食代加工）">宠物食品代加工流程（宠物零食代加工）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-subscribe-node.htm" title="11月30日→20.4M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月30日→20.4M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-node-share-links.htm" title="2月1日→22.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月1日→22.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-16-node-share.htm" title="2月16日→22.5M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月16日→22.5M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-46607.htm" title="猫三联三针间隔多久（猫三联三针间隔多久打一针）">猫三联三针间隔多久（猫三联三针间隔多久打一针）</a></li>
+                        <li class="py-2"><a href="/news/article-26319.htm" title="react实战系列起步（mockjs、第一个模块、docusaurus）">react实战系列起步（mockjs、第一个模块、docusaurus）</a></li>
+                        <li class="py-2"><a href="/news/article-63526.htm" title="深入理解Spring的@Order注解和Ordered接口">深入理解Spring的@Order注解和Ordered接口</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">78</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

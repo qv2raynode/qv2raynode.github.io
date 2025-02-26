@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-63526.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>深入理解Spring的@Order注解和Ordered接口</title>
+        <meta name="description" content="前言   Spring的@Order注解或者Ordered接口大家都知道是控制顺序的，那么它们到底是控制什么顺序的？是控制Bean的注入顺序，还是Bean的实例化顺序，还是Bean的执行顺序呢？那么我" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="QV2ray Node免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://qv2raynode.github.io/news/article-63526.htm" />
+    <meta property="og:site_name" content="QV2ray Node免费机场订阅节点官网" />
+    <meta property="og:title" content="深入理解Spring的@Order注解和Ordered接口" />
+    <meta property="og:image" content="https://qv2raynode.github.io/uploads/20241102/a9174e07c55f8d35fddf7dc666c02ef8.webp" />
+        <meta property="og:release_date" content="2025-02-26T08:35:53" />
+    <meta property="og:updated_time" content="2025-02-26T08:35:53" />
+        <meta property="og:description" content="前言   Spring的@Order注解或者Ordered接口大家都知道是控制顺序的，那么它们到底是控制什么顺序的？是控制Bean的注入顺序，还是Bean的实例化顺序，还是Bean的执行顺序呢？那么我" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="深入理解Spring的@Order注解和Ordered接口">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/client.htm">客户端</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>深入理解Spring的@Order注解和Ordered接口</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h2><a id="_0" rel="nofollow"></a>前言</h2> <p>  Spring的@Order注解或者Ordered接口大家都知道是控制顺序的，那么它们到底是控制什么顺序的？是控制Bean的注入顺序，还是Bean的实例化顺序，还是Bean的执行顺序呢？那么我们先直接给出结论再来验证结论。<br /><strong>结论：Spring的@Order注解或者Ordered接口，不决定Bean的加载顺序和实例化顺序，只决定Bean的执行顺序。</strong></p> <h2><a id="OrderBean_3" rel="nofollow"></a>实例论证：@Order不决定Bean的加载和实例化顺序</h2> <p>步骤一：创建DemoService接口和三个实现类，分别打上注解@Order(0)-DemoServiceImpl01、@Order(1)-DemoServiceImpl02、@Order(2)-DemoServiceImpl03，观察实例化顺序。</p> <pre><code>@Service @Order(0) public class DemoServiceImpl01 implements DemoService {      public DemoServiceImpl01() {         System.out.println("DemoServiceImpl01被实例化了");     } }  @Service @Order(1) public class DemoServiceImpl02 implements DemoService {      public DemoServiceImpl02() {         System.out.println("DemoServiceImpl02被实例化了");     }  }  @Service @Order(2) public class DemoServiceImpl03 implements DemoService {      public DemoServiceImpl03() {         System.out.println("DemoServiceImpl03被实例化了");     }  }  // 运行结果如下 DemoServiceImpl01被实例化了 DemoServiceImpl02被实例化了 DemoServiceImpl03被实例化了</code></pre> <p>步骤二：改变DemoService接口三个实现类的注解序值，@Order(2)-DemoServiceImpl01、@Order(1)-DemoServiceImpl02、@Order(0)-DemoServiceImpl03，观察实例化顺序</p> <pre><code>@Service @Order(2) public class DemoServiceImpl01 implements DemoService {      public DemoServiceImpl01() {         System.out.println("DemoServiceImpl01被实例化了");     } }  @Service @Order(1) public class DemoServiceImpl02 implements DemoService {      public DemoServiceImpl02() {         System.out.println("DemoServiceImpl02被实例化了");     }  }  @Service @Order(0) public class DemoServiceImpl03 implements DemoService {      public DemoServiceImpl03() {         System.out.println("DemoServiceImpl03被实例化了");     }  }  // 运行结果如下 DemoServiceImpl01被实例化了 DemoServiceImpl02被实例化了 DemoServiceImpl03被实例化了</code></pre> <p>结果：当改变DemoService接口的三个实现类注解序值时，类的加载和实例化顺序根本没有变化，即@Order注解不决定Bean的加载和实例化顺序。</p> <h2><a id="OrderBean_78" rel="nofollow"></a>实例论证：@Order决定Bean的执行顺序</h2> <p>步骤一：创建RunServiceImpl类，并通过构造函数依赖注入DemoService的三个实现类，且循序依次执行三个实现类方法，观察Bean的执行顺序。</p> <pre><code>@Service public class RunServiceImpl implements RunService {      public RunServiceImpl(List&lt;DemoService&gt; demoServices) {         demoServices.forEach(demoService -&gt; demoService.say());     }  }  @Service @Order(0) public class DemoServiceImpl01 implements DemoService {      public DemoServiceImpl01() {         System.out.println("DemoServiceImpl01被实例化了");     }      @Override     public void say() {         System.out.println("DemoServiceImpl01被执行了");     } }  @Service @Order(1) public class DemoServiceImpl02 implements DemoService {      public DemoServiceImpl02() {         System.out.println("DemoServiceImpl02被实例化了");     }      @Override     public void say() {         System.out.println("DemoServiceImpl02被执行了");     }  }  @Service @Order(2) public class DemoServiceImpl03 implements DemoService {      public DemoServiceImpl03() {         System.out.println("DemoServiceImpl03被实例化了");     }      @Override     public void say() {         System.out.println("DemoServiceImpl03被执行了");     }  }  // 运行结果如下 DemoServiceImpl01被执行了 DemoServiceImpl02被执行了 DemoServiceImpl03被执行了</code></pre> <p>步骤二：改变DemoService接口三个实现类的注解序值，@Order(2)-DemoServiceImpl01、@Order(1)-DemoServiceImpl02、@Order(0)-DemoServiceImpl03，观察Bean的执行顺序。</p> <pre><code>@Service public class RunServiceImpl implements RunService {      public RunServiceImpl(List&lt;DemoService&gt; demoServices) {         demoServices.forEach(demoService -&gt; demoService.say());     }  }  @Service @Order(2) public class DemoServiceImpl01 implements DemoService {      public DemoServiceImpl01() {         System.out.println("DemoServiceImpl01被实例化了");     }      @Override     public void say() {         System.out.println("DemoServiceImpl01被执行了");     } }  @Service @Order(1) public class DemoServiceImpl02 implements DemoService {      public DemoServiceImpl02() {         System.out.println("DemoServiceImpl02被实例化了");     }      @Override     public void say() {         System.out.println("DemoServiceImpl02被执行了");     }  }  @Service @Order(0) public class DemoServiceImpl03 implements DemoService {      public DemoServiceImpl03() {         System.out.println("DemoServiceImpl03被实例化了");     }      @Override     public void say() {         System.out.println("DemoServiceImpl03被执行了");     }  }  // 运行结果如下 DemoServiceImpl03被执行了 DemoServiceImpl02被执行了 DemoServiceImpl01被执行了</code></pre> <p>结果：当改变DemoService接口的三个实现类注解序值时，类的执行顺序也随之发生变化，即@Order决定Bean的执行顺序。</p> <h2><a id="OrderOrderedBean_200" rel="nofollow"></a>@Order注解或Ordered接口决定Bean的执行顺序原理分析</h2> <p>通过上面实例论证，大家应该清楚@Order注解或Ordered接口只是决定了Bean的执行顺序，那么Spring是如何在依赖注入时完成根据@Order注解或Ordered接口控制Bean执行顺序？<br /><strong>原理分析：<br /> 当通过构造函数或者方法参数注入进某个List&lt;组件实现类&gt;时，Spring的DefaultListableBeanFactory类会在注入时调用AnnotationAwareOrderComparator.sort(listA)帮我们去完成根据@Order或者Ordered接口序值排序。</strong><br /> 备注：<br /> AnnotationAwareOrderComparator是OrderComparator的子类，而OrderComparator实现比较器Comparator接口，AnnotationAwareOrderComparator.sort(listA)会调用父类sort方法，会根据@Order或者Ordered接口设置的int序值重写sort方法进行排序，值越小优先级越高。</p> <h2></h2> <ol></ol> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-62932.htm">狗粮加工厂赚钱吗现在多少钱（狗粮加工厂赚钱吗现在多少钱一个月）</a></p>
+                                        <p>下一个：<a href="/news/article-63527.htm">spring-cloud之Feign服务调用降级</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-35209.htm" title="深圳市宠物领养之家官网查询 深圳市宠物领养之家官网查询电话">深圳市宠物领养之家官网查询 深圳市宠物领养之家官网查询电话</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-25-free-node-subscribe.htm" title="1月25日→18.6M/S|2025年最新免费节点QV2ray Node订阅链接地址">1月25日→18.6M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-13-free-subscribe-node.htm" title="2月13日→20.3M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月13日→20.3M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-15-free-high-speed-nodes.htm" title="1月15日→18.9M/S|2025年最新免费节点QV2ray Node订阅链接地址">1月15日→18.9M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-45634.htm" title="1970年农历四月二十六是什么星座（1970年农历四月二十六是什么星座的）">1970年农历四月二十六是什么星座（1970年农历四月二十六是什么星座的）</a></li>
+                        <li class="py-2"><a href="/news/article-29087.htm" title="你的编程能力从什么时候开始突飞猛进? 我的回答：2013年，我开始喜欢编程了。">你的编程能力从什么时候开始突飞猛进? 我的回答：2013年，我开始喜欢编程了。</a></li>
+                        <li class="py-2"><a href="/news/article-50630.htm" title="动物疫苗批号查询网站官网入口查询（动物疫苗2021）">动物疫苗批号查询网站官网入口查询（动物疫苗2021）</a></li>
+                        <li class="py-2"><a href="/news/article-42650.htm" title="流浪动物领养app如何盈利（流浪动物领养网站）">流浪动物领养app如何盈利（流浪动物领养网站）</a></li>
+                        <li class="py-2"><a href="/news/article-26766.htm" title="天照爱宠动物医院简介（天照宠物医院大兴店）">天照爱宠动物医院简介（天照宠物医院大兴店）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-28-free-high-speed-nodes.htm" title="1月28日→20.3M/S|2025年最新免费节点QV2ray Node订阅链接地址">1月28日→20.3M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">78</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
