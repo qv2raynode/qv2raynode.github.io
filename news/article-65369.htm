@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-65369.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>netty系列之:netty中的核心编码器bytes数组</title>
+        <meta name="description" content="目录  简介 byte是什么 netty中的byte数组的工具类 netty中byte的编码器 总结    我们知道netty中数据传输的核心是ByteBuf,ByteBuf提供了多种数据读写的方法，" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="QV2ray Node免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://qv2raynode.github.io/news/article-65369.htm" />
+    <meta property="og:site_name" content="QV2ray Node免费机场订阅节点官网" />
+    <meta property="og:title" content="netty系列之:netty中的核心编码器bytes数组" />
+    <meta property="og:image" content="https://qv2raynode.github.io/uploads/20241102/2b1ad1afa5ec243e523c6e58ebec83a0.webp" />
+        <meta property="og:release_date" content="2025-03-01T07:00:03" />
+    <meta property="og:updated_time" content="2025-03-01T07:00:03" />
+        <meta property="og:description" content="目录  简介 byte是什么 netty中的byte数组的工具类 netty中byte的编码器 总结    我们知道netty中数据传输的核心是ByteBuf,ByteBuf提供了多种数据读写的方法，" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="netty系列之:netty中的核心编码器bytes数组">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/client.htm">客户端</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>netty系列之:netty中的核心编码器bytes数组</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#%E7%AE%80%E4%BB%8B" rel="nofollow">简介</a></li> <li><a href="#byte%E6%98%AF%E4%BB%80%E4%B9%88" rel="nofollow">byte是什么</a></li> <li><a href="#netty%E4%B8%AD%E7%9A%84byte%E6%95%B0%E7%BB%84%E7%9A%84%E5%B7%A5%E5%85%B7%E7%B1%BB" rel="nofollow">netty中的byte数组的工具类</a></li> <li><a href="#netty%E4%B8%ADbyte%E7%9A%84%E7%BC%96%E7%A0%81%E5%99%A8" rel="nofollow">netty中byte的编码器</a></li> <li><a href="#%E6%80%BB%E7%BB%93" rel="nofollow">总结</a></li> </ul> </div> </h1> <p>我们知道netty中数据传输的核心是ByteBuf,ByteBuf提供了多种数据读写的方法，包括基本类型和byte数组的读写方法。如果要在netty中传输这些数据，那么需要构建ByteBuf，然后调用ByteBuf中对应的方法写入对应的数据，接着套用netty中标准的模板即可使用。</p> <p>对于byte数组来说，如果每次都将其封装进ByteBuf中，再进行传输显得有些麻烦。于是netty提供了一个基于bytes的核心编码解码器。</p> </h1> <p>那么byte是什么呢? byte表示的是一个字节，也就是8bits。用二进制表示就是-128-127的范围。byte是JAVA中的基础类型。</p> <p>同时它还有一个wrap类型叫做Byte。</p> <p>先看下Byte的定义：</p> <pre><code>public final class Byte extends Number implements Comparable&lt;Byte&gt;</code></pre> <p>Byte中定义了byte的取值访问：</p> <pre><code>    public static final byte   MIN_VALUE = -128;      public static final byte   MAX_VALUE = 127;</code></pre> <p>并且还提供了一些基本的工具方法。</p> <p>因为byte表示的是一个8bits的二进制，如果不算位运算的话，byte基本上是JAVA中最小的数据存储单位了。所以JAVA中所有的对象都可以转换成为byte。</p> <p>基础类型的转换这里就不多讲了。这里主要看一下字符串String和对象Object和byte数组之间的转换。</p> <p>先来看下字符串String和byte数组之间的转换，也就是String和二进制之间的转换。</p> <p>基本的转换思路就是将String中的字符进行编码，然后将编码过后的字符进行存储即可。</p> <p>String类本身提供了一个getBytes方法，可以接受编码类型，以UTF-8来说，我们来看下转换方法的调用：</p> <pre><code>    public static byte[] stringToBytes(String str) throws UnsupportedEncodingException {        return str.getBytes("utf-8");     }      public static String bytesToString(byte[] bs) throws UnsupportedEncodingException {        return new String(bs, "utf-8");     }</code></pre> <p>直接调用String中的方法即可。</p> <p>如果是Object对象的话，因为Object本身并没有提供转换的方法，所以我们需要借助于ByteArrayOutputStream的toByteArray方法和ByteArrayInputStream的readObject方法来实现byte数组和Object之间的转换，如下所示：</p> <pre><code>    //对象转数组     public byte[] toByteArray (Object obj) throws IOException {         try(ByteArrayOutputStream bos = new ByteArrayOutputStream();             ObjectOutputStream oos = new ObjectOutputStream(bos)) {             oos.writeObject(obj);             oos.flush();             return  bos.toByteArray();         }     }      //数组转对象     public Object toObject (byte[] bytes) throws IOException, ClassNotFoundException {         try (             ByteArrayInputStream bis = new ByteArrayInputStream (bytes);             ObjectInputStream ois = new ObjectInputStream (bis)) {             return ois.readObject();         }     }</code></pre> </h1> <p>netty中的核心是ByteBuf，ByteBuf提供了大部分基础数据类型的read和write方法。当然如果要读取对象，那么还是需要将对象转换成为byte然后再写入或者从ByteBuf中读出。</p> <p>当然，netty中不需要这么复杂，netty提供了一个Unpooled的工具类用来方便的将byte数组和ByteBuf进行转换。</p> <p>先看下Unpooled方法提供的ByteBuff构建方法：</p> <pre><code>   ByteBuf heapBuffer    = buffer(128);    ByteBuf directBuffer  = directBuffer(256);    ByteBuf wrappedBuffer = wrappedBuffer(new byte[128], new byte[256]);    ByteBuf copiedBuffer  = copiedBuffer(ByteBuffer.allocate(128));</code></pre> <p>这是Unpooled提供的几种ByteBuf的构建方式，其中heapBuffer表示的是在用户空间构建的buff，directBuffer表示的是直接在系统空间构建的buff。wrappedBuffer是对现有的byte数组和ByteBuf之上构建的视图，而copiedBuffer是对byte数组,byteBuf和字符串的拷贝。</p> <p>这里我们需要用到wrappedBuffer方法，将byte数组封装到ByteBuf中：</p> <pre><code>    public static ByteBuf wrappedBuffer(byte[] array) {         if (array.length == 0) {             return EMPTY_BUFFER;         }         return new UnpooledHeapByteBuf(ALLOC, array, array.length);     }</code></pre> <p>wrappedBuffer返回了一个UnpooledHeapByteBuf对象，这个对象本身就是一个ByteBuf。这里将byte数组作为构造函数传入UnpooledHeapByteBuf中。</p> <p>这里的array是UnpooledHeapByteBuf中的私有变量：</p> <pre><code>byte[] array;</code></pre> <p>除了构造函数，UnpooledHeapByteBuf还提供了一个setArray的方法用来设置byte数组：</p> <pre><code>    private void setArray(byte[] initialArray) {         array = initialArray;         tmpNioBuf = null;     }</code></pre> <p>下面是如何从array中构建ByteBuf：</p> <pre><code>    public ByteBuf setBytes(int index, ByteBuffer src) {         ensureAccessible();         src.get(array, index, src.remaining());         return this;     }</code></pre> <p>从ByteBuf中读取byte数组,可以调用ByteBufUtil的getBytes方法：</p> <pre><code>    public static byte[] getBytes(ByteBuf buf) {         return getBytes(buf,  buf.readerIndex(), buf.readableBytes());     }</code></pre> </h1> <p>万事俱备只欠东风，有了上面netty提供的工具类，我们就可以使用这些工具类构建基于byte的编码器了。</p> <p>netty中基于byte的编码解码器分别叫做ByteArrayEncoder和ByteArrayDecoder。</p> <p>先来看下这两个类是如何使用的,这里以一个典型的TCP/IP应用为例：</p> <pre><code>   ChannelPipeline pipeline = ...;       // Decoders    pipeline.addLast("frameDecoder",                     new LengthFieldBasedFrameDecoder(1048576, 0, 4, 0, 4));    pipeline.addLast("bytesDecoder",                     new ByteArrayDecoder());       // Encoder    pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));    pipeline.addLast("bytesEncoder", new ByteArrayEncoder());</code></pre> <p>这里的LengthFieldBasedFrameDecoder和LengthFieldPrepender是以消息长度为分割标准的frame分割器。这里我们主要关注ChannelPipeline中添加的ByteArrayDecoder和ByteArrayEncoder。</p> <p>添加了byte的编码和解码器之后，就可以直接在handler中直接使用byte数组，如下所示：</p> <pre><code>   void channelRead(ChannelHandlerContext ctx, byte[] bytes) {        ...    }</code></pre> <p>先来看下ByteArrayEncoder，这是一个编码器,它的实现很简单：</p> <pre><code>public class ByteArrayEncoder extends MessageToMessageEncoder&lt;byte[]&gt; {     @Override     protected void encode(ChannelHandlerContext ctx, byte[] msg, List&lt;Object&gt; out) throws Exception {         out.add(Unpooled.wrappedBuffer(msg));     } }</code></pre> <p>具体就是使用Unpooled.wrappedBuffer方法byte数组封装成为ByteBuf，然后将其添加到out list中。</p> <p>同样的，我们观察一下ByteArrayDecoder,这是一个解码器，实现也比较简单：</p> <pre><code>public class ByteArrayDecoder extends MessageToMessageDecoder&lt;ByteBuf&gt; {     @Override     protected void decode(ChannelHandlerContext ctx, ByteBuf msg, List&lt;Object&gt; out) throws Exception {          // copy the ByteBuf content to a byte array         out.add(ByteBufUtil.getBytes(msg));     } }</code></pre> <p>具体的实现就是调用ByteBufUtil.getBytes方法，将ByteBuf转换成为byte数组，然后添加到list对象中。</p> </h1> <p>如果要在netty中传输二进制数据，netty提供的byte编码和解码器已经封装了繁琐的细节，大家可以放心使用。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-64758.htm">动物疫苗需要每年都打吗 动物疫苗需要每年都打吗多少钱</a></p>
+                                        <p>下一个：<a href="/news/article-65370.htm">宠物鲜粮市场创业（宠物鲜粮市场创业项目）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-29088.htm" title="springboot：异步注解@Async的前世今生_在线工具">springboot：异步注解@Async的前世今生_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-36270.htm" title="SpringBoot实战数据访问整合Mybatis和Redis">SpringBoot实战数据访问整合Mybatis和Redis</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-node-share-links.htm" title="11月23日→19.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月23日→19.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-35760.htm" title="北京动物医院排行榜（北京动物医院连锁招聘）">北京动物医院排行榜（北京动物医院连锁招聘）</a></li>
+                        <li class="py-2"><a href="/news/article-58273.htm" title="dell更换固态硬盘后无法进入系统（戴尔换了固态硬盘后电脑需要怎么设置）">dell更换固态硬盘后无法进入系统（戴尔换了固态硬盘后电脑需要怎么设置）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-node-share-links.htm" title="11月10日→23M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月10日→23M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-63526.htm" title="深入理解Spring的@Order注解和Ordered接口">深入理解Spring的@Order注解和Ordered接口</a></li>
+                        <li class="py-2"><a href="/news/article-31941.htm" title="宠物领养系统论文中期检查表模板（宠物领养项目背景）">宠物领养系统论文中期检查表模板（宠物领养项目背景）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-27-free-node-subscribe-links.htm" title="2月27日→20.2M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月27日→20.2M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-62930.htm" title="哪里有给鹦鹉看病的店（哪里有给鹦鹉治病的地方）">哪里有给鹦鹉看病的店（哪里有给鹦鹉治病的地方）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

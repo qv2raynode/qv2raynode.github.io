@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-64147.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CEPH-3：cephfs功能详解</title>
+        <meta name="description" content="ceph集群cephfs使用详解 一个完整的ceph集群，可以提供块存储、文件系统和对象存储。 本节主要介绍文件系统cephfs功能如何灵活的使用，集群背景： $ ceph -s    cluster" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="QV2ray Node免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://qv2raynode.github.io/news/article-64147.htm" />
+    <meta property="og:site_name" content="QV2ray Node免费机场订阅节点官网" />
+    <meta property="og:title" content="CEPH-3：cephfs功能详解" />
+    <meta property="og:image" content="https://qv2raynode.github.io/uploads/20241102/7c7d7d2a77e24f8b8df202258f3f5e83.webp" />
+        <meta property="og:release_date" content="2025-02-27T05:57:03" />
+    <meta property="og:updated_time" content="2025-02-27T05:57:03" />
+        <meta property="og:description" content="ceph集群cephfs使用详解 一个完整的ceph集群，可以提供块存储、文件系统和对象存储。 本节主要介绍文件系统cephfs功能如何灵活的使用，集群背景： $ ceph -s    cluster" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="CEPH-3：cephfs功能详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/client.htm">客户端</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>CEPH-3：cephfs功能详解</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<h2 id="ceph集群cephfs使用详解">ceph集群cephfs使用详解</h2> <p>一个完整的ceph集群，可以提供块存储、文件系统和对象存储。</p> <p>本节主要介绍文件系统cephfs功能如何灵活的使用，集群背景：</p> <pre><code class="language-bash">$ ceph -s    cluster:     id:     f0a8789e-6d53-44fa-b76d-efa79bbebbcf     health: HEALTH_OK     services:     mon: 1 daemons, quorum a (age 24h)     mgr: a(active, since 14h)     mds: cephfs:1 {0=cephfs-a=up:active} 1 up:standby-replay     osd: 1 osds: 1 up (since 24h), 1 in (since 26h)     rgw: 1 daemon active (my.store.a)     data:     pools:   10 pools, 200 pgs     objects: 719 objects, 1.3 GiB     usage:   54 GiB used, 804 GiB / 858 GiB avail     pgs:     200 active+clean     io:     client:   852 B/s rd, 1 op/s rd, 0 op/s wr</code></pre> <h2 id="cephfs文件系统介绍">cephfs文件系统介绍</h2> <h3 id="cephfs介绍">cephfs介绍</h3> <p>cephfs即ceph filesystem，是一个基于ceph集群且兼容POSIX标准的文件共享系统，创建cephfs文件系统时需要在ceph集群中添加mds服务。cephfs支持以内核模块方式加载也支持fuse方式加载。无论是内核模式还是fuse模式，都是通过调用libcephfs库来实现cephfs文件系统的加载。</p> <p>fuse用户态和kernel内核态两种挂载cephfs的优劣式：</p> <ul> <li>fuse 客户端最容易与服务器做到代码级的同步，但是内核客户端的性能通常更好。</li> <li>这两种客户端不一定会提供一样的功能，如 fuse 客户端可支持客户端强制配额，但内核客户端却不支持。</li> <li>遇到缺陷或性能问题时，最好试试另一个客户端，以甄别此缺陷是否特定于客户端</li> </ul> <h3 id="mds组件介绍">mds组件介绍</h3> <p>mds是该服务负责处理POSIX文件系统中的metadata部分，实际的数据部分交由ceph集群中的OSD处理，mds提供了一个带智能缓存层的共享型连续文件系统，可以大大减少 OSD 读写操作频率。</p> <p>cephfs元数据使用的动态子树分区，把元数据划分名称空间下对应到不同的mds，写入元数据的时候将元数据按照名称保存到不同主mds上，类似于nginx中的缓存目录分层。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/1ca3fb5ad66a45b0c12b748fa908c22e.jpg" alt="CEPH-3：cephfs功能详解"></p> <h3 id="cephfs工作流程">cephfs工作流程</h3> <ol> <li>创建cephfs时会指定两个存储池，一个专门来存储元数据，一个专门来存储实际文件；</li> <li>客户端在写(读)文件时，首先写(读)mds服务缓存中文件的元数据信息，当然保存在mds的元数据最终还是要落盘到osd pool中的；</li> <li>mds和rados之间通过journal metadate交互，这个journal是记录文件写入日志的，这个也是存放到OSD当中；</li> <li>最终客户端得到元数据信息，获取rados对某个文件的IO操作，实现文件读写。</li> </ol> <h3 id="cephfs状态查看">cephfs状态查看</h3> <pre><code class="language-bash">$ ceph fs status cephfs - 0 clients ====== +------+----------------+----------+---------------+-------+-------+ | Rank |     State      |   MDS    |    Activity   |  dns  |  inos | +------+----------------+----------+---------------+-------+-------+ |  0   |     active     | cephfs-a | Reqs:    0 /s |   30  |   25  | | 0-s  | standby-replay | cephfs-b | Evts:    0 /s |   24  |   17  | +------+----------------+----------+---------------+-------+-------+ +-----------------+----------+-------+-------+ |       Pool      |   type   |  used | avail | +-----------------+----------+-------+-------+ | cephfs-metadata | metadata |  289k |  760G | |   cephfs-data0  |   data   |  805  |  760G | +-----------------+----------+-------+-------+ +-------------+ | Standby MDS | +-------------+ +-------------+  $ ceph mds stat cephfs:1 {0=cephfs-a=up:active} 1 up:standby-replay</code></pre> <h3 id="cephfs使用演示">cephfs使用演示</h3> <p>cephfs安装步骤已经通过上节部署文档中演示过，此处不再赘述，仅介绍本次演示所涉及到的pool名称：</p> <pre><code class="language-bash">$ ceph fs ls  name: cephfs, metadata pool: cephfs-metadata, data pools: [cephfs-data0 ]  $ ceph osd lspools  cephfs-metadata  #用来存放mds数据 cephfs-data0     #用来存放data数据</code></pre> <h4 id="先通过第一种方法以内核模块方式挂载一般都用此种方式">先通过第一种方法：<strong>以内核模块方式挂载</strong>（一般都用此种方式）</h4> <p><strong>首先要确认内核模块是否加载</strong></p> <pre><code class="language-bash"># lsmod | grep ceph ceph                  363016  0  libceph               306750  2 rbd,ceph dns_resolver           13140  1 libceph libcrc32c              12644  4 xfs,libceph,nf_nat,nf_conntrack</code></pre> <p><strong>先创建用来专门挂载的ceph用户</strong></p> <pre><code class="language-bash">## 创建 client.mfan 用户，并授权可读 MON、可读写mds 和 可读写执行名称cephfs-data0的OSD  $ ceph auth add client.mfan mon 'allow r' mds 'allow rw' osd 'allow rwx pool=cephfs-data0' added key for client.mfan  ## 输出密钥 $ ceph auth get client.mfan -o /etc/ceph/ceph.client.mfan.keyring exported keyring for client.mfan  ## 测试访问集群 $ ceph -s --user mfan    cluster:     id:     f0a8789e-6d53-44fa-b76d-efa79bbebbcf     health: HEALTH_OK     services:     mon: 1 daemons, quorum a (age 42h)     mgr: a(active, since 33h)     mds: cephfs:1 {0=cephfs-a=up:active} 1 up:standby-replay     osd: 1 osds: 1 up (since 42h), 1 in (since 44h)     rgw: 1 daemon active (my.store.a)     data:     pools:   10 pools, 200 pgs     objects: 719 objects, 1.3 GiB     usage:   55 GiB used, 803 GiB / 858 GiB avail     pgs:     200 active+clean     io:     client:   852 B/s rd, 1 op/s rd, 0 op/s wr</code></pre> <p><strong>获取用户名和密钥</strong></p> <pre><code class="language-bash">$ ceph auth get client.mfan exported keyring for client.mfan [client.mfan] 	key = AQD600NibhPBJxAAzKeTOcQ17xaPhEdZ8npehg== 	caps mds = "allow rw" 	caps mon = "allow r" 	caps osd = "allow rwx pool=cephfs-data0"</code></pre> <p><strong>命令行挂载cephfs，有两种方式：</strong></p> <p>第一种：</p> <pre><code class="language-bash">## 挂载 # mount -t ceph 10.153.204.13:6789:/ /home/cephfs-data/ -o name=mfan,secret=AQD600NibhPBJxAAzKeTOcQ17xaPhEdZ8npehg== 参数说明：  -o：指定挂载参数  name：认证用户  secret：用户密钥  # df -h | grep 'ceph-data' 10.153.204.13:6789:/                       760G     0  760G   0% /home/cephfs-data</code></pre> <blockquote> <p>我这里只有一台mon，如果多台mon，可以并写如：10.153.204.13:6789,10.153.204.14:6789,10.153.204.15:6789:/</p> </blockquote> <p>第二种：</p> <pre><code class="language-bash">## 创建用户secret文件 # ceph auth get-key client.mfan &gt; /etc/ceph/mvfan.secret  ## 使用secret文件挂载 # mount -t ceph 10.153.204.13:6789:/ /home/cephfs-data2/ -o name=mfan,secretfile=/etc/ceph/mvfan.secret</code></pre> <p><strong>测试读写</strong></p> <pre><code class="language-bash">## 测试写 # dd if=/dev/zero of=/home/ceph-data/test.dbf bs=8k count=200000 conv=fdatasync 200000+0 records in 200000+0 records out 1638400000 bytes (1.6 GB) copied, 4.93594 s, 332 MB/s  ## 测试读 # dd if=/home/ceph-data/test.dbf of=/dev/null bs=4k count=100000000 400000+0 records in 400000+0 records out 1638400000 bytes (1.6 GB) copied, 1.18977 s, 1.4 GB/s</code></pre> <p><strong>加入fstab中</strong></p> <pre><code class="language-bash">echo "10.153.204.13:6789:/ /home/ceph-data ceph \ name=mfan,secret=AQD600NibhPBJxAAzKeTOcQ17xaPhEdZ8npehg==,_netdev,noatime 0 0" &gt;&gt; /etc/fstab</code></pre> <blockquote> <p>_netdev:   文件系统居于需要网络连接的设备上，系统联网时才挂载</p> <p>noatime:   不更新文件系统的inode存取时间</p> </blockquote> <h4 id="再通过第二种方法以fuse方式方式挂载">再通过第二种方法：<strong>以fuse方式方式挂载</strong></h4> <p><strong>需要先安装ceph-fuse包</strong></p> <pre><code class="language-bash">yum install -y ceph-fuse</code></pre> <p><strong>执行挂载</strong></p> <pre><code class="language-bash"># ceph-fuse -m 10.153.204.13:6789 /home/cephfs-data ceph-fuse[9511]: starting ceph client2022-03-30T17:25:00.938+0800 7fc7431f7f80 -1 init, newargv = 0x55d4924a7b60 newargc=9 ceph-fuse[9511]: starting fuse  # ps -ef | grep fuse root       9511      1  0 17:25 pts/1    00:00:00 ceph-fuse -m 10.153.204.13:6789 /home/cephfs-data  # df -Th | grep cephfs-data ceph-fuse                                 fuse.ceph-fuse  759G  2.2G  757G   1% /home/cephfs-data</code></pre> <p><strong>卸载命令</strong></p> <pre><code class="language-bash">fusermount -u /home/cephfs-data/</code></pre> <h4 id="cephfs功能介绍就到此为止了后续会继续介绍ceph对象存储的具体使用及mds如何实现双主双备高可用">cephfs功能介绍就到此为止了，后续会继续介绍ceph对象存储的具体使用，及mds如何实现双主双备高可用。</h4> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-63527.htm">spring-cloud之Feign服务调用降级</a></p>
+                                        <p>下一个：<a href="/news/article-64148.htm">男士衣服牌子有哪些(p字开头的衣服牌子有哪些)</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-26-free-node-subscribe.htm" title="1月26日→21.3M/S|2025年最新免费节点QV2ray Node订阅链接地址">1月26日→21.3M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-36270.htm" title="SpringBoot实战数据访问整合Mybatis和Redis">SpringBoot实战数据访问整合Mybatis和Redis</a></li>
+                        <li class="py-2"><a href="/news/article-28623.htm" title="Linux  C++  实现一个简易版的ping （也就是ICMP协议）">Linux  C++  实现一个简易版的ping （也就是ICMP协议）</a></li>
+                        <li class="py-2"><a href="/news/article-61751.htm" title="长沙宠物救助热线电话（长沙猫狗救助站）">长沙宠物救助热线电话（长沙猫狗救助站）</a></li>
+                        <li class="py-2"><a href="/news/article-34318.htm" title="1970年农历4月27日（1970年农历4月27日阳历是多少）">1970年农历4月27日（1970年农历4月27日阳历是多少）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-15-free-node-subscribe-links.htm" title="2月15日→20.2M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月15日→20.2M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21749.htm" title="动物疫苗的使用注意事项有哪些呢（动物疫苗注射注意事项）">动物疫苗的使用注意事项有哪些呢（动物疫苗注射注意事项）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-23-free-node-subscribe.htm" title="12月23日→22.4M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月23日→22.4M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-23505.htm" title="深圳百姓网免费领养宠物（深圳市宠物免费领养）">深圳百姓网免费领养宠物（深圳市宠物免费领养）</a></li>
+                        <li class="py-2"><a href="/news/article-40158.htm" title="宠物领养数据库建表 宠物领养系统数据库">宠物领养数据库建表 宠物领养系统数据库</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

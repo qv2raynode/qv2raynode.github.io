@@ -151,6 +151,7 @@
                   				  				  				<div id="content_views" class="htmledit_views"> <h2 style="margin-left:0cm;">服务雪崩</h2> <p style="margin-left:0cm;"><img fetchpriority="high" decoding="async" alt="" class="has" height="99" src="http://img.555519.xyz/uploads/20221120/013ac302d42d941d3d2ac051b4bb66a8.jpg"></p> <p style="margin-left:0cm;">如图-1，如果所有服务A/B/C网络/应用等都正常，同时能够快速的处理请求并返回，服务之间就可以正常的调度。</p> <p style="margin-left:0cm;"><img decoding="async" alt="" class="has" height="137" src="http://img.555519.xyz/uploads/20221120/79a7ff934ff123280b7c3a0ce18d9f95.jpg"></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; 如图-2，如果A服务出现异常情况（网络异常/内部数据库异常等）无法在指定的时间内返回B服务结果，那么由于C服务会持续的请求B服务，最终导致B服务积压了大量的请求而服务器奔溃不可用。</p> <p style="margin-left:0cm;"><img decoding="async" alt="" class="has" height="161" src="http://img.555519.xyz/uploads/20221120/913fb80caf95552a82a7bb5694523ba7.jpg"></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; 如图-3，B服务由于A服务的不可用导致自身请求积压而崩溃，所以所有的请求蔓延到下游的C服务，最终也导致C服务不可用崩溃，如图-4所示。</p> <p style="margin-left:0cm;"><img loading="lazy" decoding="async" alt="" class="has" height="94" src="http://img.555519.xyz/uploads/20221120/6c639aaa318712535130701d6583aaf5.jpg"></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; 综上所述：服务雪崩就是由于上游（例如A）的服务异常不可用，最终蔓延到下游的所有服务，导致所有相关下游的微服务应用不可用而系统崩溃。</p> <h2 style="margin-left:0cm;">Feign使用Hystrix实现降级</h2> <h3 style="margin-left:0cm;">Hystrix简介</h3> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; Hystrix是由Netfix开源的一个延迟和容错工具库，用于解决远程调用/服务或者第三方库防止级联失败提示系统的可用性和容错性。</p> <h3 style="margin-left:0cm;">Feign整合Hystrix</h3> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; 之前的博文介绍过了spring cloud服务调用的两种方式，但是由于ribbon方式没有feign便捷。所以这里就只介绍feign方式使用htstrix实现服务降级，避免雪崩。</p> <p><strong>Maven依赖</strong></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; 由于spring cloud版本有差异，所以需要说明一下我这里使用的spring boot是2.1.5.RELEASE版本，所以依赖的hystrix如下。如spring boot是1.X版本artifactId应该是spring-cloud-starter-hystrix。Version属性可以不填，会根据spring boot自动配置找到对应的版本。</p> <pre class="has"><code class="language-html">&lt;dependency&gt;     &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;     &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt; &lt;/dependency&gt;</code></pre> <p><strong>Application配置文件</strong></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; Feign开启支持hystrix的方式是在配置文件中添加feign.hystrix.enabled=true。这个值默认是false，所以需要开启。</p> <p><strong>添加降级类</strong></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; Feign服务熔断降级其实是通过调度超时就调用本地的方法，而不是一直等待服务返回。Feign调度服务是通过接口+注解方式的，我们需要实现该接口用于实现服务降级调用本地方法。</p> <pre class="has"><code class="language-java">@Component public class UserFeignClientFallback implements UserFeignClientInterface {       @Override     public String get(String name) {         return "error " + name;     } }</code></pre> <p><strong>Feign接口类</strong></p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp; 主要是通过@FeignClient的fallback属性定义降级后调用那个类的方法，这里方法名称等都是一致才可以。</p> <pre class="has"><code class="language-java">@FeignClient(name = "PROVIDER-USER",         fallback = UserFeignClientFallback.class) public interface UserFeignClientInterface {      @GetMapping(value = "/get")     String get(@RequestParam(value = "name") String name);  }</code></pre> <p><strong>验证步骤</strong></p> <ol> <li>启动注册中心</li> <li>启动服务提供者</li> <li>启动服务消费者</li> <li>访问服务消费者，看是否正常调度服务提供者的方法</li> <li>关闭服务提供者</li> <li>访问服务消费者，看是否正常调度本地方法返回</li> <li> </h1> </li> </ol> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-63526.htm">深入理解Spring的@Order注解和Ordered接口</a></p>
+                                        <p>下一个：<a href="/news/article-64147.htm">CEPH-3：cephfs功能详解</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -160,16 +161,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-12-26-free-node-subscribe.htm" title="12月26日→21.9M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月26日→21.9M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-14-node-share-links.htm" title="1月14日→18.4M/S|2025年最新免费节点QV2ray Node订阅链接地址">1月14日→18.4M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-2-12-free-subscribe-node.htm" title="2月12日→18.3M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月12日→18.3M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-41637.htm" title="宠物食品代加工流程（宠物零食代加工）">宠物食品代加工流程（宠物零食代加工）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-subscribe-node.htm" title="11月30日→20.4M/S|2024年最新免费节点QV2ray Node订阅链接地址">11月30日→20.4M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-2-1-node-share-links.htm" title="2月1日→22.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月1日→22.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-2-16-node-share.htm" title="2月16日→22.5M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月16日→22.5M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-46607.htm" title="猫三联三针间隔多久（猫三联三针间隔多久打一针）">猫三联三针间隔多久（猫三联三针间隔多久打一针）</a></li>
-                        <li class="py-2"><a href="/news/article-26319.htm" title="react实战系列起步（mockjs、第一个模块、docusaurus）">react实战系列起步（mockjs、第一个模块、docusaurus）</a></li>
-                        <li class="py-2"><a href="/news/article-63526.htm" title="深入理解Spring的@Order注解和Ordered接口">深入理解Spring的@Order注解和Ordered接口</a></li>
+                        <li class="py-2"><a href="/news/article-51698.htm" title="python3 元组 tuple&#8211;讲义">python3 元组 tuple&#8211;讲义</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-7-free-node-subscribe-links.htm" title="2月7日→18.4M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月7日→18.4M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-30514.htm" title="SpringBoot 基本原理">SpringBoot 基本原理</a></li>
+                        <li class="py-2"><a href="/news/article-40646.htm" title="猫咪打疫苗多少钱打几针（猫咪打疫苗总共需要多少钱）">猫咪打疫苗多少钱打几针（猫咪打疫苗总共需要多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-36715.htm" title="全国动物疫苗生产厂家有哪些公司 全国动物疫苗生产厂家有哪些公司名称">全国动物疫苗生产厂家有哪些公司 全国动物疫苗生产厂家有哪些公司名称</a></li>
+                        <li class="py-2"><a href="/news/article-23973.htm" title="动物疫苗贵吗多少钱（动物疫苗多少钱一支）">动物疫苗贵吗多少钱（动物疫苗多少钱一支）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-20-free-node-subscribe.htm" title="12月20日→21.1M/S|2024年最新免费节点QV2ray Node订阅链接地址">12月20日→21.1M/S|2024年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-23505.htm" title="深圳百姓网免费领养宠物（深圳市宠物免费领养）">深圳百姓网免费领养宠物（深圳市宠物免费领养）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-1-free-subscribe-node.htm" title="3月1日→18.3M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月1日→18.3M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-62331.htm" title="宠物粮行业协会官网 宠物粮行业协会官网查询">宠物粮行业协会官网 宠物粮行业协会官网查询</a></li>
                     </ul>
     </div>
 </div>
@@ -181,7 +182,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">78</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
