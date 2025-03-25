@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-80629.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Django + Taro 前后端分离项目实现企业微信登录</title>
+        <meta name="description" content="前言 还是最近在做的一个小项目，后端用的是Django搭配RestFramework做接口，前端第一次尝试用京东开源的Taro框架来做多端（目前需要做用于企业微信的H5端和微信小程序） 本文记录一下企" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="QV2ray Node免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://qv2raynode.github.io/news/article-80629.htm" />
+    <meta property="og:site_name" content="QV2ray Node免费机场订阅节点官网" />
+    <meta property="og:title" content="Django + Taro 前后端分离项目实现企业微信登录" />
+    <meta property="og:image" content="https://qv2raynode.github.io/uploads/20241102/7c7d7d2a77e24f8b8df202258f3f5e83.webp" />
+        <meta property="og:release_date" content="2025-03-24T08:22:22" />
+    <meta property="og:updated_time" content="2025-03-24T08:22:22" />
+        <meta property="og:description" content="前言 还是最近在做的一个小项目，后端用的是Django搭配RestFramework做接口，前端第一次尝试用京东开源的Taro框架来做多端（目前需要做用于企业微信的H5端和微信小程序） 本文记录一下企" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Django + Taro 前后端分离项目实现企业微信登录">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/client.htm">客户端</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>Django + Taro 前后端分离项目实现企业微信登录</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<h2 id="前言">前言</h2> <p>还是最近在做的一个小项目，后端用的是Django搭配RestFramework做接口，前端第一次尝试用京东开源的Taro框架来做多端（目前需要做用于企业微信的H5端和微信小程序）</p> <p>本文记录一下企业微信登录的流程，上周看文档看得头晕晕的，其实很简单，封装好了就几行代码的事~</p> <h2 id="两种方式">两种方式</h2> <ul> <li>一种是先拼接好登录要用的地址<code>authorize_url</code>，回调地址设置成h5应用的网页入口，然后把<code>authorize_url</code>设置为企业微信里的应用主页就行，然后直接提取链接里的code</li> <li>另一种是在应用里拼接<code>authorize_url</code>地址，回调地址同样设置成h5应用的网页入口，然后应用里去请求<code>authorize_url</code>，然后提取链接里的code用来登录就行</li> </ul> <p>说是两种，其实流程都是一样的，只不过第一种少去了前端拼接<code>authorize_url</code>以及首次请求的操作，为了方便起见，本文推荐使用第一种</p> <h2 id="思路">思路</h2> <p>假设前端地址是<code>http://xxx.com</code>，那么我们用后端生成的企业微信登录地址中会把前端地址作为回调地址传入，在企业微信中访问登录地址之后，回跳转到我们的前端地址，并在路径中附上参数code，形式如下：</p> <pre><code>http://xxx.com?code=dkwawen123j13bk1</code></pre> <p>所以前端要做的就是拿到这串code，并提交给后端，让后端拿code去微信服务器换用户信息，就这样~</p> <h2 id="后端代码">后端代码</h2> <p>企业微信登录的接口已经集成在我的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/Deali-Axy/DjangoStarter"  target="_blank" rel="nofollow">「DjangoStarter」</a>项目模板中，可以直接食用~</p> <p>后端使用的是wechatpy这个库，非常好用，封装了微信开发的常用功能~</p> <p>下面写一下两个关键的方法</p> <pre><code class="language-python">from django.conf import settings from django.contrib.auth import login from django.contrib.auth.models import User from rest_framework.authtoken.models import Token from drf_yasg2.utils import swagger_auto_schema from drf_yasg2 import openapi from rest_framework.exceptions import APIException from rest_framework import viewsets from rest_framework.response import Response from rest_framework.request import HttpRequest from rest_framework.decorators import action from wechatpy.enterprise import WeChatClient from apps.core.serializers import UserSerializer  class WechatWork(viewsets.ViewSet):     """微信企业号相关认证服务"""     client = WeChatClient(         settings.WECHAT_WORK_CONFIG['CORP_ID'],         settings.WECHAT_WORK_CONFIG['SECRET'],     )      @swagger_auto_schema(operation_summary='获取微信企业号登录链接')     @action(detail=False)     def get_authorize_url(self, request):         return Response({             # todo 这里要写上前端应用入口地址             'url': self.client.oauth.authorize_url('http://xxx.com')         })      @swagger_auto_schema(         operation_summary='通过code登录',         manual_parameters=[             openapi.Parameter(                 name='code', in_=openapi.IN_QUERY,                 description='从微信企业号服务器获取到的code',                 type=openapi.TYPE_STRING)         ])     @action(detail=False, methods=['POST'])     def login_by_code(self, request: HttpRequest):         code = request.GET.get('code', None)         try:             user_info = self.client.oauth.get_user_info(code)         except Exception as e:             raise APIException(detail=e)          phone = user_info['UserId']         is_created_user = False          if User.objects.filter(username=phone).exists():             user_obj: User = User.objects.get(username=phone)         else:             is_created_user = True             user_obj: User = User.objects.create_user(username=phone, password=phone)          # 记录Django登录状态         login(request, user_obj)         # 生成drf token         token, created = Token.objects.get_or_create(user=user_obj)          return Response({             'user': UserSerializer(user_obj).data,             'user_info': user_info,             'successful': True,             'is_created_user': is_created_user,             'token': token.key,             'message': '企业微信登录成功',         })</code></pre> <p>写完接口配置一下路由（这里就不重复了）</p> <p>然后请求这个<code>get_authorize_url</code>接口，得到一个地址</p> <pre><code class="language-json">{   "message": "请求成功",   "code": 200,   "data": {     "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx386...&amp;redirect_uri=http%3A%2F%2Fxxx.com&amp;response_type=code&amp;scope=snsapi_base#wechat_redirect"   } }</code></pre> <p>比如我上面写的应用入口地址是<code>http://xxx.com</code>，那么得到的企业微信登录地址就是</p> <pre><code>https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx386...&amp;redirect_uri=http%3A%2F%2Fxxx.com&amp;response_type=code&amp;scope=snsapi_base#wechat_redirect</code></pre> <p>各个参数的意义看企业微信官方文档就行，我们不用细究</p> <h2 id="企业微信应用配置">企业微信应用配置</h2> <p>接下来我们把这个地址设置成企业微信应用的主页</p> <p>如图</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/db4ab4b5d7b6f8e15a2f2aa41d6d001f.jpg" alt="Django + Taro 前后端分离项目实现企业微信登录"></p> <p>同时还得设置一下「可信域名」，在同个页面的最下方「开发者接口」处，把前端应用部署所在的服务器域名和端口（80就不用）填上去就行~</p> <p>这样应用配置就好了</p> <h2 id="前端代码">前端代码</h2> <p>前端用的是京东开源的Taro框架，我前一篇文章写到我终于用上了React，说的就是在Taro开发里用React+TypeScript，开发体验非常好<s>（除了这个框架有一些让人无语的坑之外）</s></p> <p>前端要实现的就是从路径参数里取出code</p> <p>我们看到，Taro官方文档就有关于路由参数的处理</p> <p>所以可以这样写来获取code（函数式组件写法）</p> <pre><code class="language-typescript">import { getCurrentInstance } from '@tarojs/taro' let code getCurrentInstance().router?.params['code']</code></pre> <p>然而！这样在普通页面跳转是可以的</p> <p>比如这种形式</p> <pre><code>http://xxx.com/#/pages/index/index?code=abc</code></pre> <p>但人家微信登录回调跳转的地址形式是这样</p> <pre><code>http://xxx.com?code=abc&amp;state=#/pages/index/index</code></pre> <p>这根本就拿不到code啊 o(´^｀)o</p> <p>所以得自己用js封装一个</p> <p>直接上代码了</p> <pre><code class="language-js">// 解析微信redirect_uri地址中的code export const getCodeFromUrl = (url: string) =&gt; {   let code = ''   let index = url.indexOf('?')   let paramStr = url.substring(index + 1, url.length);   let params = paramStr.split('&amp;')   params.forEach(element =&gt; {     if (element.indexOf('code') &gt;= 0) {       code = element.substring(element.indexOf('=') + 1, element.length)     }   });   return code }</code></pre> <p>使用的时候</p> <pre><code class="language-js">let code = getCodeFromUrl(window.location.href)</code></pre> <p>就可以拿到code了</p> <p>code都有了，后面就不用多说了~</p> <h2 id="参考资料">参考资料</h2> <ul> <li>wechatpy库文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://docs.wechatpy.org/zh_CN/stable/oauth.html#id4"  target="_blank" rel="nofollow">http://docs.wechatpy.org/zh_CN/stable/oauth.html#id4</a></li> <li>企业微信文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://developer.work.weixin.qq.com/document/path/91335"  target="_blank" rel="nofollow">https://developer.work.weixin.qq.com/document/path/91335</a></li> <li>Taro框架文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://taro-docs.jd.com/taro/docs/router"  target="_blank" rel="nofollow">https://taro-docs.jd.com/taro/docs/router</a></li> </ul> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-79922.htm">001 Linux下编译开发环境和日常使用环境打造（以centos7为例）</a></p>
+                                        <p>下一个：<a href="/news/article-80630.htm">开个卖宠物的店要多少钱（开个卖宠物的店要多少钱呢）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-73780.htm" title="猫粮加工技术视频（猫粮工艺制作流程）">猫粮加工技术视频（猫粮工艺制作流程）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-23-node-share-links.htm" title="2月23日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月23日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-46606.htm" title="如何从HTML表单获取键/值数据集？">如何从HTML表单获取键/值数据集？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-20-node-share.htm" title="3月20日→21.4M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月20日→21.4M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-29-node-share-links.htm" title="1月29日→19.7M/S|2025年最新免费节点QV2ray Node订阅链接地址">1月29日→19.7M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-79921.htm" title="深入浅出Java线程池原理分析与使用">深入浅出Java线程池原理分析与使用</a></li>
+                        <li class="py-2"><a href="/news/article-56591.htm" title="领养宠物条件是什么样的（领养宠物需要具备什么条件）">领养宠物条件是什么样的（领养宠物需要具备什么条件）</a></li>
+                        <li class="py-2"><a href="/news/article-47072.htm" title="宠物粮品牌排行前十名有哪些呢图片（宠物粮品牌排行前十名有哪些呢图片视频）">宠物粮品牌排行前十名有哪些呢图片（宠物粮品牌排行前十名有哪些呢图片视频）</a></li>
+                        <li class="py-2"><a href="/news/article-70473.htm" title="开一家动物医院都需要办什么证件（开动物医院什么资质）">开一家动物医院都需要办什么证件（开动物医院什么资质）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-22-node-share.htm" title="3月22日→20.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月22日→20.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">73</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
