@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-83412.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习</title>
+        <meta name="description" content="文件操作 使用文件的目的：把执行代码时产生的数据存储起来，下一次执行代码时直接使用，不必重新在制作一份 文件操作方式：打开文件、读/写文件数据、关闭文件 打开文件 表现形式1：f = open("te" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="QV2ray Node免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://qv2raynode.github.io/news/article-83412.htm" />
+    <meta property="og:site_name" content="QV2ray Node免费机场订阅节点官网" />
+    <meta property="og:title" content="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习" />
+    <meta property="og:image" content="https://qv2raynode.github.io/uploads/20241102/8504015773c5f52870d02f210f8a12d1.webp" />
+        <meta property="og:release_date" content="2025-03-28T09:56:17" />
+    <meta property="og:updated_time" content="2025-03-28T09:56:17" />
+        <meta property="og:description" content="文件操作 使用文件的目的：把执行代码时产生的数据存储起来，下一次执行代码时直接使用，不必重新在制作一份 文件操作方式：打开文件、读/写文件数据、关闭文件 打开文件 表现形式1：f = open("te" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/client.htm">客户端</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>文件操作</p> <p>使用文件的目的：把执行代码时产生的数据存储起来，下一次执行代码时直接使用，不必重新在制作一份</p> <p>文件操作方式：打开文件、读/写文件数据、关闭文件</p> <p>打开文件</p> <p>表现形式1：f = open("test.txt","r")</p> <p>以读的方式打开已存在的名为test.txt的文件，使用变量f指向打开的test.txt文件</p> <p>注意事项：</p> <p>1、文件test.txt若不存在代码将报错并退出</p> <p>2、以读的方式打开的文件无法向文件中写入数据</p> <p>3、文件名与操作方式(读/写)都要加成对引号</p> <p>4、如果是以读的方式打开文件"r"可省略不行，默认为以读的方式打开，也可以写成f = open("test.txt")</p> <p>表现形式2：f = open("test.txt","w")</p> <p>以写的方式打开文件test.txt，test.txt文件若存在，则覆盖，test.txt文件若不存在，则创建文件test.txt，使用变量f指向打开的test.txt文件</p> <p>注意事项：</p> <p>以写的方式打开的文件无法读取文件内容</p> <p>表现形式3：f = open("test.txt","a")</p> <p>以写的方式打开文件test.txt，test.txt文件若存在，写入的内容会追加在原文件内容末尾，test.txt文件若不存在，则创建文件test.txt，使用变量f指向打开的test.txt文件</p> <p>关闭文件</p> <p>表现形式：close()</p> <p>例如：关闭文件test.txt</p> <p>f = open("test.txt","w")</p> <p>f.close()</p> <p>注意事项：关闭文件与打开文件成对使用，不可以打开文件操作后不关闭文件</p> <p>文件的读写</p> <p>向文件中写入数据(write)：</p> <p>如图：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/e251fb7479bcef7c483cc54439711eaa.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>注意：</p> <p>1、如果文件不存在则创建，如果存在就先将文件清空，然后写入数据</p> <p>2、写入文件操作是从文件开头开始</p> <p>3、图中的11表示向文件中写入了多少字节内容</p> <p>从文件中读取数据(read):</p> <p>1、按文件内容中长度读取read(num)，如图：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/d4a1b055718b2b93659efb74d1be4ea0.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>注意：</p> <p>num的单位是字节，表示每次读取的字节数</p> <p>多次读取时下一次读取的内容是从上一次读取完内容的位置开始的</p> <p>2、将文件中内容全部读取read(),如图：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/05b273584d934c423f5b4a4e375b9ba0.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>注意：一般不建议使用这种读取方式，因为如果文件过大(比如5G)，内存很小(比如4G)的情况下，一次全部读取文件内容会令程序死掉</p> <p>3、将文件中内容全部读取，但按照行的方式显示readlines(),如图：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/cc9f489fc5986c38651e3b556d9d1af8.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>注意：readlines读取方式得到的是一个列表，每行的内容为一个元素</p> <p>4、按文件内容中行内容读取readline()，如图：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/ad33b0fb5ffef10c661c1e21b23293ad.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>文件的定位读写</p> <p>文件的定位读写就是从文件的某一位置开始进行读写</p> <p>表现形式：seek(offset,from)</p> <p>offset：偏移量(单位：字节)</p> <p>from：从哪个位置开始便宜，共有三个参数(0：表示文件开头 1：表示当前位置 2：表示文件末尾)</p> <p>例如：</p> <p>从文件开头并且偏移3个字节开始读取</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/98f136827a4f70830ac63e0bf3542ce5.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>文件的重命名、删除</p> <p>说明：文件重命名、删除操作需要python的os模块支持</p> <p>重命名：os.rename(需要修改的原文件名, 新的文件名)</p> <p>删除：os.remove(需要删除的文件名)</p> <p>如：</p> <p>import os</p> <p>os.rename("test.txt","新test.txt")</p> <p>os.remove("test.txt")</p> <p>文件夹的相关操作</p> <p>说明：文件夹的相关操作需要python的os模块支持</p> <p>获取当前所在目录：os.getcwd()</p> <p>创建文件夹：os.mkdir("test")</p> <p>删除文件夹：os.rmdir("test")</p> <p>跳转到其他目录：os.chdir("aaa")</p> <p>获取目录下文件夹和文件名称：os.listdir()(得到的数据类型是列表)</p> <p>应用小练习</p> <p>制作文件的备份</p> <p>要求：通过输入的文件名称备份该文件内容，且将文件名字更改成原文件名【复件】</p> <p>注意点：</p> <p>1、想要在test.txt更改成test[复件].txt先要找到点的索引值，然后将字符串切片重组</p> <p>2、尽量不要一次全部读取原文件，所以使用每次读取1024字节来读取</p> <p>3、读取或者写入文件后不要忘记关闭文件</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/fecaaf8a038531922e9613f829ca380f.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>批量修改文件名</p> <p>要求：通过输入的文件夹名称将文件夹下的所有文件全部重命名，在每个文件名开头上加上【测试修改】</p> <p>如图：</p> <p>图1：重命名前</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/4d0e78544e227886ba8170f2c6a72389.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>图1</p> <p>图2：重命名后</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/05a81a797773475f27306ca5be8abfe9.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>注意事项：</p> <p>1、需要python下os模块支持</p> <p>2、rename()只能修改当前路径下的文件，所以需事先跳转到test文件夹下</p> <p>3、获取文件名称操作得到的是列表，所以可以通过遍历列表来获取每一个文件名</p> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-83411.htm">Python格式化输出的三种方式：%、string.format()、f-string</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-47575.htm" title="自己在家怎么做电商没有货（自己在家怎么做电商没有货没人买怎么办啊）">自己在家怎么做电商没有货（自己在家怎么做电商没有货没人买怎么办啊）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-14-free-node-subscribe.htm" title="2月14日→19.3M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月14日→19.3M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-79921.htm" title="深入浅出Java线程池原理分析与使用">深入浅出Java线程池原理分析与使用</a></li>
+                        <li class="py-2"><a href="/news/article-65983.htm" title="面向对象编程原则(03)——单一职责原则">面向对象编程原则(03)——单一职责原则</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-9-node-share-links.htm" title="3月9日→18.5M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月9日→18.5M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-77860.htm" title="宠物粮食批发进货渠道有哪些呢图片视频介绍（宠物粮食批发进货渠道有哪些呢图片视频介绍大全）">宠物粮食批发进货渠道有哪些呢图片视频介绍（宠物粮食批发进货渠道有哪些呢图片视频介绍大全）</a></li>
+                        <li class="py-2"><a href="/news/article-61157.htm" title="【免费领养狗狗】（免费领养狗狗是什么套路）">【免费领养狗狗】（免费领养狗狗是什么套路）</a></li>
+                        <li class="py-2"><a href="/news/article-60592.htm" title="送给师父什么礼物好呢(送给师父什么礼物好一点)">送给师父什么礼物好呢(送给师父什么礼物好一点)</a></li>
+                        <li class="py-2"><a href="/news/article-40158.htm" title="宠物领养数据库建表 宠物领养系统数据库">宠物领养数据库建表 宠物领养系统数据库</a></li>
+                        <li class="py-2"><a href="/news/article-57701.htm" title="mysql 锁 读锁 写锁 共享锁 排它锁 表锁 行锁 悲观锁 乐观锁">mysql 锁 读锁 写锁 共享锁 排它锁 表锁 行锁 悲观锁 乐观锁</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">82</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                    <p>
+                        <a href="/">首页</a> | 
+                        <a href="/free-node/">免费节点</a> | 
+                        <a href="/news/">新闻资讯</a> |
+                        <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
