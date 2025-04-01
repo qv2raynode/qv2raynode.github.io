@@ -151,6 +151,7 @@
                   				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>文件操作</p> <p>使用文件的目的：把执行代码时产生的数据存储起来，下一次执行代码时直接使用，不必重新在制作一份</p> <p>文件操作方式：打开文件、读/写文件数据、关闭文件</p> <p>打开文件</p> <p>表现形式1：f = open("test.txt","r")</p> <p>以读的方式打开已存在的名为test.txt的文件，使用变量f指向打开的test.txt文件</p> <p>注意事项：</p> <p>1、文件test.txt若不存在代码将报错并退出</p> <p>2、以读的方式打开的文件无法向文件中写入数据</p> <p>3、文件名与操作方式(读/写)都要加成对引号</p> <p>4、如果是以读的方式打开文件"r"可省略不行，默认为以读的方式打开，也可以写成f = open("test.txt")</p> <p>表现形式2：f = open("test.txt","w")</p> <p>以写的方式打开文件test.txt，test.txt文件若存在，则覆盖，test.txt文件若不存在，则创建文件test.txt，使用变量f指向打开的test.txt文件</p> <p>注意事项：</p> <p>以写的方式打开的文件无法读取文件内容</p> <p>表现形式3：f = open("test.txt","a")</p> <p>以写的方式打开文件test.txt，test.txt文件若存在，写入的内容会追加在原文件内容末尾，test.txt文件若不存在，则创建文件test.txt，使用变量f指向打开的test.txt文件</p> <p>关闭文件</p> <p>表现形式：close()</p> <p>例如：关闭文件test.txt</p> <p>f = open("test.txt","w")</p> <p>f.close()</p> <p>注意事项：关闭文件与打开文件成对使用，不可以打开文件操作后不关闭文件</p> <p>文件的读写</p> <p>向文件中写入数据(write)：</p> <p>如图：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/e251fb7479bcef7c483cc54439711eaa.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>注意：</p> <p>1、如果文件不存在则创建，如果存在就先将文件清空，然后写入数据</p> <p>2、写入文件操作是从文件开头开始</p> <p>3、图中的11表示向文件中写入了多少字节内容</p> <p>从文件中读取数据(read):</p> <p>1、按文件内容中长度读取read(num)，如图：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/d4a1b055718b2b93659efb74d1be4ea0.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>注意：</p> <p>num的单位是字节，表示每次读取的字节数</p> <p>多次读取时下一次读取的内容是从上一次读取完内容的位置开始的</p> <p>2、将文件中内容全部读取read(),如图：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/05b273584d934c423f5b4a4e375b9ba0.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>注意：一般不建议使用这种读取方式，因为如果文件过大(比如5G)，内存很小(比如4G)的情况下，一次全部读取文件内容会令程序死掉</p> <p>3、将文件中内容全部读取，但按照行的方式显示readlines(),如图：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/cc9f489fc5986c38651e3b556d9d1af8.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>注意：readlines读取方式得到的是一个列表，每行的内容为一个元素</p> <p>4、按文件内容中行内容读取readline()，如图：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/ad33b0fb5ffef10c661c1e21b23293ad.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>文件的定位读写</p> <p>文件的定位读写就是从文件的某一位置开始进行读写</p> <p>表现形式：seek(offset,from)</p> <p>offset：偏移量(单位：字节)</p> <p>from：从哪个位置开始便宜，共有三个参数(0：表示文件开头 1：表示当前位置 2：表示文件末尾)</p> <p>例如：</p> <p>从文件开头并且偏移3个字节开始读取</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/98f136827a4f70830ac63e0bf3542ce5.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>文件的重命名、删除</p> <p>说明：文件重命名、删除操作需要python的os模块支持</p> <p>重命名：os.rename(需要修改的原文件名, 新的文件名)</p> <p>删除：os.remove(需要删除的文件名)</p> <p>如：</p> <p>import os</p> <p>os.rename("test.txt","新test.txt")</p> <p>os.remove("test.txt")</p> <p>文件夹的相关操作</p> <p>说明：文件夹的相关操作需要python的os模块支持</p> <p>获取当前所在目录：os.getcwd()</p> <p>创建文件夹：os.mkdir("test")</p> <p>删除文件夹：os.rmdir("test")</p> <p>跳转到其他目录：os.chdir("aaa")</p> <p>获取目录下文件夹和文件名称：os.listdir()(得到的数据类型是列表)</p> <p>应用小练习</p> <p>制作文件的备份</p> <p>要求：通过输入的文件名称备份该文件内容，且将文件名字更改成原文件名【复件】</p> <p>注意点：</p> <p>1、想要在test.txt更改成test[复件].txt先要找到点的索引值，然后将字符串切片重组</p> <p>2、尽量不要一次全部读取原文件，所以使用每次读取1024字节来读取</p> <p>3、读取或者写入文件后不要忘记关闭文件</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/fecaaf8a038531922e9613f829ca380f.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>批量修改文件名</p> <p>要求：通过输入的文件夹名称将文件夹下的所有文件全部重命名，在每个文件名开头上加上【测试修改】</p> <p>如图：</p> <p>图1：重命名前</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/4d0e78544e227886ba8170f2c6a72389.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>图1</p> <p>图2：重命名后</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20230110/05a81a797773475f27306ca5be8abfe9.jpg" alt="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习"></p> <p>注意事项：</p> <p>1、需要python下os模块支持</p> <p>2、rename()只能修改当前路径下的文件，所以需事先跳转到test文件夹下</p> <p>3、获取文件名称操作得到的是列表，所以可以通过遍历列表来获取每一个文件名</p> </div></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-83411.htm">Python格式化输出的三种方式：%、string.format()、f-string</a></p>
+                                        <p>下一个：<a href="/news/article-84126.htm">python类内部成员的访问及外部访问</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -160,16 +161,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-47575.htm" title="自己在家怎么做电商没有货（自己在家怎么做电商没有货没人买怎么办啊）">自己在家怎么做电商没有货（自己在家怎么做电商没有货没人买怎么办啊）</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-2-14-free-node-subscribe.htm" title="2月14日→19.3M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月14日→19.3M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-79921.htm" title="深入浅出Java线程池原理分析与使用">深入浅出Java线程池原理分析与使用</a></li>
+                        <li class="py-2"><a href="/news/article-58888.htm" title="动物疫苗的分类及作用（动物疫苗的概念）">动物疫苗的分类及作用（动物疫苗的概念）</a></li>
+                        <li class="py-2"><a href="/news/article-58273.htm" title="dell更换固态硬盘后无法进入系统（戴尔换了固态硬盘后电脑需要怎么设置）">dell更换固态硬盘后无法进入系统（戴尔换了固态硬盘后电脑需要怎么设置）</a></li>
+                        <li class="py-2"><a href="/news/article-39675.htm" title="宠物粮品牌排行前十（宠物粮食品牌排名）">宠物粮品牌排行前十（宠物粮食品牌排名）</a></li>
+                        <li class="py-2"><a href="/news/article-63526.htm" title="深入理解Spring的@Order注解和Ordered接口">深入理解Spring的@Order注解和Ordered接口</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-22-node-share.htm" title="3月22日→20.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月22日→20.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-11-node-share-links.htm" title="2月11日→19.2M/S|2025年最新免费节点QV2ray Node订阅链接地址">2月11日→19.2M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
                         <li class="py-2"><a href="/news/article-65983.htm" title="面向对象编程原则(03)——单一职责原则">面向对象编程原则(03)——单一职责原则</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-9-node-share-links.htm" title="3月9日→18.5M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月9日→18.5M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-77860.htm" title="宠物粮食批发进货渠道有哪些呢图片视频介绍（宠物粮食批发进货渠道有哪些呢图片视频介绍大全）">宠物粮食批发进货渠道有哪些呢图片视频介绍（宠物粮食批发进货渠道有哪些呢图片视频介绍大全）</a></li>
-                        <li class="py-2"><a href="/news/article-61157.htm" title="【免费领养狗狗】（免费领养狗狗是什么套路）">【免费领养狗狗】（免费领养狗狗是什么套路）</a></li>
-                        <li class="py-2"><a href="/news/article-60592.htm" title="送给师父什么礼物好呢(送给师父什么礼物好一点)">送给师父什么礼物好呢(送给师父什么礼物好一点)</a></li>
-                        <li class="py-2"><a href="/news/article-40158.htm" title="宠物领养数据库建表 宠物领养系统数据库">宠物领养数据库建表 宠物领养系统数据库</a></li>
-                        <li class="py-2"><a href="/news/article-57701.htm" title="mysql 锁 读锁 写锁 共享锁 排它锁 表锁 行锁 悲观锁 乐观锁">mysql 锁 读锁 写锁 共享锁 排它锁 表锁 行锁 悲观锁 乐观锁</a></li>
+                        <li class="py-2"><a href="/news/article-59977.htm" title="重庆哪里领养猫咪比较好（重庆哪里可以领养猫猫）">重庆哪里领养猫咪比较好（重庆哪里可以领养猫猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-24-node-share-links.htm" title="3月24日→18.2M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月24日→18.2M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
@@ -181,7 +182,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">82</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+                <h4><span class="badge" style="float: right;">91</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
