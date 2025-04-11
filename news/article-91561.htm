@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-91561.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spring boot整合JPA</title>
+        <meta name="description" content="1.pom.xml添加jpa和数据库依赖包 &lt;dependency&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="QV2ray Node免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://qv2raynode.github.io/news/article-91561.htm" />
+    <meta property="og:site_name" content="QV2ray Node免费机场订阅节点官网" />
+    <meta property="og:title" content="Spring boot整合JPA" />
+    <meta property="og:image" content="https://qv2raynode.github.io/uploads/20241102/404fc164cd44f6434ca7c12930dcc471.webp" />
+        <meta property="og:release_date" content="2025-04-08T09:57:04" />
+    <meta property="og:updated_time" content="2025-04-08T09:57:04" />
+        <meta property="og:description" content="1.pom.xml添加jpa和数据库依赖包 &lt;dependency&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring boot整合JPA">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/client.htm">客户端</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>Spring boot整合JPA</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>1.pom.xml添加jpa和数据库依赖包</p> <pre><code class="language-html">&lt;dependency&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;com.oracle&lt;/groupId&gt;     &lt;artifactId&gt;ojdbc6&lt;/artifactId&gt;     &lt;version&gt;11.2.0.3&lt;/version&gt; &lt;/dependency&gt;</code></pre> <p>2.application.properties配置数据库连接池</p> <pre><code class="language-html">spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl spring.datasource.username=jdjk spring.datasource.password=jdjk spring.datasource.initialSize=20   spring.datasource.minIdle=20   spring.datasource.maxActive=100     spring.datasource.maxWait=60000 spring.jpa.database-platform=org.hibernate.dialect.OracleDialect</code></pre> <p>3.创建表映射实体类</p> <pre><code class="language-html">import javax.persistence.Entity; import javax.persistence.Id; import javax.persistence.Table;  @Entity @Table(name="t_sys_jkconfig") public class T_SYS_JKCONFIG{  	private String xh; 	private String server_ip; 	private String server_name; 	private String server_action; 	 	@Id 	public String getXh() { 		return xh; 	} 	public void setXh(String xh) { 		this.xh = xh; 	} 	public String getServer_ip() { 		return server_ip; 	} 	public void setServer_ip(String server_ip) { 		this.server_ip = server_ip; 	} 	public String getServer_name() { 		return server_name; 	} 	public void setServer_name(String server_name) { 		this.server_name = server_name; 	} 	public String getServer_action() { 		return server_action; 	} 	public void setServer_action(String server_action) { 		this.server_action = server_action; 	} }</code></pre> <p>4.创建接口继承JpaRepository</p> <pre><code class="language-html">import java.util.List; import java.util.Map;  import org.springframework.data.jpa.repository.JpaRepository; import org.springframework.data.jpa.repository.Modifying; import org.springframework.data.jpa.repository.Query; import org.springframework.data.repository.query.Param; import org.springframework.stereotype.Repository; import org.springframework.transaction.annotation.Transactional;  import cn.com.highset.goexpo.bqd.bean.T_SYS_JKCONFIG;  @Repository @Transactional public interface IBaseDao extends JpaRepository&lt;T_SYS_JKCONFIG, String&gt; {  	 	T_SYS_JKCONFIG findByXh(String xh); 	 	//返回对象 	@Query(value = "select * from t_sys_jkconfig where server_ip = :ip", nativeQuery = true) 	List&lt;T_SYS_JKCONFIG&gt; getByIp(@Param("ip") String ip); 	 	//返回map 	@Query(value = "select server_ip from t_sys_jkconfig where server_ip = :ip", nativeQuery = true) 	List&lt;Map&gt; getMapByIp(@Param("ip") String ip);  	@Modifying 	@Query(value = "update t_sys_jkconfig set server_ip = :ip where xh = :xh", nativeQuery = true) 	void updateByXh(@Param("ip") String ip,@Param("xh") String xh); }</code></pre> <p>5.在Controller中调用方法</p> <pre><code class="language-html">import java.util.List; import java.util.Map;  import org.springframework.beans.factory.annotation.Autowired; import org.springframework.stereotype.Controller; import org.springframework.ui.Model; import org.springframework.web.bind.annotation.RequestMapping;  import cn.com.highset.goexpo.dao.IBaseDao;  @Controller public class IndexController { 	 	@Autowired 	private IBaseDao baseDao; 	 	@RequestMapping("/") 	public String root(Model model) { 		//新增 		T_SYS_JKCONFIG t = new T_SYS_JKCONFIG(); 		t.setXh("111"); 		t.setServer_ip("222"); 		t.setServer_name("333"); 		t.setServer_action("444"); 		baseDao.save(t); 		//删除 		T_SYS_JKCONFIG jkconfig = baseDao.findByXh("111"); 		baseDao.delete(jkconfig); 		//修改 		baseDao.updateByXh("12345", "1"); 		//查询 		List&lt;Map&gt; list =  baseDao.getMapByIp("192.168.1.120"); 		for(Map t : list){ 			System.out.println(t.get("xh")); 		} 		model.addAttribute("list", list); 		return "home"; 	} }</code></pre> <p>6.在启动类Application中添加扫描注解</p> <pre><code class="language-html">import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; import org.springframework.boot.autoconfigure.domain.EntityScan; import org.springframework.data.jpa.repository.config.EnableJpaRepositories; import org.springframework.web.bind.annotation.RestController;  @RestController @SpringBootApplication @EnableJpaRepositories(basePackages = "xxx.xxx.dao") @EntityScan("xxx.xxx.bean") public class Application {  	public static void main(String[] args) { 		SpringApplication.run(Application.class, args); 	} }</code></pre> <p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-90636.htm">风中百合电视剧（风中百合32集）</a></p>
+                                        <p>下一个：<a href="/news/article-91562.htm">动物疫苗市场占有率排行榜前十（全国动物用疫苗销量排行）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-89142.htm" title="宠物店开不下去了怎么办（宠物店不开了怎么处理）">宠物店开不下去了怎么办（宠物店不开了怎么处理）</a></li>
+                        <li class="py-2"><a href="/news/article-71804.htm" title="RestTemplate中文问号?">RestTemplate中文问号?</a></li>
+                        <li class="py-2"><a href="/news/article-86273.htm" title="宠物食品加工厂需要什么手续办理（宠物食品加工厂的前景）">宠物食品加工厂需要什么手续办理（宠物食品加工厂的前景）</a></li>
+                        <li class="py-2"><a href="/news/article-65984.htm" title="动物医院怎么开 开动物医院详细步骤">动物医院怎么开 开动物医院详细步骤</a></li>
+                        <li class="py-2"><a href="/news/article-75802.htm" title="动物防疫站卖疫苗吗（动物防疫中心可以打疫苗吗）">动物防疫站卖疫苗吗（动物防疫中心可以打疫苗吗）</a></li>
+                        <li class="py-2"><a href="/news/article-69190.htm" title="公务员国考报名时间2021年省考（公务员国考报名截止时间）">公务员国考报名时间2021年省考（公务员国考报名截止时间）</a></li>
+                        <li class="py-2"><a href="/news/article-82000.htm" title="猫疫苗间隔两个月会失效吗（猫疫苗间隔20天）">猫疫苗间隔两个月会失效吗（猫疫苗间隔20天）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-node-subscribe.htm" title="3月13日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月13日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-75142.htm" title="南京无偿领养宠物猫吧最新消息（南京宠物领养南京宠物赠送）">南京无偿领养宠物猫吧最新消息（南京宠物领养南京宠物赠送）</a></li>
+                        <li class="py-2"><a href="/news/article-82706.htm" title="动物医院设备清单价格 动物医院设备清单价格查询">动物医院设备清单价格 动物医院设备清单价格查询</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

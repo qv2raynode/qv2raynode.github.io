@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-90635.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spring Cloud Eureka（三）：认识Eureka Server 与 Eureka Client</title>
+        <meta name="description" content="Spring Cloud Netflix 是什么 This project provides Netflix OSS integrations for Spring Boot apps through" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="QV2ray Node免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://qv2raynode.github.io/news/article-90635.htm" />
+    <meta property="og:site_name" content="QV2ray Node免费机场订阅节点官网" />
+    <meta property="og:title" content="Spring Cloud Eureka（三）：认识Eureka Server 与 Eureka Client" />
+    <meta property="og:image" content="https://qv2raynode.github.io/uploads/20241102/7c7d7d2a77e24f8b8df202258f3f5e83.webp" />
+        <meta property="og:release_date" content="2025-04-07T09:03:11" />
+    <meta property="og:updated_time" content="2025-04-07T09:03:11" />
+        <meta property="og:description" content="Spring Cloud Netflix 是什么 This project provides Netflix OSS integrations for Spring Boot apps through" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring Cloud Eureka（三）：认识Eureka Server 与 Eureka Client">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/client.htm">客户端</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>Spring Cloud Eureka（三）：认识Eureka Server 与 Eureka Client</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div id="cnblogs_post_body" class="blogpost-body"> <h3><a id="Spring_Cloud_Netflix__0" rel="nofollow"></a>Spring Cloud Netflix 是什么</h3> <pre><code>This project provides Netflix OSS integrations for Spring Boot apps through autoconfiguration and binding to the Spring Environment and other Spring programming model idioms. With a few simple annotations you can quickly enable and configure the common patterns inside your application and build large distributed systems with battle-tested Netflix components. The patterns provided include Service Discovery (Eureka), Circuit Breaker (Hystrix), Intelligent Routing (Zuul) and Client Side Load Balancing (Ribbon).</code></pre> <p>Spring Cloud Netflix 基于 Spring Boot，集成了NetFlix OSS的一些组件，只需通过注解配置和Spring的简单注解，就可以快速的启用和配置NetFlix的组件实现分布式系统的构建。这些组件包含的功能有服务发现（Eureka），熔断器（Hystrix），智能路由(Zuul)以及客户端的负载均衡器（Ribbon）</p> <h3><a id="Spring_Cloud_Eureka__5" rel="nofollow"></a>Spring Cloud Eureka 是什么</h3> <p>Spring Cloud Eureka 是基于Spring Cloud Netflix 做了二次封装，它主要负责完成各个微服务实例的自动化注册和发现功能。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220829/65ff679a8114593506c0d22e61d8a2c5.jpg" alt="Spring Cloud Eureka（三）：认识Eureka Server 与 Eureka Client"></p> <h3><a id="Spring_Cloud_Eureka__9" rel="nofollow"></a>Spring Cloud Eureka 相关概念</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220829/b2167b0fb337a787ef136546e8b4193e.jpg" alt="Spring Cloud Eureka（三）：认识Eureka Server 与 Eureka Client"></p> <h4><a id="_12" rel="nofollow"></a>服务提供者</h4> <h5><a id="1_13" rel="nofollow"></a>1.服务注册</h5> <blockquote> <p>When a client registers with Eureka, it provides meta-data about itself such as host and port, health indicator URL, home page etc. Eureka receives heartbeat messages from each instance belonging to a service. If the heartbeat fails over a configurable timetable, the instance is normally removed from the registry.</p> </blockquote> <p>服务在启动的时候会通过发送REST请求的方式将自己注册到Eureka Server上， 同时带上了自身服务的一些元数据信息。注册中心Eureka Server通过与服务之间的心跳来保持通信，当某个服务实例在超时时间内没有与注册中心保持会话，那么该服务实例将会从注册中心正常移除。</p> <p>Eureka Server 接收到这个REST请求之后，将元数据信息存储在一个双层结构Map中， 其中第一层的key是服务名， 第二层的key是具体服务的实例名。</p> <h5><a id="2_22" rel="nofollow"></a>2.服务同步</h5> <p>如架构图中所示，这里的两个服务提供者分别注册到了两个不同的服务注册中心上，它们的信息分别被两个服务注册中心所维护。由于服务注册中心之间因互相注册为服务， 当服务提供者发送注册请求到一个服务注册中心时， 它会将该请求转发给集群中相连的其他注册中心， 从而实现注册中心之间的服务同步。通过服务同步，两个服务提供者的服务信息就可以通过这两台服务注册中心中的任意一台获取到。</p> <h5><a id="3_26" rel="nofollow"></a>3.服务续约</h5> <p>在注册完服务之后，服务提供者会维护一个心跳用来保持与EurekaServer 的会话，以防止Eureka Server 的剔除任务将该服务实例从服务列表中移除掉，那么这个心跳保持就叫做服务续约(Renew)。</p> <p>关于服务续约有两个重要属性，我们可以关注并根据需要来进行调整：</p> <pre><code>服务续约任务的调用间隔时间，默认为30秒 eureka.instance.lease-renewal-interval-in-seconds=30  服务失效的时间，默认为90秒。 eureka.instance.lease-expiration-duration-in-seconds=90</code></pre> <h4><a id="_39" rel="nofollow"></a>服务消费者</h4> <h5><a id="1_40" rel="nofollow"></a>1.获取服务</h5> <p>当启动服务消费者的时候，它会发送一个REST请求给服务注册中心，来获取上面注册的服务列表。Eureka Server会维护一份只读的服务列表来返回给客户端，同时服务消费者会在本地缓存服务列表的清单并每隔30秒更新一次。</p> <p>获取服务是服务消费者的基础，所以必有两个重要参数需要注意：</p> <pre><code># 启用服务消费者从注册中心拉取服务列表的功能 eureka.client.fetch-registry=true  # 设置服务消费者从注册中心拉取服务列表的间隔 eureka.client.registry-fetch-interval-seconds=30</code></pre> <h5><a id="2_54" rel="nofollow"></a>2.服务调用</h5> <p>服务消费者在获取服务清单后，通过服务名可以获得具体提供服务的实例名和该实例的元数据信息。因为有这些服务实例的详细信息， 所以客户端可以根据自己的需要决定具体调用哪个实例，在ribbon中会默认采用轮询的方式进行调用，从而实现客户端的负载均衡。</p> <p>对于访问实例的选择，Eureka中有Region和Zone的概念， 一个Region中可以包含多个Zone, 每个服务客户端需要被注册到一个Zone中， 所以每个客户端对应一个Region和一个Zone。在进行服务调用的时候，优先访问同处一个Zone 中的服务提供方，若访问不到，就访问其他的Zone。</p> <h5><a id="3_60" rel="nofollow"></a>3.服务下线</h5> <p>在客户端程序中，当服务实例进行正常的关闭操作时，它会触发一个服务下线的REST请求给Eureka Server, 告诉服务注册中心自己要下线了。服务端在接收到请求之后，将该服务状态置为下线(DOWN), 并把该下线事件传播出去。</p> <h3><a id="_64" rel="nofollow"></a>服务注册中心</h3> <h5><a id="1_66" rel="nofollow"></a>1.失效剔除</h5> <p>服务实例并不一定会正常下线，可能由于内存溢出、网络故障等原因使得服务不能正常工作，而服务注册中心并未收到“服务下线” 的请求。为了从服务列表中将这些无法提供服务的实例剔除， Eureka Server在启动的时候会创建一个定时任务，默认每隔一段时间（默认为60秒） 将当前清单中超时（默认为90秒）没有续约的服务剔除出去。</p> <h5><a id="2_70" rel="nofollow"></a>2.自我保护机制</h5> <p>当我们在本地调试基于Eureka的程序时， 基本上都会碰到这样一个问题， 在服务注册中心的信息面板中出现类似下面的红色警告信息：</p> <pre><code>EMERGENCY! EUREKA MAY BE INCORRECTLY CLAIMING INSTANCES ARE UP WHEN THEY'RE NOT. RENEWALS ARE LESSER THAN THRESHOLD AND HENCE THE INSTANCES ARE NOT BEING EXPIRED JUST TO BE SAFE.</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220829/711d38b870f643c969879c7e7c4e0c6a.jpg" alt="Spring Cloud Eureka（三）：认识Eureka Server 与 Eureka Client"></p> <p>事实上，该警告就是触发了EurekaServer的自我保护机制。当服务注册到EurekaServer之后，会维护一个心跳连接，告诉EurekaServer自己还活着。EurekaServer在运行期间，会统计心跳失败的比例在15分钟之内是否低于85%, 如果出现低于该值，Eureka Server会将当前的实例注册信息保护起来，让这些实例不会过期，尽可能保护这些注册信息。但是，在这段保护期间内实例若出现问题，那么客户端很容易拿到实际已经不存在的服务实例， 会出现调用失败的清况，所以客户端必须要有容错机制，比如可以使用请求重试、断路器等机制。</p> <p>由于本地调试很容易触发注册中心的保护机制，这会使得注册中心维护的服务实例不那么准确。所以，我们在本地进行开发的时候， 可以使用<code>eureka.server.enableself-preservation=false</code> 参数来关闭保护机制， 以确保注册中心可以将不可用的实例正确剔除。</p> </div> <p>转载于:https://www.cnblogs.com/liukaifeng/p/10052593.html</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-89904.htm">做宠物粮生意赚钱吗现在 做宠物粮生意赚钱吗现在怎么样</a></p>
+                                        <p>下一个：<a href="/news/article-90636.htm">风中百合电视剧（风中百合32集）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-71804.htm" title="RestTemplate中文问号?">RestTemplate中文问号?</a></li>
+                        <li class="py-2"><a href="/news/article-77170.htm" title="猫打了疫苗被猫抓伤需要打针吗（猫打了疫苗被猫抓了需要打几针）">猫打了疫苗被猫抓伤需要打针吗（猫打了疫苗被猫抓了需要打几针）</a></li>
+                        <li class="py-2"><a href="/news/article-83412.htm" title="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习">python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习</a></li>
+                        <li class="py-2"><a href="/news/article-75141.htm" title="动物防疫疫苗种类有哪些品种图片（动物防疫疫苗种类有哪些品种图片及名称）">动物防疫疫苗种类有哪些品种图片（动物防疫疫苗种类有哪些品种图片及名称）</a></li>
+                        <li class="py-2"><a href="/news/article-69825.htm" title="Java实现简易购物系统_java">Java实现简易购物系统_java</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-23-free-node-subscribe.htm" title="3月23日→19.6M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月23日→19.6M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-7-node-share.htm" title="3月7日→19.5M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月7日→19.5M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-68555.htm" title="养猫的十大禁忌猫摇尾巴（猫摇尾巴是代表什么心情）">养猫的十大禁忌猫摇尾巴（猫摇尾巴是代表什么心情）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-8-free-node-subscribe-links.htm" title="4月8日→21.8M/S|2025年最新免费节点QV2ray Node订阅链接地址">4月8日→21.8M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-76494.htm" title="mysql 中count函数的使用方法_MySQL中count函数使用方法详解">mysql 中count函数的使用方法_MySQL中count函数使用方法详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
