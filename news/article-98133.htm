@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-98133.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>int类型数据转为 torch.cuda.FloatTensor类型数据</title>
+        <meta name="description" content="数据类型简介： 数据类型包括Python数据类型、Numpy数据类型和Pytorch中的tensor，Pytorch中的tensor又包括CPU上的数据类型和GPU上的数据类型。 &nbsp; 解决方" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="QV2ray Node免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://qv2raynode.github.io/news/article-98133.htm" />
+    <meta property="og:site_name" content="QV2ray Node免费机场订阅节点官网" />
+    <meta property="og:title" content="int类型数据转为 torch.cuda.FloatTensor类型数据" />
+    <meta property="og:image" content="https://qv2raynode.github.io/uploads/20241102/7c7d7d2a77e24f8b8df202258f3f5e83.webp" />
+        <meta property="og:release_date" content="2025-04-17T09:01:46" />
+    <meta property="og:updated_time" content="2025-04-17T09:01:46" />
+        <meta property="og:description" content="数据类型简介： 数据类型包括Python数据类型、Numpy数据类型和Pytorch中的tensor，Pytorch中的tensor又包括CPU上的数据类型和GPU上的数据类型。 &nbsp; 解决方" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="int类型数据转为 torch.cuda.FloatTensor类型数据">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/client.htm">客户端</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>int类型数据转为 torch.cuda.FloatTensor类型数据</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p style="text-indent:0;"><strong>数据类型简介：</strong></p> <p style="text-indent:33px;">数据类型包括Python数据类型、Numpy数据类型和Pytorch中的tensor，Pytorch中的tensor又包括CPU上的数据类型和GPU上的数据类型。</p> <p style="text-indent:33px;">&nbsp;</p> <p style="text-indent:0;"><strong>解决方法：</strong></p> <p style="text-indent:33px;">int是python的数据类型，torch.cuda.FloatTensor是Pytorch的GPU数据类型。</p> <p style="text-indent:33px;">转换方式为：python数据类型-&gt;Numpy数据类型-&gt;Pytorch的cup tensor-&gt;Pytorch的gpu tensor</p> <p style="text-indent:33px;">例如：</p> <p style="text-indent:33px;">a为基本的int类型数据</p> <p style="text-indent:33px;">b=np.array(a)， b为numpy数据类型</p> <p style="text-indent:33px;">c=torch.from_numpy(b)，c为CPU的tensor</p> <p style="text-indent:33px;">d=c.cuda()，d为GPU的tensor</p> <p style="text-indent:33px;">&nbsp;</p> <p style="text-indent:0;"><strong>不同数据类型之间的转化：</strong></p> <p style="text-indent:33px;"><strong>python基本数据类型和Numpy数据类型之间的转换：</strong></p> <p style="text-indent:33px;">Numpy---&gt;python&nbsp; 使用data.item()，data为numpy变量</p> <p style="text-indent:33px;">python---&gt;Numpy&nbsp; 使用np.array(data)，data为python变量</p> <p style="text-indent:33px;">&nbsp;</p> <p style="text-indent:33px;"><strong>Tensor与numpy之间的转换：</strong></p> <p style="text-indent:33px;">Tensor----&gt;Numpy&nbsp; 使用 data.numpy()，data为Tensor变量</p> <p style="text-indent:33px;">Numpy ----&gt; Tensor 使用torch.from_numpy(data)，data为numpy变量</p> <p style="text-indent:33px;">&nbsp;</p> <p style="text-indent:33px;"><strong>GPU tensor与CPUtensor之间的转换：</strong></p> <p style="text-indent:33px;">CPU张量 ----&gt;&nbsp; GPU张量, 使用data.cuda()</p> <p style="text-indent:33px;">GPU张量 ----&gt; CPU张量 使用data.cpu()</p> <p>&nbsp;</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-98131.htm">Pygame从0实战10(泡泡小游戏添加音效)</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-84126.htm" title="python类内部成员的访问及外部访问">python类内部成员的访问及外部访问</a></li>
+                        <li class="py-2"><a href="/news/article-83412.htm" title="python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习">python的文件操作极其利用的实验_Python学习笔记-文件操作、应用小练习</a></li>
+                        <li class="py-2"><a href="/news/article-77171.htm" title="动物疫苗龙头企业名单公布了吗（动物疫苗龙头企业名单公布了吗知乎）">动物疫苗龙头企业名单公布了吗（动物疫苗龙头企业名单公布了吗知乎）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-free-high-speed-nodes.htm" title="3月8日→18.2M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月8日→18.2M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-91561.htm" title="Spring boot整合JPA">Spring boot整合JPA</a></li>
+                        <li class="py-2"><a href="/news/article-82002.htm" title="动物医院大众点评前台个人简介怎么写啊英语（动物医院大众点评评语）">动物医院大众点评前台个人简介怎么写啊英语（动物医院大众点评评语）</a></li>
+                        <li class="py-2"><a href="/news/article-88475.htm" title="兽药肠炎药都有哪些（兽药治疗肠道的抗生素有哪些）">兽药肠炎药都有哪些（兽药治疗肠道的抗生素有哪些）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-free-subscribe-node.htm" title="3月5日→22.8M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月5日→22.8M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-11-free-node-subscribe-links.htm" title="4月11日→18.2M/S|2025年最新免费节点QV2ray Node订阅链接地址">4月11日→18.2M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-90635.htm" title="Spring Cloud Eureka（三）：认识Eureka Server 与 Eureka Client">Spring Cloud Eureka（三）：认识Eureka Server 与 Eureka Client</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
