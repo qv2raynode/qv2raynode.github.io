@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://qv2raynode.github.io/news/article-104048.htm" />
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Golang redis(六)redigo 发布订阅模式</title>
+        <meta name="description" content="发布订阅 使用Send，Flush和Receive方法实现Pub / Sub c.Send("SUBSCRIBE", "example") c.Flush() for {     reply, err" />
+        <link rel="icon" href="/assets/website/img/qv2raynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="QV2ray Node免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://qv2raynode.github.io/news/article-104048.htm" />
+    <meta property="og:site_name" content="QV2ray Node免费机场订阅节点官网" />
+    <meta property="og:title" content="Golang redis(六)redigo 发布订阅模式" />
+    <meta property="og:image" content="https://qv2raynode.github.io/uploads/20241102/d5b79110145f5539f9eeaadeda74a697.webp" />
+        <meta property="og:release_date" content="2025-04-25T07:09:16" />
+    <meta property="og:updated_time" content="2025-04-25T07:09:16" />
+        <meta property="og:description" content="发布订阅 使用Send，Flush和Receive方法实现Pub / Sub c.Send("SUBSCRIBE", "example") c.Flush() for {     reply, err" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Golang redis(六)redigo 发布订阅模式">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/bootstrap.min.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/fontawesome/css/all.css">
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="/assets/website/fonts/qv2raynode/flaticon/flaticon.css">
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/magnific-popup.css">
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/slick.css">
+    <!--====== Nice select css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/nice-select.css">
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/default.css">
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="/assets/website/css/qv2raynode/style.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9XWNVB56T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9XWNVB56T');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--====== Start Preloader ======-->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--====== End Preloader ======-->
+    <!--====== Start Header ======-->
+    <header class="header-area header-area-v1">
+        <div class="header-navigation">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="site-branding">
+                            <div class="brand-logo">
+                                <a href="/">
+                                                                        <span>QV2ray Node</span>
+                                                                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-4">
+                        <div class="nav-menu">
+                            <!-- Mobile Menu Logo -->
+                            <div class="site-branding text-center ml-2 mr-2 mb-4 d-none">
+                                <div class="brand-logo">
+                                    <a href="/">
+                                        QV2ray Node                                    </a>
+                                </div>
+                            </div>
+                            <!-- navbar-close -->
+                            <div class="navbar-close">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- main menu -->
+                            <nav class="main-menu">
+                                <ul>
+                                                                        <li class="menu-item"><a href="/">首页</a></li>
+                                                                        <li class="menu-item"><a href="/free-nodes/">免费节点</a></li>
+                                                                        <li class="menu-item"><a href="/paid-subscribe/">推荐机场</a></li>
+                                                                        <li class="menu-item"><a href="/client.htm">客户端</a></li>
+                                                                        <li class="menu-item"><a href="/news/">新闻资讯</a></li>
+                                                                    </ul>
+                            </nav>
+                        </div>
+                        <!-- navbar toggler -->
+                        <div class="navbar-toggler float-right">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== End Header ======-->
+    <!--====== Start breadcrumbs-section section ======-->
+    <section class="breadcrumbs-section bg_cover" style="background-image: url(/assets/website/img/qv2raynode/bg/breadcrumbs-bg.jpg);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumbs-content text-center">
+                        <h1>Golang redis(六)redigo 发布订阅模式</h1>
+                        <ul class="link">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li class="active">正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End breadcrumbs-section section ======-->
+    <!--====== Start About Section ======-->
+    <section class="about-area-v1 pb-60 pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="V2ray X节点订阅官网" data-url="https://v2rayx.github.io">
+                <div class="xcblog-blog-detail">
+                      				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night-eighties"> <h4> <a id="_0" rel="nofollow"></a>发布订阅</h4> <p>使用Send，Flush和Receive方法实现Pub / Sub</p> <pre><code>c.Send("SUBSCRIBE", "example") c.Flush() for {     reply, err := c.Receive()     if err != nil {         return err     }     // process pushed message } </code></pre> <p>PubSubConn封装Conn以实现订阅者提供简便方法。Subscribe，PSubscribe，Unsubscribe和PUnsubscribe方法发送和刷新订阅。receive方法将推送的消息转换对应的类型</p> <pre><code>psc := redis.PubSubConn{Conn: c} psc.Subscribe("example") for {     switch v := psc.Receive().(type) {     case redis.Message:         fmt.Printf("%s: message: %s\n", v.Channel, v.Data)     case redis.Subscription:         fmt.Printf("%s: %s %d\n", v.Channel, v.Kind, v.Count)     case error:         return v     } } </code></pre> <h4> <a id="PubSubConn_37" rel="nofollow"></a>PubSubConn</h4> <p>定义</p> <pre><code>type PubSubConn struct {     Conn Conn } </code></pre> <p>提供的方法：</p> <p>1.Close 关闭连接<br /><code>func (c PubSubConn) Close() error</code></p> <p>2.PSubscribe PSubscribe发布<br /><code>func (c PubSubConn) PSubscribe(channel ...interface{}) error</code></p> <p>3.PUnsubscribe 取消发布， 如果没有给定， 则取消所有<br /><code>func (c PubSubConn) PUnsubscribe(channel ...interface{}) error</code></p> <p>4.Ping 指定的数据向服务器发送PING 调用此方法时，连接必须至少订阅一个通道或模式<br /><code>func (c PubSubConn) Ping(data string) error</code></p> <p>5.Receive 获取消息<br /><code>func (c PubSubConn) Receive() interface{}</code></p> <p>6.ReceiveWithTimeout 带有超时时间的获取消息函数<br /><code>func (c PubSubConn) ReceiveWithTimeout(timeout time.Duration) interface{}</code></p> <p>7.Subscribe 订阅<br /><code>func (c PubSubConn) Subscribe(channel ...interface{}) error</code></p> <p>8.Unsubscribe 取消订阅<br /><code>func (c PubSubConn) Unsubscribe(channel ...interface{}) error</code></p> <p>示例程序：</p> <pre><code>package main  import (    "context"    "fmt"    "time"     "github.com/gomodule/redigo/redis" )  // listenPubSubChannels listens for messages on Redis pubsub channels. The // onStart function is called after the channels are subscribed. The onMessage // function is called for each message. func listenPubSubChannels(ctx context.Context, redisServerAddr string,    onStart func() error,    onMessage func(channel string, data []byte) error,    channels ...string) error {    // A ping is set to the server with this period to test for the health of    // the connection and server.    const healthCheckPeriod = time.Minute     c, err := redis.Dial("tcp", redisServerAddr,       // Read timeout on server should be greater than ping period.       redis.DialReadTimeout(healthCheckPeriod+10*time.Second),       redis.DialWriteTimeout(10*time.Second))    if err != nil {       return err    }    defer c.Close()     psc := redis.PubSubConn{Conn: c}     if err := psc.Subscribe(redis.Args{}.AddFlat(channels)...); err != nil {       return err    }     done := make(chan error, 1)     // Start a goroutine to receive notifications from the server.    go func() {       for {          switch n := psc.Receive().(type) {          case error:             done &lt;- n             return          case redis.Message:             if err := onMessage(n.Channel, n.Data); err != nil {                done &lt;- err                return             }          case redis.Subscription:             switch n.Count {             case len(channels):                // Notify application when all channels are subscribed.                if err := onStart(); err != nil {                   done &lt;- err                   return                }             case 0:                // Return from the goroutine when all channels are unsubscribed.                done &lt;- nil                return             }          }       }    }()     ticker := time.NewTicker(healthCheckPeriod)    defer ticker.Stop() loop:    for err == nil {       select {       case &lt;-ticker.C:          // Send ping to test health of connection and server. If          // corresponding pong is not received, then receive on the          // connection will timeout and the receive goroutine will exit.          if err = psc.Ping(""); err != nil {             break loop          }       case &lt;-ctx.Done():          break loop       case err := &lt;-done:          // Return error from the receive goroutine.          return err       }    }     // Signal the receiving goroutine to exit by unsubscribing from all channels.    psc.Unsubscribe()     // Wait for goroutine to complete.    return &lt;-done }  func publish() {    c, err := redis.Dial("tcp", "127.0.0.1:6379")    if err != nil {       fmt.Println(err)       return    }    defer c.Close()     c.Do("PUBLISH", "c1", "hello")    c.Do("PUBLISH", "c2", "world")    c.Do("PUBLISH", "c1", "goodbye") }  // This example shows how receive pubsub notifications with cancelation and // health checks. func main() {    redisServerAddr := "127.0.0.1:6379"     ctx, cancel := context.WithCancel(context.Background())     err := listenPubSubChannels(ctx,       redisServerAddr,       func() error {          // The start callback is a good place to backfill missed          // notifications. For the purpose of this example, a goroutine is          // started to send notifications.          go publish()          return nil       },       func(channel string, message []byte) error {          fmt.Printf("channel: %s, message: %s\n", channel, message)           // For the purpose of this example, cancel the listener's context          // after receiving last message sent by publish().          if string(message) == "goodbye" {             cancel()          }          return nil       },       "c1", "c2")     if err != nil {       fmt.Println(err)       return    }  } </code></pre> <p>输出：</p> <pre><code>channel: c1, message: hello channel: c2, message: world channel: c1, message: goodbye </code></pre> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-103378.htm">动物疫苗排名前三的有哪些品种名称（动物疫苗前十强）</a></p>
+                                        <p>下一个：<a href="/news/article-104050.htm">动物疫苗的作用意义何在（动物接种疫苗的好处）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-91562.htm" title="动物疫苗市场占有率排行榜前十（全国动物用疫苗销量排行）">动物疫苗市场占有率排行榜前十（全国动物用疫苗销量排行）</a></li>
+                        <li class="py-2"><a href="/news/article-89904.htm" title="做宠物粮生意赚钱吗现在 做宠物粮生意赚钱吗现在怎么样">做宠物粮生意赚钱吗现在 做宠物粮生意赚钱吗现在怎么样</a></li>
+                        <li class="py-2"><a href="/news/article-71131.htm" title="为什么猫不建议打狂犬病疫苗（为什么猫不建议打狂犬病疫苗呢）">为什么猫不建议打狂犬病疫苗（为什么猫不建议打狂犬病疫苗呢）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-17-node-share-links.htm" title="4月17日→19.9M/S|2025年最新免费节点QV2ray Node订阅链接地址">4月17日→19.9M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-103376.htm" title="手工宠物零食好卖吗 手工宠物零食好卖吗知乎">手工宠物零食好卖吗 手工宠物零食好卖吗知乎</a></li>
+                        <li class="py-2"><a href="/news/article-95933.htm" title="动物医院心得体会总结怎么写（动物医院心得体会总结怎么写好）">动物医院心得体会总结怎么写（动物医院心得体会总结怎么写好）</a></li>
+                        <li class="py-2"><a href="/news/article-81313.htm" title="Rancher上部署Redis部署">Rancher上部署Redis部署</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-node-subscribe.htm" title="3月13日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">3月13日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-71804.htm" title="RestTemplate中文问号?">RestTemplate中文问号?</a></li>
+                        <li class="py-2"><a href="/news/article-75801.htm" title="2020宠物疫苗收费标准（宠物疫苗收费价目表）">2020宠物疫苗收费标准（宠物疫苗收费价目表）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== End About Section ======-->
+        <!--====== Start Footer Area ======-->
+    <footer class="bebsa-footer footer-v2 bg_cover" style="background-image: url(/assets/website/img/qv2raynode/footer/footer-bg-2.jpg);">
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="footer-social">
+                            <ul class="social-link">
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="copyright-text">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                            <p>
+                                <a href="/">QV2ray Node免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== End Footer Area ======-->
+    <!--====== back-to-top ======-->
+    <a href="#" class="back-to-top"><i class="fas fa-angle-up"></i></a>
+    <!--====== Jquery js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/vendor/jquery-1.12.4.min.js"></script>
+    <!--====== Bootstrap js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/qv2raynode/popper.min.js"></script>
+    <!--====== Slick js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/slick.min.js"></script>
+    <!--====== Magnific Popup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.magnific-popup.min.js"></script>
+    <!--====== Isotope js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/isotope.pkgd.min.js"></script>
+    <!--====== Imagesloaded js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/imagesloaded.pkgd.min.js"></script>
+    <!--====== Easy Pie Chart ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.easypiechart.min.js"></script>
+    <!--====== counterup js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.counterup.min.js"></script>
+    <!--====== waypoints js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/waypoints.min.js"></script>
+    <!--====== Nice select js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/jquery.nice-select.min.js"></script>
+    <!--====== Main js ======-->
+    <script src="/assets/website/js/frontend/qv2raynode/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
