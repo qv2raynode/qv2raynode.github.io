@@ -330,9 +330,14 @@ A4：强烈不推荐。免费VPN往往存在数据泄露风险、广告注入、
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hysteria2 的多路复用功能有哪些好处？</h5></div>
+    <div class="panel-heading"><h5>Nekobox 是否可以与 Shadowsocks 客户端共存？</h5></div>
     <div class="panel-body">
-        多路复用允许多个短连接共享同一 QUIC 通道，减少握手延迟和资源消耗。在高并发或频繁短连接场景下，能显著提升吞吐量和稳定性，尤其适合游戏或即时通讯应用。<hr />    </div>
+        可以。Nekobox 配置独立，不影响其他客户端运行。用户可以同时使用 Shadowsocks、Clash 等客户端，通过策略组或分流规则选择合适节点，互不干扰。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>V2Ray 的 DNS 模块如何提升解析速度？</h5></div>
+    <div class="panel-body">
+        V2Ray 内置 DNS 模块支持并行解析，可同时请求多个上游 DNS 服务器。用户可配置本地优先解析或远程解析策略，从而减少域名污染与延迟问题。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 的 ACL4SSR 规则与 Rule Provider 有何区别？</h5></div>
@@ -340,9 +345,19 @@ A4：强烈不推荐。免费VPN往往存在数据泄露风险、广告注入、
         ACL4SSR 是第三方规则集合，专注于分流国内外网站。Rule Provider 是 Clash 的订阅机制，允许自动更新远程规则。二者可以结合使用，实现灵活分流管理。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 的协议和混淆组合如何选择？</h5></div>
+    <div class="panel-body">
+        根据网络封锁情况选择合适协议和混淆组合，例如 tls1.2_ticket_auth 模拟 HTTPS 流量。选择最佳组合可提高抗封锁能力和稳定性，保证节点长期可用。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Sing-box 的 route 功能如何工作？</h5></div>
     <div class="panel-body">
         Sing-box 提供强大的路由系统，允许用户基于 IP、域名、GEO 数据库、进程名等条件精细分流。配置完成后，程序自动匹配规则，将不同流量转发到对应的出口。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan TLS 伪装域名如何提高抗封锁能力？</h5></div>
+    <div class="panel-body">
+        通过选择真实可访问域名并使用有效证书，Trojan 流量可以完全模拟 HTTPS 请求。隐藏真实流量特征，降低被封锁和 DPI 检测风险，保证节点长期可用。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 的混淆方式选择有什么讲究？</h5></div>
@@ -355,29 +370,14 @@ A4：强烈不推荐。免费VPN往往存在数据泄露风险、广告注入、
         支持。Nekobox 可以独立管理多个客户端，如 Shadowsocks 和 Clash 节点，互不干扰。结合策略组，可实现多客户端流量分流和网络优化，提高便利性和效率。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Hysteria2 的多路复用功能有哪些好处？</h5></div>
+    <div class="panel-body">
+        多路复用允许多个短连接共享同一 QUIC 通道，减少握手延迟和资源消耗。在高并发或频繁短连接场景下，能显著提升吞吐量和稳定性，尤其适合游戏或即时通讯应用。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>VMess AEAD 加密如何确保数据安全？</h5></div>
     <div class="panel-body">
-        AEAD 加密防止数据篡改、重放攻击和流量特征泄露。在高封锁环境下，保证节点可用，提升数据安全和连接稳定性，降低被检测风险，确保长期安全访问。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 的协议和混淆组合如何选择？</h5></div>
-    <div class="panel-body">
-        根据网络封锁情况选择合适协议和混淆组合，例如 tls1.2_ticket_auth 模拟 HTTPS 流量。选择最佳组合可提高抗封锁能力和稳定性，保证节点长期可用。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan TLS 伪装域名如何提高抗封锁能力？</h5></div>
-    <div class="panel-body">
-        通过选择真实可访问域名并使用有效证书，Trojan 流量可以完全模拟 HTTPS 请求。隐藏真实流量特征，降低被封锁和 DPI 检测风险，保证节点长期可用。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekobox 是否可以与 Shadowsocks 客户端共存？</h5></div>
-    <div class="panel-body">
-        可以。Nekobox 配置独立，不影响其他客户端运行。用户可以同时使用 Shadowsocks、Clash 等客户端，通过策略组或分流规则选择合适节点，互不干扰。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 的 DNS 模块如何提升解析速度？</h5></div>
-    <div class="panel-body">
-        V2Ray 内置 DNS 模块支持并行解析，可同时请求多个上游 DNS 服务器。用户可配置本地优先解析或远程解析策略，从而减少域名污染与延迟问题。    </div>
+        AEAD 加密防止数据篡改、重放攻击和流量特征泄露。在高封锁环境下，保证节点可用，提升数据安全和连接稳定性，降低被检测风险，确保长期安全访问。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -406,16 +406,16 @@ A4：强烈不推荐。免费VPN往往存在数据泄露风险、广告注入、
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-10-19-free-clash.htm" title="10月19日→21.5M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月19日→21.5M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-5-free-shadowrocket-node.htm" title="10月5日→18.7M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月5日→18.7M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-10-free-subscribe-node.htm" title="10月10日→20.3M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月10日→20.3M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-27-free-clash.htm" title="10月27日→19M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月27日→19M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-9-free-node-subscribe.htm" title="11月9日→22M/S|2025年最新免费节点QV2ray Node订阅链接地址">11月9日→22M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-17-node-share.htm" title="10月17日→20.3M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月17日→20.3M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-25-free-clash.htm" title="10月25日→19.9M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月25日→19.9M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-12-clash-windows.htm" title="10月12日→21M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月12日→21M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-7-clash-node-daily-updates.htm" title="10月7日→19.7M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月7日→19.7M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-31-free-node-subscribe-links.htm" title="10月31日→19.2M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月31日→19.2M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-2-free-shadowrocket-node.htm" title="11月2日→18.9M/S|2025年最新免费节点QV2ray Node订阅链接地址">11月2日→18.9M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-24-node-share-links.htm" title="10月24日→20.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月24日→20.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-20-clash-v2ray-ss-ssr.htm" title="10月20日→21.2M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月20日→21.2M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-13-free-high-speed-nodes.htm" title="10月13日→21.9M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月13日→21.9M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-11-free-clash.htm" title="10月11日→19.5M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月11日→19.5M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-22-clash-v2ray-ss-ssr.htm" title="10月22日→19.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月22日→19.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-16-free-v2ray-subscribe.htm" title="10月16日→22.9M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月16日→22.9M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-10-free-subscribe-node.htm" title="10月10日→20.3M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月10日→20.3M/S|2025年最新免费节点QV2ray Node订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
@@ -427,7 +427,7 @@ A4：强烈不推荐。免费VPN往往存在数据泄露风险、广告注入、
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">4</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">10</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
