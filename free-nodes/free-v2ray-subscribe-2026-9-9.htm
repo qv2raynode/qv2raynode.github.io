@@ -426,39 +426,9 @@ Clash就像是网络世界的魔法钥匙，为安卓用户开启了一条通往
         在 PassWall2 面板中点击“订阅管理”，输入或更新订阅链接后，点击“手动更新”即可自动下载最新节点数据。也可设置定时任务每日自动更新，保持配置最新。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 的延迟测试准确吗？</h5></div>
-    <div class="panel-body">
-        Matsuri 的延迟测试使用 ICMP 与 TCP 双重检测方式，可较准确反映节点实际响应时间。不过受网络波动影响，建议多次测试并结合速度测试结果综合判断。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 配置如何提高节点隐蔽性？</h5></div>
-    <div class="panel-body">
-        通过选择合适协议和混淆方式，将流量伪装成正常 HTTPS 或 HTTP 数据。可降低被 DPI 检测和封锁的风险，提高节点长期稳定性和科学上网体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 如何提升节点连接效率？</h5></div>
-    <div class="panel-body">
-        Matsuri 是一个支持多协议的代理工具，强调快速连接与自动切换功能。它可以根据延迟自动选择最优节点，减少手动切换的繁琐过程，保证网络体验的流畅性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 如何结合规则实现智能节点切换？</h5></div>
-    <div class="panel-body">
-        Surfboard 可根据规则文件和策略组自动选择延迟低、稳定性高的节点处理流量。不同应用流量可分配不同节点，优化访问速度和稳定性，减少手动切换节点的操作。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Mellow 与 Clash 的核心区别是什么？</h5></div>
     <div class="panel-body">
         Mellow 采用基于透明代理的架构，适合路由或系统级流量重定向，而 Clash 更偏向规则式应用代理。Mellow 的灵活性更高，但配置复杂；Clash 则兼顾易用性与功能扩展性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>何为 multiplex (mux)，启用后会有哪些利弊？</h5></div>
-    <div class="panel-body">
-        mux 是多路复用技术，可在单一连接上传输多路流量，从而减少握手次数与连接开销。优点是提升短连接并发效率，缺点是在丢包或单连接异常时可能影响多条会话并增加调试复杂度。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess 节点使用 AEAD 加密有何优势？</h5></div>
-    <div class="panel-body">
-        AEAD 加密能提供更强的安全性和抗重放能力，同时减少加密头泄露特征。相比普通加密，更适合高封锁环境，兼顾安全与性能，保证长期稳定使用。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Hysteria2 多路复用如何优化短连接性能？</h5></div>
@@ -466,9 +436,39 @@ Clash就像是网络世界的魔法钥匙，为安卓用户开启了一条通往
         多路复用允许多个短连接共享同一通道，减少握手延迟和资源消耗。适用于游戏、即时通讯等高频短连接场景，提高吞吐量和连接稳定性，优化整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess 节点使用 AEAD 加密有何优势？</h5></div>
+    <div class="panel-body">
+        AEAD 加密能提供更强的安全性和抗重放能力，同时减少加密头泄露特征。相比普通加密，更适合高封锁环境，兼顾安全与性能，保证长期稳定使用。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Matsuri 如何提升节点连接效率？</h5></div>
+    <div class="panel-body">
+        Matsuri 是一个支持多协议的代理工具，强调快速连接与自动切换功能。它可以根据延迟自动选择最优节点，减少手动切换的繁琐过程，保证网络体验的流畅性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 配置如何提高节点隐蔽性？</h5></div>
+    <div class="panel-body">
+        通过选择合适协议和混淆方式，将流量伪装成正常 HTTPS 或 HTTP 数据。可降低被 DPI 检测和封锁的风险，提高节点长期稳定性和科学上网体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Sing-box 支持哪些类型的分流规则？</h5></div>
     <div class="panel-body">
-        Sing-box 支持域名、IP、端口、协议类型、用户标签等多种分流规则。结合策略组，可实现精细化流量管理，满足视频加速、广告屏蔽和游戏优化等多样化需求。    </div>
+        Sing-box 支持域名、IP、端口、协议类型、用户标签等多种分流规则。结合策略组，可实现精细化流量管理，满足视频加速、广告屏蔽和游戏优化等多样化需求。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 如何结合规则实现智能节点切换？</h5></div>
+    <div class="panel-body">
+        Surfboard 可根据规则文件和策略组自动选择延迟低、稳定性高的节点处理流量。不同应用流量可分配不同节点，优化访问速度和稳定性，减少手动切换节点的操作。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>何为 multiplex (mux)，启用后会有哪些利弊？</h5></div>
+    <div class="panel-body">
+        mux 是多路复用技术，可在单一连接上传输多路流量，从而减少握手次数与连接开销。优点是提升短连接并发效率，缺点是在丢包或单连接异常时可能影响多条会话并增加调试复杂度。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Matsuri 的延迟测试准确吗？</h5></div>
+    <div class="panel-body">
+        Matsuri 的延迟测试使用 ICMP 与 TCP 双重检测方式，可较准确反映节点实际响应时间。不过受网络波动影响，建议多次测试并结合速度测试结果综合判断。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -516,16 +516,16 @@ Clash就像是网络世界的魔法钥匙，为安卓用户开启了一条通往
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-13.htm" title="8月13日→22.9M/S|2025年最新免费节点QV2ray Node订阅链接地址">8月13日→22.9M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-26-free-shadowrocket-node.htm" title="8月26日→19.2M/S|2025年最新免费节点QV2ray Node订阅链接地址">8月26日→19.2M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-v2ray-subscribe-2026-8-31.htm" title="8月31日→22.5M/S|2025年最新免费节点QV2ray Node订阅链接地址">8月31日→22.5M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/clash-windows-2026-9-1.htm" title="9月1日→19M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月1日→19M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-v2ray-subscribe-2026-9-9.htm" title="9月9日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月9日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-29.htm" title="8月29日→20.9M/S|2025年最新免费节点QV2ray Node订阅链接地址">8月29日→20.9M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-8-6-node-share.htm" title="8月6日→19.6M/S|2025年最新免费节点QV2ray Node订阅链接地址">8月6日→19.6M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-28-free-shadowrocket-node.htm" title="8月28日→22.2M/S|2025年最新免费节点QV2ray Node订阅链接地址">8月28日→22.2M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-7.htm" title="9月7日→21.4M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月7日→21.4M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/shadowrocket-node-2026-8-21.htm" title="8月21日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">8月21日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-16-clash-v2ray-ss-ssr.htm" title="9月16日→19.5M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月16日→19.5M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-10-free-shadowrocket-node.htm" title="9月10日→22.8M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月10日→22.8M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/shadowrocket-node-2026-8-7.htm" title="8月7日→20.2M/S|2025年最新免费节点QV2ray Node订阅链接地址">8月7日→20.2M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-5.htm" title="9月5日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月5日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-13.htm" title="8月13日→22.9M/S|2025年最新免费节点QV2ray Node订阅链接地址">8月13日→22.9M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/clash-windows-2026-9-13.htm" title="9月13日→19M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月13日→19M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-v2ray-subscribe-2026-9-9.htm" title="9月9日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月9日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/clash-windows-2026-9-1.htm" title="9月1日→19M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月1日→19M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -537,7 +537,7 @@ Clash就像是网络世界的魔法钥匙，为安卓用户开启了一条通往
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">10</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
+                <h4><span class="badge" style="float: right;">17</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
