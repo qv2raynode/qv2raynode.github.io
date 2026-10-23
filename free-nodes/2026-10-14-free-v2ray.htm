@@ -316,34 +316,9 @@ systemctl </span><span><span class="hljs-built_in">enable</span></span><span> v2
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2RayN 如何开启系统代理？</h5></div>
-    <div class="panel-body">
-        打开 V2RayN 后，点击右下角托盘图标，选择“设置系统代理”或“开启全局模式”。这样系统所有网络请求都会通过代理转发。适用于浏览器、下载器等需要全局代理的场景。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow 如何配置透明代理？</h5></div>
-    <div class="panel-body">
-        Mellow 通过 tun2socks 技术实现透明代理。只需在配置文件中启用该功能，系统所有网络流量都会自动转发到代理内核，用户无需手动设置系统代理参数。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS + XTLS 在移动网络的优势？</h5></div>
     <div class="panel-body">
         XTLS 模式减少握手次数和加密开销，适合高延迟或不稳定的移动网络。结合策略组和多节点切换，可提升网页浏览、视频播放和游戏的连接稳定性和流畅度。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS + XTLS 模式能在移动网络下提高稳定性吗？</h5></div>
-    <div class="panel-body">
-        可以。XTLS 降低加密开销，减少握手次数，适合移动网络高延迟或不稳定环境。结合策略组和多出口节点，可提升连接稳定性和访问速度。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>QuantumultX 支持哪些类型的重写脚本？</h5></div>
-    <div class="panel-body">
-        QuantumultX 支持 JavaScript 脚本，可修改请求头、响应内容、自动跳转、广告屏蔽和定制流量处理。结合策略组，可实现高度个性化的网络访问控制和优化。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 如何防止流量被 DPI 检测？</h5></div>
-    <div class="panel-body">
-        通过协议插件和混淆方式可以模拟正常 HTTPS 或 HTTP 流量，隐藏真实流量特征。合理配置混淆插件和加密方式，可以有效绕过 DPI 检测，保证连接稳定性和长期可用性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Nekobox 可以自定义路由规则吗？</h5></div>
@@ -351,9 +326,29 @@ systemctl </span><span><span class="hljs-built_in">enable</span></span><span> v2
         支持。用户可通过界面或配置文件定义路由规则，按域名、IP 或端口匹配不同节点，实现流量分流。自定义规则增强了网络访问灵活性和安全性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hysteria2 的多路复用功能有哪些好处？</h5></div>
+    <div class="panel-heading"><h5>V2Ray 服务器启动后提示端口被占用，该如何处理？</h5></div>
     <div class="panel-body">
-        多路复用允许多个短连接共享同一 QUIC 通道，减少握手延迟和资源消耗。在高并发或频繁短连接场景下，能显著提升吞吐量和稳定性，尤其适合游戏或即时通讯应用。<hr />    </div>
+        先用 netstat 或 ss 工具查看占用该端口的进程（例如 `ss -ltnp`），确认是旧进程或其他服务占用。停止占用进程或修改 V2Ray 配置端口，然后重启服务并检查防火墙规则是否开放了新端口。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 如何防止流量被 DPI 检测？</h5></div>
+    <div class="panel-body">
+        通过协议插件和混淆方式可以模拟正常 HTTPS 或 HTTP 流量，隐藏真实流量特征。合理配置混淆插件和加密方式，可以有效绕过 DPI 检测，保证连接稳定性和长期可用性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>QuantumultX 支持哪些类型的重写脚本？</h5></div>
+    <div class="panel-body">
+        QuantumultX 支持 JavaScript 脚本，可修改请求头、响应内容、自动跳转、广告屏蔽和定制流量处理。结合策略组，可实现高度个性化的网络访问控制和优化。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow 如何配置透明代理？</h5></div>
+    <div class="panel-body">
+        Mellow 通过 tun2socks 技术实现透明代理。只需在配置文件中启用该功能，系统所有网络流量都会自动转发到代理内核，用户无需手动设置系统代理参数。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VLESS + XTLS 模式能在移动网络下提高稳定性吗？</h5></div>
+    <div class="panel-body">
+        可以。XTLS 降低加密开销，减少握手次数，适合移动网络高延迟或不稳定环境。结合策略组和多出口节点，可提升连接稳定性和访问速度。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>如何检测并处理订阅中的死节点？</h5></div>
@@ -361,9 +356,14 @@ systemctl </span><span><span class="hljs-built_in">enable</span></span><span> v2
         定期运行批量测速脚本或使用客户端内置的 url-test、health-check 功能，自动标记或移除响应超时或重连失败的节点。结合订阅更新策略可自动替换或提醒用户维护节点列表。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 服务器启动后提示端口被占用，该如何处理？</h5></div>
+    <div class="panel-heading"><h5>V2RayN 如何开启系统代理？</h5></div>
     <div class="panel-body">
-        先用 netstat 或 ss 工具查看占用该端口的进程（例如 `ss -ltnp`），确认是旧进程或其他服务占用。停止占用进程或修改 V2Ray 配置端口，然后重启服务并检查防火墙规则是否开放了新端口。    </div>
+        打开 V2RayN 后，点击右下角托盘图标，选择“设置系统代理”或“开启全局模式”。这样系统所有网络请求都会通过代理转发。适用于浏览器、下载器等需要全局代理的场景。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Hysteria2 的多路复用功能有哪些好处？</h5></div>
+    <div class="panel-body">
+        多路复用允许多个短连接共享同一 QUIC 通道，减少握手延迟和资源消耗。在高并发或频繁短连接场景下，能显著提升吞吐量和稳定性，尤其适合游戏或即时通讯应用。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -411,16 +411,16 @@ systemctl </span><span><span class="hljs-built_in">enable</span></span><span> v2
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/free-subscribe-node-2026-10-9.htm" title="10月9日→18.4M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月9日→18.4M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-19.htm" title="9月19日→21.4M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月19日→21.4M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-27.htm" title="9月27日→22.4M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月27日→22.4M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-v2ray-subscribe-2026-9-9.htm" title="9月9日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月9日→18.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-4-clash-node.htm" title="9月4日→18.9M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月4日→18.9M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-2-free-clash.htm" title="9月2日→21.7M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月2日→21.7M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-10-19.htm" title="10月19日→19.8M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月19日→19.8M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-14-node-share.htm" title="9月14日→19.8M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月14日→19.8M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/clash-windows-2026-10-15.htm" title="10月15日→18.4M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月15日→18.4M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/shadowrocket-node-2026-10-17.htm" title="10月17日→21.3M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月17日→21.3M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-10-4-free-node-subscribe.htm" title="10月4日→18.6M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月4日→18.6M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-8-free-shadowrocket-node.htm" title="10月8日→19.5M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月8日→19.5M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-10-10-node-share.htm" title="10月10日→22.7M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月10日→22.7M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/shadowrocket-node-2026-9-3.htm" title="9月3日→20.9M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月3日→20.9M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-10-2-free-ssr-subscribe.htm" title="10月2日→21.4M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月2日→21.4M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-26-free-node-subscribe.htm" title="9月26日→20.4M/S|2025年最新免费节点QV2ray Node订阅链接地址">9月26日→20.4M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-10-21.htm" title="10月21日→19.7M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月21日→19.7M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-14-free-v2ray.htm" title="10月14日→20.1M/S|2025年最新免费节点QV2ray Node订阅链接地址">10月14日→20.1M/S|2025年最新免费节点QV2ray Node订阅链接地址</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -432,7 +432,7 @@ systemctl </span><span><span class="hljs-built_in">enable</span></span><span> v2
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
+                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
